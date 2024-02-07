@@ -1,0 +1,81 @@
+name: artevo
+description: Günlük Estetik Seçkiler
+publish_to: 'none'
+version: 1.3.0+14
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  artevo_package:
+    git:
+      url: https://github.com/opiasdream/artevo_package.git
+      ref: main
+
+  #-- core
+  flutter_riverpod: ^2.3.6
+  #-- loacalization
+  intl: ^0.18.1
+  flutter_localizations:
+    sdk: flutter
+  #-
+  timezone: ^0.9.2
+  flutter_native_timezone: ^2.0.0
+  #-- google services
+  firebase_core: ^2.24.0
+  cloud_firestore: ^4.13.3
+  firebase_database: ^10.3.4
+  #-- cache
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  cached_network_image: ^3.3.0
+  #-- ui
+  iconsax: ^0.0.8
+  zoom_widget: ^2.0.1
+  cupertino_icons: ^1.0.2
+  flutter_animate: ^4.2.0+1
+  flutter_rating_bar: ^4.0.1
+  #-- for audio player 
+  just_audio: ^0.9.35
+  audio_service: ^0.18.12
+  just_audio_background: ^0.0.1-beta.11
+  #-- notifications
+  flutter_local_notifications: ^16.2.0
+  #-- others
+  url_launcher: ^6.1.11
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_launcher_icons:
+#  android: "launcher_icon"
+  ios: true
+  image_path: "assets/app/logo_a.jpg"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/app/
+    - assets/fonts/
+    - assets/license/
+    - assets/music_platforms/
+    - assets/social_media/
+
+  fonts:
+    - family: Domine
+      fonts:
+        - asset: assets/fonts/domine/Domine-Bold.ttf
+        - asset: assets/fonts/domine/Domine-Medium.ttf
+        - asset: assets/fonts/domine/Domine-Regular.ttf
+        - asset: assets/fonts/domine/Domine-SemiBold.ttf
+    - family: Chomsky
+      fonts:
+        - asset: assets/fonts/chomsky/Chomsky.otf

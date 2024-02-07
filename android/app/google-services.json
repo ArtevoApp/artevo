@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "919720790092",
+    "firebase_url": "https://artevo-daca2-default-rtdb.firebaseio.com",
+    "project_id": "artevo-daca2",
+    "storage_bucket": "artevo-daca2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919720790092:android:0bf5cf231f9b9542664ce9",
+        "android_client_info": {
+          "package_name": "com.opifer.artevo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPp_lLj5a0mNG-Q4rh60EwAVNCtlD54CQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
