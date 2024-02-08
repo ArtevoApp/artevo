@@ -1,8 +1,6 @@
-import 'package:artevo/common/widgets/unknow_error_alert_dialog.dart';
+import 'package:artevo/common/helpers/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import 'package:artevo/common/widgets/theme_toggle_button.dart';
 
 enum MusicPlatform { ytMusic, spotify, appleMusic }
@@ -31,21 +29,7 @@ class MusicPlatformButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isExistUrl = url != null && url != "";
     return TextButton(
-      onPressed: isExistUrl
-          ? () async {
-              try {
-                final uri = Uri.parse(url!);
-                if (await canLaunchUrl(uri)) {
-                  await launchUrl(uri);
-                }
-              } catch (e) {
-                // ignore: use_build_context_synchronously
-                showDialog(
-                    context: context,
-                    builder: (context) => const UnknowErrorAlertDialog());
-              }
-            }
-          : null,
+      onPressed: isExistUrl ? () => Functions.openUrl(context, url!) : null,
       child: SizedBox(
         height: platform == MusicPlatform.spotify ? 19 : null,
         width: 79,

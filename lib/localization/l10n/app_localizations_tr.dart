@@ -59,6 +59,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get goetheQuote => 'İnsan her gün bir parça müzik dinlemeli, İyi bir şiir okumalı, güzel bir tablo görmeli ve mümkünse birkaç mantıklı cümle söylemeli.';
 
   @override
+  String get imageNotFound => 'Görsel Bulunamadı!';
+
+  @override
   String get langCode => 'tr';
 
   @override

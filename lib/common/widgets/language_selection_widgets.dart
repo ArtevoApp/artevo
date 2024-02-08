@@ -20,13 +20,13 @@ class LanguageSelectWithDropdownWidget extends StatelessWidget {
         ? Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("${context.loc.language}:", style: TextStyles.bodyTextStyle),
+              Text("${context.loc.language}:", style: TextStyles.body),
               langDropdown()
             ],
           )
         : ListTile(
             contentPadding: const EdgeInsets.all(0),
-            title: Text(context.loc.language, style: TextStyles.bodyTextStyle),
+            title: Text(context.loc.language, style: TextStyles.body),
             trailing: langDropdown(),
           );
   }

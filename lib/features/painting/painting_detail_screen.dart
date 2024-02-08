@@ -22,9 +22,7 @@ class PaintingDetailScreen extends ConsumerWidget {
             Section(title: "", content: "", author: "");
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(painting.name),
-        ),
+        appBar: AppBar(title: Text(painting.name)),
         body: Stack(
           alignment: Alignment.topCenter,
           children: [
@@ -50,10 +48,10 @@ class PaintingDetailScreen extends ConsumerWidget {
                         ),
                         const SizedBox(height: 8),
                         Text("${painting.painter} - ${painting.name}",
-                            style: TextStyles.bodyTextStyle,
+                            style: TextStyles.body,
                             textAlign: TextAlign.center),
                         Text("(${painting.year},${painting.category})",
-                            style: TextStyles.infoTextStyle,
+                            style: TextStyles.info,
                             textAlign: TextAlign.center),
                         const SizedBox(height: 8),
 
@@ -63,7 +61,7 @@ class PaintingDetailScreen extends ConsumerWidget {
                             padding: const EdgeInsets.only(top: 32),
                             child: Text(
                               context.loc.contentIsNotFound,
-                              style: TextStyles.bodyTextStyle,
+                              style: TextStyles.body,
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -78,7 +76,7 @@ class PaintingDetailScreen extends ConsumerWidget {
                                 child: Text(
                                   paintingDetail.title,
                                   textAlign: TextAlign.center,
-                                  style: TextStyles.titleTextStyle,
+                                  style: TextStyles.title,
                                 ),
                               ),
 
@@ -87,7 +85,7 @@ class PaintingDetailScreen extends ConsumerWidget {
                                   padding: const EdgeInsets.all(16.0),
                                   child: Text(
                                     paintingDetail.content,
-                                    style: TextStyles.bodyTextStyle,
+                                    style: TextStyles.body,
                                   )),
                               // * Author
                               ListTile(

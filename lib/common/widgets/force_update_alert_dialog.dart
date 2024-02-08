@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:artevo/common/constants/app_constants.dart';
-import 'package:artevo/common/constants/dimes.dart';
+import 'package:artevo/common/constants/strings.dart';
+import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:artevo/services/firebase/realtime_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,6 +9,11 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ForceUpdateAlertDialog extends StatelessWidget {
   const ForceUpdateAlertDialog({super.key});
+
+  static Future<void> show(BuildContext context) {
+    return showDialog(
+        context: context, builder: (context) => const ForceUpdateAlertDialog());
+  }
 
   @override
   Widget build(BuildContext context) {

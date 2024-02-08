@@ -201,6 +201,12 @@ abstract class AppLocalizations {
   /// **'Every day one should at least hear one little song, read one good poem, see one fine painting and -- if at all possible -- speak a few sensible words.'**
   String get goetheQuote;
 
+  /// No description provided for @imageNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Image not found!'**
+  String get imageNotFound;
+
   /// No description provided for @langCode.
   ///
   /// In en, this message translates to:

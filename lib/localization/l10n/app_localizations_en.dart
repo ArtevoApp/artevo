@@ -59,6 +59,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get goetheQuote => 'Every day one should at least hear one little song, read one good poem, see one fine painting and -- if at all possible -- speak a few sensible words.';
 
   @override
+  String get imageNotFound => 'Image not found!';
+
+  @override
   String get langCode => 'en';
 
   @override

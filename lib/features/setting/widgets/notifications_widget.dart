@@ -1,7 +1,7 @@
+import 'package:artevo/common/widgets/error_dialog.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:artevo/services/notification/notification_service.dart';
 import 'package:artevo/common/constants/text_styles.dart';
-import 'package:artevo/common/widgets/unknow_error_alert_dialog.dart';
 import 'package:artevo/services/hive/hive_user_data_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +47,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
               notificationStatus
                   ? context.loc.notificationTimeDescription(hour, min)
                   : context.loc.notificationDescriptionText,
-              style: TextStyles.infoTextStyle),
+              style: TextStyles.info),
 
           // * Edit Button
           Visibility(
@@ -56,7 +56,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
               onPressed: notificationTimeEditFunction,
               minSize: 14,
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Text(context.loc.edit, style: TextStyles.infoTextStyle),
+              child: Text(context.loc.edit, style: TextStyles.info),
             ),
           ),
         ],
@@ -92,7 +92,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
       await hive.setNotificationMinute(selectedTime.minute);
       NotificationsService.init();
     }
-
+    // TODO: Buna bir bak
     setState(() {});
   }
 
@@ -109,12 +109,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
           });
           //  NotificationsManager().showNotification();
         } else {
-          showDialog(
-            context: context,
-            builder: (context) => UnknowErrorAlertDialog(
-              msg: context.loc.notificationPermissionText,
-            ),
-          );
+          ErrorDialog.show(context,
+              msg: context.loc.notificationPermissionText);
         }
       }
       // artevo notifications closed.

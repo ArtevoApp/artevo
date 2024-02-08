@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'package:artevo/app_initialize.dart';
+import 'package:artevo/common/config/app_initialize.dart';
 import 'package:artevo/common/config/routes.dart';
 import 'package:artevo/common/config/color_schemes.dart';
-import 'package:artevo/common/constants/app_constants.dart';
+import 'package:artevo/common/constants/strings.dart';
 import 'package:artevo/common/widgets/language_selection_widgets.dart';
 import 'package:artevo/common/widgets/theme_toggle_button.dart';
 import 'package:artevo/localization/l10n/app_localizations.dart';

@@ -18,3 +18,5 @@ const String contactUrl =
 // social media
 const String instagramUrl = "https://www.instagram.com/artevoapp/";
 const String discordUrl = "https://discord.gg/hvtNkNEsTv";
+
+const String goetheFName = "Johann Wolfgang von Goethe";

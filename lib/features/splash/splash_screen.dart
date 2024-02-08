@@ -1,11 +1,17 @@
 import 'package:artevo/common/config/routes.dart';
+import 'package:artevo/common/constants/dimens.dart';
+import 'package:artevo/common/constants/strings.dart';
+import 'package:artevo/common/constants/text_styles.dart';
+import 'package:artevo/common/widgets/error_dialog.dart';
 import 'package:artevo/common/widgets/force_update_alert_dialog.dart';
-import 'package:artevo/common/widgets/unknow_error_alert_dialog.dart';
+import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:artevo/services/_service_manager.dart';
-import 'package:artevo/features/splash/splash_screen_body_widget.dart';
 import 'package:artevo/services/hive/hive_user_data_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+
+part "splash_screen_mixin.dart";
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,52 +20,39 @@ class SplashScreen extends StatefulWidget {
   State<StatefulWidget> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    loadData();
-  }
-
+class _SplashScreenState extends State<SplashScreen> with SplashScreenMixin {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: SplashScreenBodyWidget());
-  }
-
-  void loadData() async {
-    bool isFirstLogin = HiveUserDataService().getFirstLoginStatus;
-    if (isFirstLogin) {
-      SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-        Navigator.pushNamedAndRemoveUntil(
-            context, Screens.welcome.routeName, (route) => false);
-      });
-    } else {
-      Future<bool> versionControl = ServiceManger().checkAppVersionData();
-      Future<bool> contentControl = ServiceManger().checkContentData();
-
-      Future delay = Future.delayed(const Duration(seconds: 3));
-
-      await Future.wait([versionControl, contentControl, delay])
-          .then((controls) {
-        // version control
-        if (controls[0]) {
-          // content control
-          if (controls[1]) {
-            Navigator.pushNamedAndRemoveUntil(
-                context, Screens.home.routeName, (route) => false);
-          } else {
-            showDialog(
-                context: context,
-                builder: (context) => const UnknowErrorAlertDialog());
-          }
-        } else {
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (context) => const ForceUpdateAlertDialog(),
-          );
-        }
-      });
-    }
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Spacer(),
+            const Text(appName, style: TextStyles.welcomeTitle),
+            const Text(appAuthor, style: TextStyles.bodyv3),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(xLargePadding),
+              child: Text(
+                context.loc.goetheQuote,
+                style: TextStyles.quote,
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(goetheFName, style: TextStyles.goethe)),
+            const Spacer(flex: 2),
+            SizedBox(
+                height: 15,
+                width: 15,
+                child: CircularProgressIndicator(
+                    color: Theme.of(context).colorScheme.secondary)),
+            const Spacer()
+          ],
+        ).animate().fade(duration: const Duration(seconds: 2)),
+      ),
+    );
   }
 }

@@ -1,10 +1,12 @@
-import 'package:artevo/common/constants/app_constants.dart';
+import 'package:artevo/common/constants/strings.dart';
 import 'package:artevo/services/firebase/firestore_service.dart';
 import 'package:artevo/services/hive/hive_content_data_service.dart';
 import 'package:artevo/services/firebase/realtime_service.dart';
 import 'package:artevo_package/models/content.dart';
 import 'package:artevo_package/models/version_data.dart';
 
+// TODO: DATA MANAGER ŞEKLİNDE İSİMLENDİRİLEBİLİR
+// SPLASH SCR MİXİN'DE KULLANILIYOR
 class ServiceManger {
   Future<bool> checkContentData() async {
     try {

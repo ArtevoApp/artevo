@@ -1,12 +1,17 @@
-import 'package:artevo/common/constants/app_constants.dart';
-import 'package:artevo/common/constants/dimes.dart';
+import 'package:artevo/common/constants/strings.dart';
+import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:flutter/material.dart';
 
-class UnknowErrorAlertDialog extends StatelessWidget {
-  const UnknowErrorAlertDialog({super.key, this.msg});
+class ErrorDialog extends StatelessWidget {
+  const ErrorDialog({super.key, this.msg});
 
   final String? msg;
+
+  static Future<void> show(BuildContext context, {String? msg}) {
+    return showDialog(
+        context: context, builder: (context) => ErrorDialog(msg: msg));
+  }
 
   @override
   Widget build(BuildContext context) {

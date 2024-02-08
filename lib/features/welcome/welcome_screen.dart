@@ -1,5 +1,6 @@
 import 'package:artevo/common/config/routes.dart';
-import 'package:artevo/common/constants/app_constants.dart';
+import 'package:artevo/common/constants/dimens.dart';
+import 'package:artevo/common/constants/strings.dart';
 import 'package:artevo/common/constants/text_styles.dart';
 import 'package:artevo/common/widgets/language_selection_widgets.dart';
 import 'package:artevo/common/widgets/footer_widget.dart';
@@ -18,41 +19,23 @@ class WelcomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(largePadding),
             child: Column(
               children: [
-                const SizedBox(height: 32),
-                const Text(appName, style: TextStyle(fontSize: 48)),
-                const Text(appAuthor, style: TextStyle(fontSize: 12)),
-                const SizedBox(height: 32),
-                Text(
-                  context.loc.welcome,
-                  style: const TextStyle(fontSize: 48),
-                ),
-                Text(
-                  context.loc.appPurpose,
-                  style: TextStyles.other,
-                  textAlign: TextAlign.center,
-                ),
+                const SizedBox(height: hugePadding),
+                const Text(appName, style: TextStyles.welcomeTitle),
+                const Text(appAuthor, style: TextStyles.bodyv3),
+                const SizedBox(height: hugePadding),
+                Text(context.loc.welcome, style: TextStyles.welcomeTitle),
+                Text(context.loc.appPurpose,
+                    style: TextStyles.welcomeBody, textAlign: TextAlign.center),
                 const Spacer(),
                 const LanguageSelectWithDropdownWidget(isSmallWidget: true),
                 const Spacer(),
-                Text(
-                  context.loc.termsOfUseToContinue,
-                  style: TextStyles.bodyv3TextStyle,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 32),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: CupertinoButton.filled(
-                      onPressed: () async {
-                        HiveUserDataService().setFirstLoginStatus(false);
-                        Navigator.pushNamedAndRemoveUntil(context,
-                            Screens.splash.routeName, (route) => false);
-                      },
-                      child: Text(context.loc.continuee)),
-                ),
+                Text(context.loc.termsOfUseToContinue,
+                    style: TextStyles.bodyv3, textAlign: TextAlign.center),
+                const SizedBox(height: hugePadding),
+                continueButton(context),
                 const Spacer(),
                 const FooterWidget()
               ],
@@ -60,6 +43,19 @@ class WelcomeScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Align continueButton(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: CupertinoButton.filled(
+          onPressed: () async {
+            HiveUserDataService().setFirstLoginStatus(false);
+            Navigator.pushNamedAndRemoveUntil(
+                context, Screens.splash.routeName, (route) => false);
+          },
+          child: Text(context.loc.continuee)),
     );
   }
 }

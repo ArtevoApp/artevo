@@ -1,9 +1,9 @@
 import 'dart:io';
-import 'package:artevo/common/constants/app_constants.dart';
+import 'package:artevo/common/constants/strings.dart';
 import 'package:artevo/common/constants/text_styles.dart';
+import 'package:artevo/common/helpers/functions.dart';
 import 'package:artevo/common/widgets/language_selection_widgets.dart';
 import 'package:artevo/common/widgets/theme_toggle_button.dart';
-import 'package:artevo/common/widgets/unknow_error_alert_dialog.dart';
 import 'package:artevo/common/widgets/footer_widget.dart';
 import 'package:artevo/features/setting/widgets/notifications_widget.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
@@ -11,7 +11,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class SectionWidget extends StatelessWidget {
   const SectionWidget({super.key, required this.title});
@@ -48,8 +47,7 @@ class SettingScreen extends StatelessWidget {
               // * İLETİŞİM
               SectionWidget(title: context.loc.contactUs),
               Text(context.loc.contactText,
-                  style: TextStyles.bodyv3TextStyle,
-                  textAlign: TextAlign.center),
+                  style: TextStyles.bodyv3, textAlign: TextAlign.center),
               CupertinoButton(
                 child: const Text(appContactMail),
                 onPressed: () async {
@@ -62,31 +60,17 @@ class SettingScreen extends StatelessWidget {
                 },
               ),
               CupertinoButton(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.asset("assets/social_media/discord_logo_white.png",
-                        color: Colors.teal, height: 16, width: 16),
-                    const SizedBox(width: 8),
-                    const Text("Artevo Discord")
-                  ],
-                ),
-                onPressed: () async {
-                  try {
-                    final uri = Uri.parse(discordUrl);
-
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(uri);
-                    }
-                  } catch (e) {
-                    // ignore: use_build_context_synchronously
-                    showDialog(
-                        context: context,
-                        builder: (context) => const UnknowErrorAlertDialog());
-                  }
-                },
-              ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset("assets/social_media/discord_logo_white.png",
+                          color: Colors.teal, height: 16, width: 16),
+                      const SizedBox(width: 8),
+                      const Text("Artevo Discord")
+                    ],
+                  ),
+                  onPressed: () => Functions.openUrl(context, discordUrl)),
 
               // * OTHER
               SectionWidget(title: context.loc.other),
@@ -101,25 +85,10 @@ class SettingScreen extends StatelessWidget {
 
   ListTile newMethod(BuildContext context) {
     return ListTile(
-      contentPadding: const EdgeInsets.all(0),
-      title: Text(context.loc.rateArtevo),
-      trailing: const Icon(Iconsax.ranking_14, color: Colors.teal),
-      onTap: () async {
-        try {
-          final uri = Uri.parse(Platform.isIOS ? appStoreUrl : playStoreUrl);
-
-          if (await canLaunchUrl(uri)) {
-            await launchUrl(uri);
-          } else {
-            throw 'Url Açılamadı! $uri';
-          }
-        } catch (e) {
-          // ignore: use_build_context_synchronously
-          showDialog(
-              context: context,
-              builder: (context) => const UnknowErrorAlertDialog());
-        }
-      },
-    );
+        contentPadding: const EdgeInsets.all(0),
+        title: Text(context.loc.rateArtevo),
+        trailing: const Icon(Iconsax.ranking_14, color: Colors.teal),
+        onTap: () => Functions.openUrl(
+            context, Platform.isIOS ? appStoreUrl : playStoreUrl));
   }
 }

@@ -13,11 +13,11 @@ class PoemLayout extends StatelessWidget {
         Section(title: "", content: "", author: "");
     return Column(
       children: [
-        Text(poem.title, style: TextStyles.titleTextStyle),
+        Text(poem.title, style: TextStyles.title),
         const SizedBox(height: 16),
-        SelectableText(poem.content, style: TextStyles.bodyTextStyle),
+        SelectableText(poem.content, style: TextStyles.body),
         const SizedBox(height: 16),
-        Text(poem.author, style: TextStyles.bodyTextStyle),
+        Text(poem.author, style: TextStyles.body),
       ],
     );
   }

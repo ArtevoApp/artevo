@@ -1,5 +1,6 @@
 import 'package:artevo/common/config/routes.dart';
-import 'package:artevo/common/constants/app_constants.dart';
+import 'package:artevo/common/constants/dimens.dart';
+import 'package:artevo/common/constants/strings.dart';
 import 'package:artevo/features/painting/painting_layout.dart';
 import 'package:artevo/features/poem/poem_layout.dart';
 import 'package:artevo/features/song/song_layout.dart';
@@ -18,9 +19,8 @@ class HomeScreen extends ConsumerWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, Screens.settings.routeName);
-            },
+            onPressed: () =>
+                Navigator.pushNamed(context, Screens.settings.routeName),
             icon: const Icon(Iconsax.setting),
           )
         ],
@@ -31,11 +31,11 @@ class HomeScreen extends ConsumerWidget {
           child: Column(
             children: [
               SongLayout(),
-              SizedBox(height: 32),
+              SizedBox(height: hugePadding),
               PaintingLayot(),
-              SizedBox(height: 32),
+              SizedBox(height: hugePadding),
               PoemLayout(),
-              SizedBox(height: 32),
+              SizedBox(height: hugePadding),
             ],
           ),
         ),

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:artevo/features/song/music_platforms.dart';
 import 'package:artevo/features/song/song_providers.dart';
+import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
@@ -9,6 +10,7 @@ import 'package:iconsax/iconsax.dart';
 class SongLayout extends StatelessWidget {
   const SongLayout({super.key});
 
+  /// formatter function from [duration] to "mm:ss".
   String secondToMinute(Duration? duration) {
     if (duration != null) {
       return "${(duration.inSeconds / 60).toString().split(".").first}:${(duration.inSeconds % 60).truncate().toString().padLeft(2, '0')}";
@@ -171,10 +173,9 @@ class SongLayout extends StatelessWidget {
                       height: 80,
                       width: 80,
                       fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) =>
-                          const Tooltip(
-                        message: "Görsel Yüklenemedi!",
-                        child: SizedBox(
+                      errorBuilder: (context, error, stackTrace) => Tooltip(
+                        message: context.loc.imageNotFound,
+                        child: const SizedBox(
                           height: 75,
                           width: 75,
                           child: Icon(Icons.image_not_supported_outlined),

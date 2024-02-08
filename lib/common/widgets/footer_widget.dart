@@ -1,8 +1,7 @@
-import 'package:artevo/common/constants/app_constants.dart';
-import 'package:artevo/common/widgets/unknow_error_alert_dialog.dart';
+import 'package:artevo/common/constants/strings.dart';
+import 'package:artevo/common/helpers/functions.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class FooterWidget extends StatelessWidget {
   const FooterWidget({super.key});
@@ -15,30 +14,10 @@ class FooterWidget extends StatelessWidget {
           alignment: WrapAlignment.center,
           children: [
             TextButton(
-                onPressed: () async {
-                  try {
-                    final uri = Uri.parse(privacyPolicyUrl);
-
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(uri);
-                    }
-                  } catch (e) {
-                    const UnknowErrorAlertDialog();
-                  }
-                },
+                onPressed: () => Functions.openUrl(context, privacyPolicyUrl),
                 child: Text(context.loc.privacyPolicy)),
             TextButton(
-                onPressed: () async {
-                  try {
-                    final uri = Uri.parse(termOfUseUrl);
-
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(uri);
-                    }
-                  } catch (e) {
-                    const UnknowErrorAlertDialog();
-                  }
-                },
+                onPressed: () => Functions.openUrl(context, termOfUseUrl),
                 child: Text(context.loc.termsOfUse)),
             TextButton(
                 onPressed: () => showLicensePage(
