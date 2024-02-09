@@ -10,9 +10,9 @@
 
 ## Kullanılan Teknolojiler
 
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" height="15"/> <img width="12" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" height="15"/> <img width="12"/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" height="15"/> <img width="12" /> Flutter (Dart) ile geliştirildi. Kullanılan paketler için `pupspec.yaml` dosyasına bakabilirsiniz.
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" height="15"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" height="15"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" height="15"/> Flutter (Dart) ile geliştirildi. Kullanılan paketler için `pupspec.yaml` dosyasına bakabilirsiniz.
 
 ## İndir 
 
@@ -21,15 +21,15 @@
 ## Ekran Görüntüleri
 
 <div align="center">
-    <img src="screenshots/ss1.png" width="170"/>
-    <img width="12"/>
-    <img src="screenshots/ss2.png" width="170"/>
-    <img width="12"/>
-    <img src="screenshots/ss3.png" width="170"/>
-    <img width="12"/>
-    <img src="screenshots/ss4.png" width="170"/> 
-    <img width="12"/>
-    <img src="screenshots/ss5.png" width="170"/>
+    <img src="screenshots/ss1.png" width="150"/>
+    <img width="6"/>
+    <img src="screenshots/ss2.png" width="150"/>
+    <img width="6"/>
+    <img src="screenshots/ss3.png" width="150"/>
+    <img width="6"/>
+    <img src="screenshots/ss4.png" width="150"/> 
+    <img width="6"/>
+    <img src="screenshots/ss5.png" width="150"/>
 </div>
 
 ## Diğer Bağlantılar
