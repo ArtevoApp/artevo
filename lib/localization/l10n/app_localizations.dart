@@ -93,6 +93,12 @@ abstract class AppLocalizations {
     Locale('tr')
   ];
 
+  /// No description provided for @addAComment.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a comment...'**
+  String get addAComment;
+
   /// No description provided for @appPurpose.
   ///
   /// In en, this message translates to:
@@ -122,6 +128,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Back'**
   String get back;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
 
   /// No description provided for @contactText.
   ///
@@ -279,6 +291,12 @@ abstract class AppLocalizations {
   /// **'Rate Artevo'**
   String get rateArtevo;
 
+  /// No description provided for @sendFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Feedback'**
+  String get sendFeedback;
+
   /// No description provided for @settings.
   ///
   /// In en, this message translates to:
@@ -297,6 +315,18 @@ abstract class AppLocalizations {
   /// **'If you continue to use the application, you are deemed to have accepted the \'Privacy Policy\' and \'Terms of Use\'.'**
   String get termsOfUseToContinue;
 
+  /// No description provided for @thanks.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks!'**
+  String get thanks;
+
+  /// No description provided for @thanksForYourFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks for your feedback.'**
+  String get thanksForYourFeedback;
+
   /// No description provided for @unknowErrorText.
   ///
   /// In en, this message translates to:
@@ -308,6 +338,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Welcome'**
   String get welcome;
+
+  /// No description provided for @wouldYouRateTodaysContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Would you rate today\'s content?'**
+  String get wouldYouRateTodaysContent;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

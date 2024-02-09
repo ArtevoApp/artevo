@@ -5,6 +5,9 @@ class AppLocalizationsTr extends AppLocalizations {
   AppLocalizationsTr([String locale = 'tr']) : super(locale);
 
   @override
+  String get addAComment => 'Bir yorum ekleyin...';
+
+  @override
   String get appPurpose => 'Artevo, sanat ve estetik tutkunları için tasarlanmıştır. Sizleri her gün bir sanat eseri, bir şiir ve bir şarkı ile buluşturarak hayatınıza estetik bir dokunuş katmayı amaçlar.';
 
   @override
@@ -18,6 +21,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get back => 'Geri';
+
+  @override
+  String get cancel => 'İptal';
 
   @override
   String get contactText => 'Ayrıntılı bilgi almak, öneri ya da şikayette bulunmak,  telif hakı bildirimi yapmak, destekte bulunmak veya editör olmak isterseniz e-mail adresi ya da Discord üzerinden iletişime geçebilirsiniz.';
@@ -100,6 +106,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get rateArtevo => 'Artevo\'yu Değerlendirin';
 
   @override
+  String get sendFeedback => 'Geribildirim Gönder';
+
+  @override
   String get settings => 'Ayarlar';
 
   @override
@@ -109,10 +118,19 @@ class AppLocalizationsTr extends AppLocalizations {
   String get termsOfUseToContinue => 'Uygulamayı kullanmaya devam ettiğiniz takdirde \'Gizlilik Politikası\'nı ve \'Kullanım Koşulları\'nı kabul etmiş sayılırsınız.';
 
   @override
+  String get thanks => 'Teşekkürler!';
+
+  @override
+  String get thanksForYourFeedback => 'Geribildiriminiz için teşekkürler.';
+
+  @override
   String unknowErrorText(Object mailAdress) {
     return 'Bilinmeyen hata oluştu. Lütfen tekrar deneyin. Hata devam ederse lütfen bizimle iletişime geçin Mail: $mailAdress';
   }
 
   @override
   String get welcome => 'Hoşgeldiniz';
+
+  @override
+  String get wouldYouRateTodaysContent => 'Bugünkü içeriği değerlendirir misiniz?';
 }

@@ -1,10 +1,12 @@
 {
   "@@language": "tr",
+  "addAComment": "Bir yorum ekleyin...",
   "appPurpose": "Artevo, sanat ve estetik tutkunları için tasarlanmıştır. Sizleri her gün bir sanat eseri, bir şiir ve bir şarkı ile buluşturarak hayatınıza estetik bir dokunuş katmayı amaçlar.",
   "appPurposev2": "Artevo, sanat ve estetik tutkunları için tasarlanmıştır. Sizleri her gün bir sanat eseri, bir şiir ve bir şarkı ile buluşturarak hayatınıza estetik bir dokunuş katmayı amaçlar.",
   "artevoContentOfTheDay": "Artevo Günün İçeriği",
   "artevoReminder": "Artevo Hatırlatıcı",
   "back": "Geri",
+  "cancel": "İptal",
   "contactText": "Ayrıntılı bilgi almak, öneri ya da şikayette bulunmak,  telif hakı bildirimi yapmak, destekte bulunmak veya editör olmak isterseniz e-mail adresi ya da Discord üzerinden iletişime geçebilirsiniz.",
   "contactUs": "İletişim",
   "contentIsNotFound": "İçerik Bulunamadı!",
@@ -31,9 +33,13 @@
   "other": "Diğer",
   "privacyPolicy": "Gizlilik Politikası",
   "rateArtevo": "Artevo'yu Değerlendirin",
+  "sendFeedback": "Geribildirim Gönder",
   "settings": "Ayarlar",
   "termsOfUse": "Kullanım Koşulları",
   "termsOfUseToContinue": "Uygulamayı kullanmaya devam ettiğiniz takdirde 'Gizlilik Politikası'nı ve 'Kullanım Koşulları'nı kabul etmiş sayılırsınız.",
+  "thanks": "Teşekkürler!",
+  "thanksForYourFeedback": "Geribildiriminiz için teşekkürler.",
   "unknowErrorText": "Bilinmeyen hata oluştu. Lütfen tekrar deneyin. Hata devam ederse lütfen bizimle iletişime geçin Mail: {mailAdress}",
-  "welcome": "Hoşgeldiniz"
+  "welcome": "Hoşgeldiniz",
+  "wouldYouRateTodaysContent": "Bugünkü içeriği değerlendirir misiniz?"
 }

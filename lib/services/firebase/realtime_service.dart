@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'package:artevo/services/api/ip_address_service.dart';
 import 'package:artevo_package/models/version_data.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:uuid/uuid.dart';
 
 class RealtimeService {
   final _firebase = FirebaseDatabase.instance;
@@ -55,6 +57,28 @@ class RealtimeService {
       }
     } catch (e) {
       return null;
+    }
+  }
+
+  Future<void> sendPollFeedBack(
+      {required String date,
+      required String feedback,
+      required double rating}) async {
+    try {
+      String uuid = const Uuid().v4();
+
+      Map<String, dynamic> data = {
+        "uuid": uuid,
+        "date": date,
+        "feedback": feedback,
+        "rating": rating,
+        "ip": await IpAddressService.getIpAddress()
+            .then((v) => v != null ? v.toMap() : {})
+      };
+
+      await _firebase.ref("pool/versions/$date/$uuid").set(data);
+    } catch (e) {
+      return;
     }
   }
 }

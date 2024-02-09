@@ -64,10 +64,6 @@ class HiveContentDataService {
     }
   }
 
-  String allDatas() {
-    return box.keys.toString();
-  }
-
   /// clear box.
   Future<void> clearBox() async {
     await box.clear();

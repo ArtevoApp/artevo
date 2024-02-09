@@ -44,7 +44,10 @@ dependencies:
   just_audio_background: ^0.0.1-beta.11
   #-- notifications
   flutter_local_notifications: ^16.2.0
+  #-- network
+  dio: ^5.4.0
   #-- others
+  uuid: ^4.3.3
   url_launcher: ^6.1.11
 
 dev_dependencies:

@@ -1,10 +1,12 @@
 {
   "@@language": "en",
+  "addAComment": "Add a comment...",
   "appPurpose": "Artevo is designed for art and aesthetics enthusiasts. It aims to bring you a daily dose of art, a poem, and a song, adding an aesthetic touch to your life.",
   "appPurposev2": "Artevo is designed for art and aesthetics enthusiasts. It aims to enrich your life with an aesthetic touch by bringing you a piece of art, a poem, and a song every day.",
   "artevoContentOfTheDay": "Artevo Content of the Day",
   "artevoReminder": "Artevo Reminder",
   "back": "Back",
+  "cancel": "Cancel",
   "contactText": "If you would like to get detailed information, make a suggestion or complaint, make a copyright notification, provide support or become an editor, you can contact us via e-mail address or Discord.",
   "contactUs": "Contact Us",
   "contentIsNotFound": "Content is Not Found!",
@@ -31,9 +33,13 @@
   "other": "Other",
   "privacyPolicy": "Privacy Policy",
   "rateArtevo": "Rate Artevo",
+  "sendFeedback": "Send Feedback",
   "settings": "Settings",
   "termsOfUse": "Terms of Use",
   "termsOfUseToContinue": "If you continue to use the application, you are deemed to have accepted the 'Privacy Policy' and 'Terms of Use'.",
+  "thanks": "Thanks!",
+  "thanksForYourFeedback": "Thanks for your feedback.",
   "unknowErrorText": "Unknown error occurred. Please try again. If the error persists, please contact us Mail: {mailAdress}",
-  "welcome": "Welcome"
+  "welcome": "Welcome",
+  "wouldYouRateTodaysContent": "Would you rate today's content?"
 }

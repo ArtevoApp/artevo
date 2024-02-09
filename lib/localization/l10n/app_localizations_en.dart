@@ -5,6 +5,9 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get addAComment => 'Add a comment...';
+
+  @override
   String get appPurpose => 'Artevo is designed for art and aesthetics enthusiasts. It aims to bring you a daily dose of art, a poem, and a song, adding an aesthetic touch to your life.';
 
   @override
@@ -18,6 +21,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get back => 'Back';
+
+  @override
+  String get cancel => 'Cancel';
 
   @override
   String get contactText => 'If you would like to get detailed information, make a suggestion or complaint, make a copyright notification, provide support or become an editor, you can contact us via e-mail address or Discord.';
@@ -100,6 +106,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rateArtevo => 'Rate Artevo';
 
   @override
+  String get sendFeedback => 'Send Feedback';
+
+  @override
   String get settings => 'Settings';
 
   @override
@@ -109,10 +118,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get termsOfUseToContinue => 'If you continue to use the application, you are deemed to have accepted the \'Privacy Policy\' and \'Terms of Use\'.';
 
   @override
+  String get thanks => 'Thanks!';
+
+  @override
+  String get thanksForYourFeedback => 'Thanks for your feedback.';
+
+  @override
   String unknowErrorText(Object mailAdress) {
     return 'Unknown error occurred. Please try again. If the error persists, please contact us Mail: $mailAdress';
   }
 
   @override
   String get welcome => 'Welcome';
+
+  @override
+  String get wouldYouRateTodaysContent => 'Would you rate today\'s content?';
 }

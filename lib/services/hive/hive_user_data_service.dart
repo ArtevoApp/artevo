@@ -66,6 +66,16 @@ class HiveUserDataService {
     return box.get("notification_min") as int? ?? 00;
   }
 
+  /// set last poll feedback date.
+  Future<void> setLastPollFeedbackDate(String date) async {
+    await box.put("lastPollFeedbackDate", date);
+  }
+
+  /// get last poll feedback date.
+  String getLastPollFeedbackDate() {
+    return box.get("lastPollFeedbackDate").toString();
+  }
+
   /// clear box.
   Future<void> clearBox() async {
     await box.clear();
