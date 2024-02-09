@@ -11,7 +11,7 @@ Flutter (Dart) ile geliştirildi. Kullanılan paketler için `pupspec.yaml` dosy
 
 ## İndir 
 
-<img src="https://raw.githubusercontent.com/ArtevoApp/artevoapp.github.io/29cf2e47cdf602c5a98388f53f2fc8138776073f/assets/ios-badge.svg" height="50"/>
+<a href="https://apps.apple.com/tr/app/artevo/id6472241512" class="app__button-ios" target="_blank" title="App Store Üzerinden İndir"><img src="https://raw.githubusercontent.com/ArtevoApp/artevoapp.github.io/29cf2e47cdf602c5a98388f53f2fc8138776073f/assets/ios-badge.svg" alt="App Store Üzerinden İndir" height="50"></a>
 
 ## Ekran Görüntüleri
 
