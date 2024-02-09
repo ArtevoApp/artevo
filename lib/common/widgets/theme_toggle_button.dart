@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final themeModeProvider = StateProvider<ThemeMode>(
-    (ref) => HiveUserDataService().getTheme() ?? ThemeMode.system);
+    (ref) => HiveUserDataService().getTheme() ?? ThemeMode.dark);
 
 class ThemeModeToggleWidget extends StatelessWidget {
   const ThemeModeToggleWidget({super.key});
@@ -18,7 +18,7 @@ class ThemeModeToggleWidget extends StatelessWidget {
         contentPadding: const EdgeInsets.all(0),
         title: Text(context.loc.darkTheme),
         trailing: Switch.adaptive(
-          value: theme == ThemeMode.dark ? true : false,
+          value: theme == ThemeMode.light ? true : false,
           onChanged: (isDark) async {
             ThemeMode mode = isDark ? ThemeMode.dark : ThemeMode.light;
             ref.read(themeModeProvider.notifier).state = mode;

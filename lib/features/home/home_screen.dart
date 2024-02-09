@@ -3,7 +3,7 @@ import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/constants/strings.dart';
 import 'package:artevo/features/painting/painting_layout.dart';
 import 'package:artevo/features/poem/poem_layout.dart';
-import 'package:artevo/features/pool/poll_layout.dart';
+import 'package:artevo/features/poll/poll_layout.dart';
 import 'package:artevo/features/song/song_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

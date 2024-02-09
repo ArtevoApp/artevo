@@ -1,5 +1,5 @@
 import 'package:artevo/common/constants/dimens.dart';
-import 'package:artevo/features/pool/poll_controller.dart';
+import 'package:artevo/features/poll/poll_controller.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:artevo/services/firebase/realtime_service.dart';
 import 'package:artevo/services/hive/hive_content_data_service.dart';

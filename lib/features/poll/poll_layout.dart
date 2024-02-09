@@ -1,7 +1,7 @@
 import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/constants/text_styles.dart';
-import 'package:artevo/features/pool/poll_controller.dart';
-import 'package:artevo/features/pool/poll_feedback_dialog.dart';
+import 'package:artevo/features/poll/poll_controller.dart';
+import 'package:artevo/features/poll/poll_feedback_dialog.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';

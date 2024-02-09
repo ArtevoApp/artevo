@@ -76,7 +76,7 @@ class RealtimeService {
             .then((v) => v != null ? v.toMap() : {})
       };
 
-      await _firebase.ref("pool/versions/$date/$uuid").set(data);
+      await _firebase.ref("poll/$date/$uuid").set(data);
     } catch (e) {
       return;
     }
