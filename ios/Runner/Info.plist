@@ -52,5 +52,11 @@
 	</array>
 	<!-- Audio END-->
 
+	<!-- Admob START-->
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-4083839786740154~5288592910</string>	
+	<!-- Admob END-->
+
+
 </dict>
 </plist>

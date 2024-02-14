@@ -28,6 +28,7 @@ dependencies:
   firebase_core: ^2.24.0
   cloud_firestore: ^4.13.3
   firebase_database: ^10.3.4
+  google_mobile_ads: ^4.0.0
   #-- cache
   hive: ^2.2.3
   hive_flutter: ^1.1.0

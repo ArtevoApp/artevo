@@ -1,3 +1,4 @@
+import 'package:artevo/services/admob/admob_service.dart';
 import 'package:artevo/services/notification/notification_service.dart';
 import 'package:artevo/firebase_options.dart';
 import 'package:artevo/services/hive/hive_user_data_service.dart';
@@ -17,6 +18,9 @@ class AppInitialize {
     // firebase service
     await Firebase.initializeApp(
         options: MobileAppFirebaseOptions.currentPlatform);
+
+    // admob for ads
+    await Admob.initialize();
 
     // hive boxes
     await Hive.initFlutter();
