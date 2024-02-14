@@ -38,13 +38,13 @@ class SettingScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              // * AYARLAR
+              // * SETTINGS
               SectionWidget(title: context.loc.settings),
               const LanguageSelectWithDropdownWidget(isSmallWidget: false),
               const ThemeModeToggleWidget(),
               const NotificationsWidget(),
 
-              // * İLETİŞİM
+              // * CONTACT
               SectionWidget(title: context.loc.contactUs),
               Text(context.loc.contactText,
                   style: TextStyles.bodyv3, textAlign: TextAlign.center),

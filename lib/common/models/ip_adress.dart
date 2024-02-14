@@ -29,7 +29,7 @@ class IpAddress {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['query'] = query;
     data['status'] = status;
     data['city'] = city;

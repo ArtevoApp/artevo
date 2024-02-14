@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+// TODO: Convert to static method
 class HiveUserDataService {
-  final Box box = Hive.box('userDataBox');
+  static Box box = Hive.box('userDataBox');
 
   HiveUserDataService() {
     if (!box.isOpen) {
@@ -25,6 +26,11 @@ class HiveUserDataService {
       return null;
     }
   }
+
+  Future<void> setLocale(String langCode) async =>
+      await box.put("langCode", langCode);
+
+  static Locale getLocale() => Locale(box.get("langCode") as String? ?? 'en');
 
   /// Saving the information that the user logs in for the first time.
   Future<void> setFirstLoginStatus(bool status) async {
