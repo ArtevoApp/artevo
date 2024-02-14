@@ -18,7 +18,7 @@ class ThemeModeToggleWidget extends StatelessWidget {
         contentPadding: const EdgeInsets.all(0),
         title: Text(context.loc.darkTheme),
         trailing: Switch.adaptive(
-          value: theme == ThemeMode.light ? true : false,
+          value: theme == ThemeMode.dark ? true : false,
           onChanged: (isDark) async {
             ThemeMode mode = isDark ? ThemeMode.dark : ThemeMode.light;
             ref.read(themeModeProvider.notifier).state = mode;
