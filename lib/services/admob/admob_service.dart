@@ -55,7 +55,7 @@ class Admob {
 
 class AdUnits {
   //* ------------------------------------------------------------------------- */
-  //*                      Ana Sayfa Açılırken Geçiş Reklam                     */
+  //*                      home page interstitial                               */
   //* ------------------------------------------------------------------------- */
 
   static String get interstitialAdUnitId {
