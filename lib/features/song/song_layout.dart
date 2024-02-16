@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:artevo/features/song/music_platforms.dart';
 import 'package:artevo/features/song/song_providers.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:flutter/material.dart';
@@ -126,7 +123,7 @@ class SongLayout extends StatelessWidget {
                                     ),
                                   ),
 
-                                  // * Total Süre
+                                  // * duration
                                   SizedBox(
                                     width: 30,
                                     child: Text(
@@ -146,21 +143,6 @@ class SongLayout extends StatelessWidget {
                         )
                       ],
                     ),
-                    if (Platform.isIOS)
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          MusicPlatformButtonWidget(
-                              platform: MusicPlatform.ytMusic,
-                              url: currentSong.ytMusicUrl),
-                          MusicPlatformButtonWidget(
-                              platform: MusicPlatform.spotify,
-                              url: currentSong.spotifyUrl),
-                          MusicPlatformButtonWidget(
-                              platform: MusicPlatform.appleMusic,
-                              url: currentSong.appleMusicUrl),
-                        ],
-                      ),
                   ],
                 ),
               ),
@@ -185,21 +167,6 @@ class SongLayout extends StatelessWidget {
               )
             ],
           ),
-          if (Platform.isAndroid)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                MusicPlatformButtonWidget(
-                    platform: MusicPlatform.ytMusic,
-                    url: currentSong.ytMusicUrl),
-                MusicPlatformButtonWidget(
-                    platform: MusicPlatform.spotify,
-                    url: currentSong.spotifyUrl),
-                MusicPlatformButtonWidget(
-                    platform: MusicPlatform.appleMusic,
-                    url: currentSong.appleMusicUrl),
-              ],
-            ),
         ],
       );
     });

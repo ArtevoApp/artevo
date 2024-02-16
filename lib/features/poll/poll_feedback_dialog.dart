@@ -30,6 +30,7 @@ class PollFeedBackDialog extends ConsumerWidget {
     String feedback = "";
     bool showThanks = ref.watch(_pollFeedbackDialogShowThanksStatus);
     return AlertDialog(
+      scrollable: true,
       title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Text(showThanks ? context.loc.thanks : context.loc.sendFeedback),
         const CloseButton()
