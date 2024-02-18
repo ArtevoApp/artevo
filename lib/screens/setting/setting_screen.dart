@@ -78,9 +78,7 @@ class SettingScreen extends StatelessWidget {
       onTap: () async {
         try {
           var inAppReview = InAppReview.instance;
-
           Future<bool> isAvailable = inAppReview.isAvailable();
-
           isAvailable.then((result) async {
             if (result) {
               inAppReview.requestReview();
