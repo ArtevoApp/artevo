@@ -52,6 +52,7 @@ dependencies:
   #-- others
   uuid: ^4.3.3
   url_launcher: ^6.1.11
+  in_app_review: ^2.0.8
 
 dev_dependencies:
   flutter_test:

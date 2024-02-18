@@ -45,12 +45,22 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+
 	<!-- Audio START-->
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
 	</array>
 	<!-- Audio END-->
+
+	<!-- in app review START -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key> <true/>
+	</dict>
+	<key>NSInAppReviewUsageDescription</key>
+	<string>App would like to show you the app store review page to rate this app.</string>
+	<!-- in app review END -->
 
 	<!-- Admob START-->
 	<key>GADApplicationIdentifier</key>

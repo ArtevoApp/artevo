@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/constants/strings.dart';
 import 'package:artevo/common/constants/text_styles.dart';
@@ -12,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:in_app_review/in_app_review.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -20,77 +20,77 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text(appName), centerTitle: true),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              // * SETTINGS
-              SectionWidget(title: context.loc.settings),
-              const LanguageSelectWithDropdownWidget(isSmallWidget: false),
-              const ThemeModeToggleWidget(),
-              const NotificationsWidget(),
+      body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: largePadding),
+        children: [
+          // * Settings Section
+          sectionWidget(context.loc.settings),
+          const LanguageSelectWithDropdownWidget(isSmallWidget: false),
+          const ThemeModeToggleWidget(),
+          const NotificationsWidget(),
 
-              // * CONTACT
-              SectionWidget(title: context.loc.contactUs),
-              Text(context.loc.contactText,
-                  style: TextStyles.bodyv3, textAlign: TextAlign.center),
-              CupertinoButton(
-                child: const Text(appContactMail),
-                onPressed: () async {
-                  await Clipboard.setData(
-                          const ClipboardData(text: appContactMail))
-                      .then((value) => ScaffoldMessenger.of(context)
-                          .showSnackBar(SnackBar(
-                              content: Text(context.loc.copyEmailInfo),
-                              backgroundColor: Colors.teal)));
-                },
-              ),
-              CupertinoButton(
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(Icons.discord_sharp, size: 20),
-                      SizedBox(width: 8),
-                      Text(discord)
-                    ],
-                  ),
-                  onPressed: () => Functions.openUrl(context, discordUrl)),
+          // * Contact Section
+          sectionWidget(context.loc.contactUs),
+          Text(context.loc.contactText,
+              style: TextStyles.bodyv3, textAlign: TextAlign.center),
+          CupertinoButton(
+              child: const Text(appContactMail),
+              onPressed: () => appContactMailOnPressed(context)),
+          discordButton(context),
 
-              // * OTHER
-              SectionWidget(title: context.loc.other),
-              newMethod(context),
-              const FooterWidget(),
-            ],
-          ),
-        ),
+          // * Other Section
+          sectionWidget(context.loc.other),
+          rateArtevo(context),
+          const FooterWidget(),
+        ],
       ),
     );
   }
 
-  ListTile newMethod(BuildContext context) {
-    return ListTile(
-        contentPadding: const EdgeInsets.all(0),
-        title: Text(context.loc.rateArtevo),
-        trailing: const Icon(Iconsax.ranking_14, color: Colors.teal),
-        onTap: () => Functions.openUrl(
-            context, Platform.isIOS ? appStoreUrl : playStoreUrl));
-  }
-}
+  static appContactMailOnPressed(BuildContext _) async =>
+      await Clipboard.setData(const ClipboardData(text: appContactMail)).then(
+          (value) => ScaffoldMessenger.of(_).showSnackBar(SnackBar(
+              content: Text(_.loc.copyEmailInfo),
+              backgroundColor: Colors.teal)));
 
-class SectionWidget extends StatelessWidget {
-  const SectionWidget({super.key, required this.title});
-  final String title;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
+  Widget sectionWidget(String title) => Padding(
       padding: const EdgeInsets.only(bottom: mediumPadding),
       child: Row(children: [
         Text(title),
         const Expanded(child: Divider(indent: mediumPadding))
-      ]),
-    );
-  }
+      ]));
+
+  Widget discordButton(BuildContext context) => CupertinoButton(
+      child: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(Icons.discord_sharp, size: defaultIconSize),
+            SizedBox(width: defaultPadding),
+            Text(discord)
+          ]),
+      onPressed: () => Functions.openUrl(context, discordUrl));
+
+  Widget rateArtevo(BuildContext context) => ListTile(
+      contentPadding: const EdgeInsets.all(0),
+      title: Text(context.loc.rateArtevo),
+      trailing: const Icon(Iconsax.ranking_14),
+      onTap: () async {
+        try {
+          var inAppReview = InAppReview.instance;
+
+          Future<bool> isAvailable = inAppReview.isAvailable();
+
+          isAvailable.then((result) async {
+            if (result) {
+              inAppReview.requestReview();
+              //await inAppReview.openStoreListing(appStoreId: appStoreID);
+            } else {
+              Functions.openUrl(context, appStoreUrl);
+            }
+          });
+        } catch (e) {
+          Functions.openUrl(context, appStoreUrl);
+        }
+      });
 }

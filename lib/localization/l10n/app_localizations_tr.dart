@@ -8,7 +8,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get addAComment => 'Bir yorum ekleyin...';
 
   @override
-  String get appPurpose => 'Artevo, sanat ve estetik tutkunları için tasarlanmıştır. Sizleri her gün bir sanat eseri, bir şiir ve bir şarkı ile buluşturarak hayatınıza estetik bir dokunuş katmayı amaçlar.';
+  String get appPurpose => 'Artevo, sizleri her gün bir sanat eseri, bir şiir ve bir şarkı ile buluşturarak hayatınıza estetik bir dokunuş katmayı amaçlar.';
 
   @override
   String get appPurposev2 => 'Artevo, sanat ve estetik tutkunları için tasarlanmıştır. Sizleri her gün bir sanat eseri, bir şiir ve bir şarkı ile buluşturarak hayatınıza estetik bir dokunuş katmayı amaçlar.';
@@ -110,6 +110,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings => 'Ayarlar';
+
+  @override
+  String get submit => 'Gönder';
 
   @override
   String get termsOfUse => 'Kullanım Koşulları';

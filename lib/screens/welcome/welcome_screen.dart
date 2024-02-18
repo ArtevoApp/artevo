@@ -17,30 +17,27 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(largePadding),
-            child: Column(
-              children: [
-                const SizedBox(height: hugePadding),
-                const Text(appName, style: TextStyles.welcomeTitle),
-                const Text(appAuthor, style: TextStyles.bodyv3),
-                const SizedBox(height: hugePadding),
-                Text(context.loc.welcome, style: TextStyles.welcomeTitle),
-                Text(context.loc.appPurpose,
-                    style: TextStyles.welcomeBody, textAlign: TextAlign.center),
-                const Spacer(),
-                const LanguageSelectWithDropdownWidget(isSmallWidget: true),
-                const Spacer(),
-                Text(context.loc.termsOfUseToContinue,
-                    style: TextStyles.bodyv3, textAlign: TextAlign.center),
-                const SizedBox(height: hugePadding),
-                continueButton(context),
-                const Spacer(),
-                const FooterWidget()
-              ],
-            ).animate().shimmer(duration: const Duration(seconds: 3)),
-          ),
+        child: Padding(
+          padding: const EdgeInsets.all(largePadding),
+          child: Column(
+            children: [
+              const SizedBox(height: hugePadding),
+              const Text(appName, style: TextStyles.welcomeTitle),
+              const SizedBox(height: hugePadding),
+              Text(context.loc.welcome, style: TextStyles.welcomeTitle),
+              Text(context.loc.appPurpose,
+                  style: TextStyles.welcomeBody, textAlign: TextAlign.center),
+              const Spacer(),
+              const LanguageSelectWithDropdownWidget(isSmallWidget: true),
+              const Spacer(),
+              Text(context.loc.termsOfUseToContinue,
+                  style: TextStyles.bodyv3, textAlign: TextAlign.center),
+              const SizedBox(height: hugePadding),
+              continueButton(context),
+              const Spacer(),
+              const FooterWidget()
+            ],
+          ).animate().shimmer(duration: const Duration(seconds: 3)),
         ),
       ),
     );

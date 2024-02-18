@@ -6,7 +6,6 @@ import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:iconsax/iconsax.dart';
 
 class PollLayout extends ConsumerWidget {
   const PollLayout({super.key});
@@ -25,12 +24,20 @@ class PollLayout extends ConsumerWidget {
         RatingBar.builder(
           initialRating: 2.5,
           minRating: 1,
+          maxRating: 5,
+          itemCount: 5,
           direction: Axis.horizontal,
           allowHalfRating: true,
           itemPadding: const EdgeInsets.symmetric(horizontal: smallPadding),
-          itemCount: 5,
           glowRadius: .1,
-          itemBuilder: (_, i) => const Icon(Iconsax.heart5, color: Colors.teal),
+          itemSize: 50,
+          itemBuilder: (_, i) => Stack(
+            children: [
+              const CircleAvatar(backgroundColor: Colors.red),
+              const CircleAvatar(
+                  backgroundImage: AssetImage("assets/vgogh.png")),
+            ],
+          ),
           onRatingUpdate: (rating) => PollFeedBackDialog.show(context, rating),
         ),
       ],

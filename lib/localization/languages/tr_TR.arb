@@ -1,7 +1,7 @@
 {
   "@@language": "tr",
   "addAComment": "Bir yorum ekleyin...",
-  "appPurpose": "Artevo, sanat ve estetik tutkunları için tasarlanmıştır. Sizleri her gün bir sanat eseri, bir şiir ve bir şarkı ile buluşturarak hayatınıza estetik bir dokunuş katmayı amaçlar.",
+  "appPurpose": "Artevo, sizleri her gün bir sanat eseri, bir şiir ve bir şarkı ile buluşturarak hayatınıza estetik bir dokunuş katmayı amaçlar.",
   "appPurposev2": "Artevo, sanat ve estetik tutkunları için tasarlanmıştır. Sizleri her gün bir sanat eseri, bir şiir ve bir şarkı ile buluşturarak hayatınıza estetik bir dokunuş katmayı amaçlar.",
   "artevoContentOfTheDay": "Artevo Günün İçeriği",
   "artevoReminder": "Artevo Hatırlatıcı",
@@ -35,6 +35,7 @@
   "rateArtevo": "Artevo'yu Değerlendirin",
   "sendFeedback": "Geribildirim Gönder",
   "settings": "Ayarlar",
+  "submit": "Gönder",
   "termsOfUse": "Kullanım Koşulları",
   "termsOfUseToContinue": "Uygulamayı kullanmaya devam ettiğiniz takdirde 'Gizlilik Politikası'nı ve 'Kullanım Koşulları'nı kabul etmiş sayılırsınız.",
   "thanks": "Teşekkürler!",

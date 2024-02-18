@@ -102,7 +102,7 @@ abstract class AppLocalizations {
   /// No description provided for @appPurpose.
   ///
   /// In en, this message translates to:
-  /// **'Artevo is designed for art and aesthetics enthusiasts. It aims to bring you a daily dose of art, a poem, and a song, adding an aesthetic touch to your life.'**
+  /// **'Artevo aims to add an aesthetic touch to your life by bringing you a work of art, a poem and a song every day.'**
   String get appPurpose;
 
   /// No description provided for @appPurposev2.
@@ -302,6 +302,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get settings;
+
+  /// No description provided for @submit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get submit;
 
   /// No description provided for @termsOfUse.
   ///

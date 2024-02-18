@@ -1,7 +1,7 @@
 {
   "@@language": "en",
   "addAComment": "Add a comment...",
-  "appPurpose": "Artevo is designed for art and aesthetics enthusiasts. It aims to bring you a daily dose of art, a poem, and a song, adding an aesthetic touch to your life.",
+  "appPurpose": "Artevo aims to add an aesthetic touch to your life by bringing you a work of art, a poem and a song every day.",
   "appPurposev2": "Artevo is designed for art and aesthetics enthusiasts. It aims to enrich your life with an aesthetic touch by bringing you a piece of art, a poem, and a song every day.",
   "artevoContentOfTheDay": "Artevo Content of the Day",
   "artevoReminder": "Artevo Reminder",
@@ -35,6 +35,7 @@
   "rateArtevo": "Rate Artevo",
   "sendFeedback": "Send Feedback",
   "settings": "Settings",
+  "submit": "Submit",
   "termsOfUse": "Terms of Use",
   "termsOfUseToContinue": "If you continue to use the application, you are deemed to have accepted the 'Privacy Policy' and 'Terms of Use'.",
   "thanks": "Thanks!",

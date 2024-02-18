@@ -19,10 +19,10 @@ class PollFeedBackDialog extends ConsumerWidget {
 
   final double rating;
 
-  static Future<void> show(BuildContext context, double ratinga) async {
+  static Future<void> show(BuildContext context, double rating) async {
     return showDialog(
         context: context,
-        builder: (context) => PollFeedBackDialog(rating: ratinga));
+        builder: (context) => PollFeedBackDialog(rating: rating));
   }
 
   @override
@@ -31,10 +31,7 @@ class PollFeedBackDialog extends ConsumerWidget {
     bool showThanks = ref.watch(_pollFeedbackDialogShowThanksStatus);
     return AlertDialog(
       scrollable: true,
-      title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text(showThanks ? context.loc.thanks : context.loc.sendFeedback),
-        const CloseButton()
-      ]),
+      title: Text(context.loc.sendFeedback),
       content: SizedBox(
           width: dialogWidth,
           child: Column(
@@ -88,7 +85,7 @@ class PollFeedBackDialog extends ConsumerWidget {
                 ref.read(_pollFeedbackDialogShowThanksStatus.notifier).state =
                     true;
               },
-              child: Text(context.loc.sendFeedback)),
+              child: Text(context.loc.submit)),
         }
       ],
     );

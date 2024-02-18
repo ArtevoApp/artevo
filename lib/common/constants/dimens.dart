@@ -10,7 +10,7 @@ const hugePadding = 32.0;
 const dialogWidth = 300.0;
 
 // icon sized
-const defaultIconSize = 16.0;
+const defaultIconSize = 20.0;
 
 // image sized
 const smallImageSize = 65.0;
