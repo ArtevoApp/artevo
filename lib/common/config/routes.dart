@@ -1,10 +1,11 @@
-import 'package:artevo/features/home/home_screen.dart';
+import 'package:artevo/screens/home/home_screen.dart';
 import 'package:artevo/features/painting/painting_detail_screen.dart';
 import 'package:artevo/features/setting/setting_screen.dart';
-import 'package:artevo/features/splash/splash_screen.dart';
-import 'package:artevo/features/welcome/welcome_screen.dart';
+import 'package:artevo/screens/splash/splash_screen.dart';
+import 'package:artevo/screens/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
+// TODO
 enum Screens { welcome, splash, home, settings, paintingDetail }
 
 extension PagesExtension on Screens {

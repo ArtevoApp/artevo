@@ -15,11 +15,11 @@ const appmode = AppMode.debug;
 Future<void> main() async {
   await AppInitialize.init();
 
-  runApp(const ProviderScope(child: Root()));
+  runApp(const ProviderScope(child: ArtevoApp()));
 }
 
-class Root extends StatelessWidget {
-  const Root({super.key});
+class ArtevoApp extends StatelessWidget {
+  const ArtevoApp({super.key});
 
   @override
   Widget build(BuildContext context) {
