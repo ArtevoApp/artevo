@@ -27,7 +27,7 @@ class PollFeedBackDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    String feedback = "";
+    String comment = "";
     bool showThanks = ref.watch(_pollFeedbackDialogShowThanksStatus);
     return AlertDialog(
       scrollable: true,
@@ -59,7 +59,7 @@ class PollFeedBackDialog extends ConsumerWidget {
                 ),
                 const SizedBox(height: defaultPadding),
                 TextField(
-                    onChanged: (v) => feedback = v,
+                    onChanged: (v) => comment = v,
                     maxLines: 4,
                     maxLength: 140,
                     decoration: InputDecoration(
@@ -82,7 +82,7 @@ class PollFeedBackDialog extends ConsumerWidget {
               onPressed: () async {
                 String date = HiveContentDataService().getDate();
                 RealtimeService().sendPollFeedBack(
-                    date: date, feedback: feedback, rating: rating);
+                    date: date, comment: comment, rating: rating);
                 HiveUserDataService().setLastPollFeedbackDate(date);
                 ref.read(showPollFeedBackProvider.notifier).state = true;
                 ref.read(_pollFeedbackDialogShowThanksStatus.notifier).state =

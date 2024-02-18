@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 abstract class TextStyles {
   static const welcomeTitle = TextStyle(fontSize: 48);
+
   static const welcomeBody =
       TextStyle(fontSize: 16, fontWeight: FontWeight.w600);
 

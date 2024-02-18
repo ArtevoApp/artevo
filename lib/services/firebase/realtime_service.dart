@@ -62,7 +62,7 @@ class RealtimeService {
 
   Future<void> sendPollFeedBack(
       {required String date,
-      required String feedback,
+      required String comment,
       required double rating}) async {
     try {
       String uuid = const Uuid().v4();
@@ -70,7 +70,7 @@ class RealtimeService {
       Map<String, dynamic> data = {
         "uuid": uuid,
         "date": date,
-        "feedback": feedback,
+        "comment": comment,
         "rating": rating,
         "ip": await IpAddressService.getIpAddress()
             .then((v) => v != null ? v.toMap() : {})

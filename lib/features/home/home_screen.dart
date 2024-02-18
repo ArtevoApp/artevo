@@ -5,7 +5,7 @@ import 'package:artevo/features/painting/painting_layout.dart';
 import 'package:artevo/features/poem/poem_layout.dart';
 import 'package:artevo/features/poll/poll_layout.dart';
 import 'package:artevo/features/song/song_layout.dart';
-import 'package:artevo/services/admob/admob_service.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
@@ -15,18 +15,6 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    ref.watch(adInterstitialProvider).when(
-          data: (data) {
-            try {
-              data?.show();
-            } catch (e) {
-              null;
-            }
-          },
-          error: (error, stackTrace) => null,
-          loading: () => null,
-        );
-
     return Scaffold(
       appBar: AppBar(
         title: const Text(appName),

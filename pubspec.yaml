@@ -32,9 +32,11 @@ dependencies:
   #-- cache
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  flutter_cache_manager: ^3.3.1
   cached_network_image: ^3.3.0
   #-- ui
   iconsax: ^0.0.8
+  flutter_svg: ^2.0.9
   zoom_widget: ^2.0.1
   cupertino_icons: ^1.0.2
   flutter_animate: ^4.2.0+1

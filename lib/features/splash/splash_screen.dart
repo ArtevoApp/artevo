@@ -6,10 +6,12 @@ import 'package:artevo/common/widgets/error_dialog.dart';
 import 'package:artevo/common/widgets/force_update_alert_dialog.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:artevo/services/_service_manager.dart';
+import 'package:artevo/services/admob/admob_service.dart';
 import 'package:artevo/services/hive/hive_user_data_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 part "splash_screen_mixin.dart";
 

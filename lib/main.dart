@@ -41,6 +41,7 @@ class Root extends StatelessWidget {
             useMaterial3: true,
             colorScheme: lightColorScheme,
             fontFamily: "Domine"),
+
         darkTheme: ThemeData(
             useMaterial3: true,
             colorScheme: darkColorScheme,

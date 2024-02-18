@@ -1,13 +1,9 @@
 import 'dart:io';
 import 'dart:async';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:artevo/main.dart';
 import 'package:artevo/common/enums/app_mode.dart';
-
-final adInterstitialProvider = FutureProvider<InterstitialAd?>((ref) async {
-  return await Admob.loadInterstitialAd();
-});
 
 class Admob {
   static Future<void> initialize() async {

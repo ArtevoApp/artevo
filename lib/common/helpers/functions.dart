@@ -21,4 +21,13 @@ abstract class Functions {
       }
     }
   }
+
+  /// formatter function from [duration] to "mm:ss".
+  static String secondToMinute(Duration? duration) {
+    if (duration != null) {
+      return "${(duration.inSeconds / 60).toString().split(".").first}:${(duration.inSeconds % 60).truncate().toString().padLeft(2, '0')}";
+    } else {
+      return "0:00";
+    }
+  }
 }
