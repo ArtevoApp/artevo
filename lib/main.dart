@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:artevo/common/config/app_initialize.dart';
 import 'package:artevo/common/config/routes.dart';
 import 'package:artevo/common/config/color_schemes.dart';
+import 'package:artevo/common/constants/fonts.dart';
 import 'package:artevo/common/constants/strings.dart';
 import 'package:artevo/common/enums/app_mode.dart';
 import 'package:artevo/common/widgets/language_selection_widgets.dart';
@@ -10,13 +11,13 @@ import 'package:artevo/localization/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-const appmode = AppMode.debug;
-
 Future<void> main() async {
   await AppInitialize.init();
 
   runApp(const ProviderScope(child: ArtevoApp()));
 }
+
+const appmode = AppMode.debug;
 
 class ArtevoApp extends StatelessWidget {
   const ArtevoApp({super.key});
@@ -25,7 +26,9 @@ class ArtevoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, child) {
       ThemeMode themeMode = ref.watch(themeModeProvider);
-      var locale = ref.watch(selectedLanguageProvider);
+
+      Locale? locale = ref.watch(selectedLanguageProvider);
+
       return MaterialApp(
         title: appName,
         debugShowCheckedModeBanner: appmode == AppMode.debug,
@@ -40,12 +43,11 @@ class ArtevoApp extends StatelessWidget {
         theme: ThemeData(
             useMaterial3: true,
             colorScheme: lightColorScheme,
-            fontFamily: "Domine"),
-
+            fontFamily: Fonts.domine),
         darkTheme: ThemeData(
             useMaterial3: true,
             colorScheme: darkColorScheme,
-            fontFamily: "Domine"),
+            fontFamily: Fonts.domine),
 
         // routes
         initialRoute: Screens.splash.routeName,

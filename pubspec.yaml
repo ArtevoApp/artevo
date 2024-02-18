@@ -73,7 +73,6 @@ flutter:
     - assets/fonts/
     - assets/license/
     - assets/music_platforms/
-    - assets/social_media/
 
   fonts:
     - family: Domine

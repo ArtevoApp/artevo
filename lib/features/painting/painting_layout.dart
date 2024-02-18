@@ -1,6 +1,5 @@
 import 'package:artevo/common/config/routes.dart';
 import 'package:artevo/common/widgets/image_viewer_wiget.dart';
-import 'package:artevo/features/painting/painting_detail_screen.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:artevo/services/hive/hive_content_data_service.dart';
 import 'package:artevo_package/models/painting.dart';
@@ -18,12 +17,9 @@ class PaintingLayot extends StatelessWidget {
     return Column(
       children: [
         InkWell(
-          onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const PaintingDetailScreen())),
-          child: ImageViewerWidget(imageUrl: painting.imageUrl),
-        ),
+            onTap: () =>
+                Navigator.pushNamed(context, Screens.paintingDetail.routeName),
+            child: ImageViewerWidget(imageUrl: painting.imageUrl)),
         const SizedBox(height: 8),
         SelectableText.rich(
           TextSpan(

@@ -1,3 +1,5 @@
+import 'package:artevo/common/constants/dimens.dart';
+import 'package:artevo/common/constants/paths.dart';
 import 'package:artevo/common/constants/strings.dart';
 import 'package:artevo/common/helpers/functions.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
@@ -20,16 +22,7 @@ class FooterWidget extends StatelessWidget {
                 onPressed: () => Functions.openUrl(context, termOfUseUrl),
                 child: Text(context.loc.termsOfUse)),
             TextButton(
-                onPressed: () => showLicensePage(
-                      context: context,
-                      applicationIcon: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child:
-                              Image.asset("assets/app/logo.jpeg", height: 100)),
-                      applicationName: appName,
-                      applicationVersion: appVersion,
-                      applicationLegalese: appLegalese,
-                    ),
+                onPressed: () => showLicenses(context),
                 child: Text(context.loc.licenses))
           ],
         ),
@@ -39,4 +32,14 @@ class FooterWidget extends StatelessWidget {
       ],
     );
   }
+
+  void showLicenses(_) => showLicensePage(
+        context: _,
+        applicationIcon: ClipRRect(
+            borderRadius: BorderRadius.circular(largePadding),
+            child: Image.asset(logoPath, height: mediumImageSize)),
+        applicationName: appName,
+        applicationVersion: appVersion,
+        applicationLegalese: appLegalese,
+      );
 }

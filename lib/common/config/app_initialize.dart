@@ -1,6 +1,6 @@
 import 'package:artevo/services/admob/admob_service.dart';
 import 'package:artevo/services/notification/notification_service.dart';
-import 'package:artevo/firebase_options.dart';
+import 'package:artevo/services/firebase/firebase_options.dart';
 import 'package:artevo/services/hive/hive_user_data_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -19,7 +19,7 @@ class AppInitialize {
     await Firebase.initializeApp(
         options: MobileAppFirebaseOptions.currentPlatform);
 
-    // admob for ads
+    // admob service
     await Admob.initialize();
 
     // hive boxes
@@ -27,12 +27,12 @@ class AppInitialize {
     await Hive.openBox('userDataBox');
     await Hive.openBox('contentDataBox');
 
-    // notification service
+    // notification service.
     if (HiveUserDataService().getNotificationSendingStatus) {
       NotificationsService.init();
     }
 
-    // font lisans dosyasının kayıt edilmesi
+    // Saving the font license file.
     LicenseRegistry.addLicense(() async* {
       final license =
           await rootBundle.loadString('assets/license/domine_ofl.txt');

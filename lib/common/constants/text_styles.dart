@@ -1,11 +1,14 @@
+import 'package:artevo/common/constants/fonts.dart';
 import 'package:flutter/material.dart';
 
 abstract class TextStyles {
+  // welcome screen text styles
   static const welcomeTitle = TextStyle(fontSize: 48);
 
   static const welcomeBody =
       TextStyle(fontSize: 16, fontWeight: FontWeight.w600);
 
+  // common text styles
   static const title = TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
 
   static const body = TextStyle(fontSize: 18, wordSpacing: 3);
@@ -16,8 +19,10 @@ abstract class TextStyles {
 
   static const info = TextStyle(fontStyle: FontStyle.italic, fontSize: 12);
 
+  // for quotes
   static const quote =
       TextStyle(fontSize: 20, wordSpacing: 5, fontWeight: FontWeight.w600);
 
-  static const goethe = TextStyle(fontFamily: "Chomsky", fontSize: 26);
+  // for "Johann Wolfgang von Goethe"
+  static const goethe = TextStyle(fontFamily: Fonts.chomsky, fontSize: 26);
 }

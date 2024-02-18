@@ -1,29 +1,17 @@
 import 'dart:io';
+import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/constants/strings.dart';
 import 'package:artevo/common/constants/text_styles.dart';
 import 'package:artevo/common/helpers/functions.dart';
 import 'package:artevo/common/widgets/language_selection_widgets.dart';
 import 'package:artevo/common/widgets/theme_toggle_button.dart';
 import 'package:artevo/common/widgets/footer_widget.dart';
-import 'package:artevo/features/setting/widgets/notifications_widget.dart';
+import 'package:artevo/screens/setting/widgets/notifications_widget.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
-
-class SectionWidget extends StatelessWidget {
-  const SectionWidget({super.key, required this.title});
-  final String title;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      child: Row(
-          children: [Text(title), const Expanded(child: Divider(indent: 10))]),
-    );
-  }
-}
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -60,14 +48,13 @@ class SettingScreen extends StatelessWidget {
                 },
               ),
               CupertinoButton(
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.asset("assets/social_media/discord_logo_white.png",
-                          color: Colors.teal, height: 16, width: 16),
-                      const SizedBox(width: 8),
-                      const Text("Artevo Discord")
+                      Icon(Icons.discord_sharp, size: 20),
+                      SizedBox(width: 8),
+                      Text(discord)
                     ],
                   ),
                   onPressed: () => Functions.openUrl(context, discordUrl)),
@@ -90,5 +77,20 @@ class SettingScreen extends StatelessWidget {
         trailing: const Icon(Iconsax.ranking_14, color: Colors.teal),
         onTap: () => Functions.openUrl(
             context, Platform.isIOS ? appStoreUrl : playStoreUrl));
+  }
+}
+
+class SectionWidget extends StatelessWidget {
+  const SectionWidget({super.key, required this.title});
+  final String title;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: mediumPadding),
+      child: Row(children: [
+        Text(title),
+        const Expanded(child: Divider(indent: mediumPadding))
+      ]),
+    );
   }
 }

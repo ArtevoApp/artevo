@@ -1,14 +1,13 @@
 import 'package:artevo/screens/home/home_screen.dart';
 import 'package:artevo/features/painting/painting_detail_screen.dart';
-import 'package:artevo/features/setting/setting_screen.dart';
+import 'package:artevo/screens/setting/setting_screen.dart';
 import 'package:artevo/screens/splash/splash_screen.dart';
 import 'package:artevo/screens/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
-// TODO
 enum Screens { welcome, splash, home, settings, paintingDetail }
 
-extension PagesExtension on Screens {
+extension ScreenExtension on Screens {
   Widget _screen() {
     switch (this) {
       case Screens.welcome:
@@ -25,18 +24,18 @@ extension PagesExtension on Screens {
   }
 
   String get routeName => "/$name";
-
-  Route goScreen() => MaterialPageRoute(builder: (_) => _screen());
 }
 
 class Routes {
   Route<dynamic> generateRoute(RouteSettings settings) {
     try {
-      return Screens.values
-          .byName((settings.name ?? "/welcome").substring(1))
-          .goScreen();
+      Widget screen = Screens.values
+          .byName((settings.name ?? Screens.splash.routeName).substring(1))
+          ._screen();
+
+      return MaterialPageRoute(builder: (_) => screen);
     } catch (e) {
-      return Screens.welcome.goScreen(); // i.e Home Screen
+      return MaterialPageRoute(builder: (_) => Screens.splash._screen());
     }
   }
 }
