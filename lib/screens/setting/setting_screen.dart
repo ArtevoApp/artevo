@@ -23,13 +23,10 @@ class SettingScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: largePadding),
         children: [
-          // * Settings Section
           sectionWidget(context.loc.settings),
           const LanguageSelectWithDropdownWidget(isSmallWidget: false),
           const ThemeModeToggleWidget(),
           const NotificationsWidget(),
-
-          // * Contact Section
           sectionWidget(context.loc.contactUs),
           Text(context.loc.contactText,
               style: TextStyles.bodyv3, textAlign: TextAlign.center),
@@ -37,8 +34,6 @@ class SettingScreen extends StatelessWidget {
               child: const Text(appContactMail),
               onPressed: () => appContactMailOnPressed(context)),
           discordButton(context),
-
-          // * Other Section
           sectionWidget(context.loc.other),
           rateArtevo(context),
           const FooterWidget(),

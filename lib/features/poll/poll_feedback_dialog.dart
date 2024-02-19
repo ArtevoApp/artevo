@@ -1,4 +1,5 @@
 import 'package:artevo/common/constants/dimens.dart';
+import 'package:artevo/common/constants/paths.dart';
 import 'package:artevo/features/poll/poll_controller.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:artevo/services/firebase/realtime_service.dart';
@@ -8,7 +9,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:iconsax/iconsax.dart';
 
 /// It holds bool value to show "thanks" content when the submit button is pressed.
 final _pollFeedbackDialogShowThanksStatus =
@@ -47,14 +47,6 @@ class PollFeedBackDialog extends ConsumerWidget {
                   ],
                 ).animate().fade(delay: const Duration(milliseconds: 300))
               } else ...{
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Iconsax.heart4, color: Colors.teal),
-                    Text(" $rating", style: const TextStyle(fontSize: 18)),
-                  ],
-                ),
-                const SizedBox(height: defaultPadding),
                 TextField(
                     onChanged: (v) => comment = v,
                     maxLines: 4,
@@ -62,7 +54,16 @@ class PollFeedBackDialog extends ConsumerWidget {
                     decoration: InputDecoration(
                         border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(8))),
-                        hintText: context.loc.addAComment))
+                        hintText: context.loc.addAComment)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CircleAvatar(
+                        radius: xsmallImageSize / 2,
+                        backgroundImage: AssetImage(vincent)),
+                    Text(" $rating", style: const TextStyle(fontSize: 18)),
+                  ],
+                ),
               }
             ],
           )),

@@ -1,3 +1,4 @@
+import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/widgets/error_dialog.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:artevo/services/notification/notification_service.dart';
@@ -34,66 +35,30 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    hour = hive.getNotificationHour;
-    min = hive.getNotificationMinute;
-    return ListTile(
-      contentPadding: const EdgeInsets.all(0),
-      title: Text(context.loc.notifications),
-      subtitle: Row(
-        children: [
-          Text(
-              notificationStatus
-                  ? context.loc.notificationTimeDescription(hour, min)
-                  : context.loc.notificationDescriptionText,
-              style: TextStyles.info),
-
-          // * Edit Button
-          Visibility(
-            visible: notificationStatus,
-            child: CupertinoButton(
-              onPressed: notificationTimeEditFunction,
-              minSize: 14,
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Text(context.loc.edit, style: TextStyles.info),
-            ),
-          ),
-        ],
-      ),
-      trailing: Switch.adaptive(
-          value: notificationStatus,
-          onChanged: notificationStatusSwitchFunction),
-    );
-  }
-
   void notificationTimeEditFunction() async {
     TimeOfDay? selectedTime = await showTimePicker(
-      context: context,
-      initialEntryMode: TimePickerEntryMode.input,
-      initialTime: TimeOfDay(hour: hour, minute: min),
-      builder: (BuildContext context, Widget? child) {
-        if (context.loc.langCode == 'tr') {
-          return MediaQuery(
-              data: const MediaQueryData(alwaysUse24HourFormat: true),
-              child: child!);
-        } else {
-          return Localizations.override(
-            context: context,
-            locale: Locale(context.loc.langCode),
-            child: child,
-          );
-        }
-      },
-    );
+        context: context,
+        initialEntryMode: TimePickerEntryMode.input,
+        initialTime: TimeOfDay(hour: hour, minute: min),
+        builder: (BuildContext context, Widget? child) {
+          if (context.loc.langCode == 'tr') {
+            return MediaQuery(
+                data: const MediaQueryData(alwaysUse24HourFormat: true),
+                child: child!);
+          } else {
+            return Localizations.override(
+                context: context,
+                locale: Locale(context.loc.langCode),
+                child: child);
+          }
+        });
 
     if (selectedTime != null) {
       await hive.setNotificationHour(selectedTime.hour);
       await hive.setNotificationMinute(selectedTime.minute);
       NotificationsService.init();
+      setState(() {});
     }
-    // TODO: Buna bir bak
-    setState(() {});
   }
 
   void notificationStatusSwitchFunction(newStatus) async {
@@ -122,5 +87,37 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
         });
       }
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    hour = hive.getNotificationHour;
+    min = hive.getNotificationMinute;
+    return ListTile(
+      contentPadding: const EdgeInsets.all(0),
+      title: Text(context.loc.notifications),
+      subtitle: Row(
+        children: [
+          Text(
+              notificationStatus
+                  ? context.loc.notificationTimeDescription(hour, min)
+                  : context.loc.notificationDescriptionText,
+              style: TextStyles.info),
+          Visibility(
+            visible: notificationStatus,
+            child: CupertinoButton(
+              onPressed: notificationTimeEditFunction,
+              minSize: largePadding,
+              padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+              child: Text(context.loc.edit, style: TextStyles.info),
+            ),
+          ),
+        ],
+      ),
+      trailing: Switch.adaptive(
+        value: notificationStatus,
+        onChanged: notificationStatusSwitchFunction,
+      ),
+    );
   }
 }

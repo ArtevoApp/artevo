@@ -13,6 +13,7 @@ const dialogWidth = 300.0;
 const defaultIconSize = 20.0;
 
 // image sized
+const xsmallImageSize = 25.0;
 const smallImageSize = 65.0;
 const mediumImageSize = 97.5;
 const largeImageSize = 130.0;
