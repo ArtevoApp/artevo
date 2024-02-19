@@ -1,7 +1,8 @@
+import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/helpers/functions.dart';
 import 'package:artevo/features/song/audio_player_repository.dart';
 import 'package:artevo/features/song/song_providers.dart';
-import 'package:artevo/features/song/widgets/album_cover_image.dart';
+import 'package:artevo/common/widgets/image_viewer.dart';
 import 'package:artevo/features/song/widgets/song_detail_dialog.dart';
 import 'package:artevo_package/models/song.dart';
 import 'package:flutter/material.dart';
@@ -141,7 +142,10 @@ class SongLayout extends StatelessWidget {
           onTap: currentsong.albumImageUrl.isEmpty
               ? null
               : () => SongDetailDialog.show(_, currentsong),
-          child: AlbumCoverImage(url: currentsong.albumImageUrl)),
+          child: ImageViewer(
+              url: currentsong.albumImageUrl,
+              height: smallImageSize,
+              width: smallImageSize)),
     );
   }
 }

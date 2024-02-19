@@ -1,5 +1,5 @@
 import 'package:artevo/common/constants/text_styles.dart';
-import 'package:artevo/common/widgets/image_viewer_wiget.dart';
+import 'package:artevo/common/widgets/image_viewer.dart';
 import 'package:artevo/features/painting/painting_zoom_screen.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:artevo/services/hive/hive_content_data_service.dart';
@@ -40,7 +40,7 @@ class PaintingDetailScreen extends ConsumerWidget {
                           child: Stack(
                             alignment: Alignment.bottomRight,
                             children: [
-                              ImageViewerWidget(imageUrl: painting.imageUrl),
+                              ImageViewer(url: painting.imageUrl),
                               const Icon(Icons.zoom_out_map_outlined,
                                   color: Colors.white, size: 32),
                             ],

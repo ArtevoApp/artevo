@@ -1,8 +1,7 @@
+import 'package:artevo/common/widgets/image_viewer.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:flutter/material.dart';
 import 'package:zoom_widget/zoom_widget.dart';
-
-import '../../common/widgets/image_viewer_wiget.dart';
 
 class PaintingZoomScreen extends StatelessWidget {
   const PaintingZoomScreen({super.key, required this.url});
@@ -26,7 +25,7 @@ class PaintingZoomScreen extends StatelessWidget {
       body: Zoom(
         initTotalZoomOut: true,
         backgroundColor: Colors.transparent,
-        child: ImageViewerWidget(imageUrl: url),
+        child: ImageViewer(url: url),
       ),
     );
   }

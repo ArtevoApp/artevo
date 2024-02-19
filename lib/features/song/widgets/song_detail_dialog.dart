@@ -1,6 +1,6 @@
 import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/features/song/music_platforms.dart';
-import 'package:artevo/features/song/widgets/album_cover_image.dart';
+import 'package:artevo/common/widgets/image_viewer.dart';
 import 'package:artevo_package/models/song.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -23,7 +23,10 @@ class SongDetailDialog extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          AlbumCoverImage(url: song.albumImageUrl, size: 150),
+          ImageViewer(
+              url: song.albumImageUrl,
+              height: xLargeImageSize,
+              width: xLargeImageSize),
           const SizedBox(height: 8),
           const Icon(Iconsax.sound, size: 16),
           const SizedBox(height: 8),
