@@ -1,49 +1,26 @@
 import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/constants/paths.dart';
-import 'package:artevo/common/constants/text_styles.dart';
 import 'package:artevo/common/helpers/my_clipper.dart';
-import 'package:artevo/features/poll/poll_controller.dart';
-import 'package:artevo/features/poll/poll_feedback_dialog.dart';
-
-import 'package:artevo/localization/app_localizations_context.dart';
+import 'package:artevo/features/rating/view/widgets/content_rating_feedback_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PollLayout extends ConsumerWidget {
-  const PollLayout({super.key});
+// fix
+// TODO: make this class modular.
 
-  @override
-  Widget build(BuildContext context, ref) {
-    if (ref.watch(showPollFeedBackProvider)) return const SizedBox.shrink();
-
-    return Column(
-      children: [
-        const Padding(
-            padding: EdgeInsets.symmetric(vertical: mediumPadding),
-            child: Divider()),
-        Text(context.loc.wouldYouRateTodaysContent, style: TextStyles.bodyv2),
-        const SizedBox(height: xLargePadding),
-        TestttWidget()
-      ],
-    );
-  }
-}
-
-class TestttWidget extends StatefulWidget {
-  const TestttWidget({super.key});
+class ContentRatingBar extends StatefulWidget {
+  const ContentRatingBar({super.key});
 
   @override
-  State<TestttWidget> createState() => _TestttWidgetState();
+  State<ContentRatingBar> createState() => _ContentRatingBarState();
 }
 
-class _TestttWidgetState extends State<TestttWidget> {
+class _ContentRatingBarState extends State<ContentRatingBar> {
   // rating bar item count
   int itemCount = 5;
   // bar min width =  (item radius * 2)
   double barMinWidth = 50;
   // barMaxWidh = (item radius * 2) * item count + [ spacing * (item count - 1)]
   //     or     = (item size width) * item count + [ spacing * (item count - 1)]
-  //    i.e.    =      25 * 2       *     5      +  ( 8     *     (5 - 1))
   double barMaxWidth = 282;
 
   /// position on horizontal axis (barMaxWidth / 2).
@@ -66,7 +43,8 @@ class _TestttWidgetState extends State<TestttWidget> {
     if (rating <= 1) rating = 1.0;
     if (rating >= 5) rating = 5.0;
 
-    PollFeedBackDialog.show(context, double.parse(rating.toStringAsFixed(1)));
+    ContentRatingFeedBackDialog.show(
+        context, double.parse(rating.toStringAsFixed(1)));
   }
 
   @override
@@ -99,14 +77,13 @@ class _TestttWidgetState extends State<TestttWidget> {
       // If it is deleted, GestureDetector does not work properly.
       color: Colors.transparent,
       child: ClipRect(
-        clipper: MyClipper(dxNotifier.value),
-        child: Wrap(
-          spacing: defaultPadding,
-          children: List.generate(
-            itemCount,
-            (i) => const CircleAvatar(
-                radius: xsmallImageSize, backgroundImage: AssetImage(vincent)),
-          ),
-        ),
-      ));
+          clipper: MyClipper(dxNotifier.value),
+          child: Wrap(
+              spacing: defaultPadding,
+              children: List.generate(
+                itemCount,
+                (i) => const CircleAvatar(
+                    radius: xsmallImageSize,
+                    backgroundImage: AssetImage(vincent)),
+              ))));
 }

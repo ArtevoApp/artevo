@@ -1,6 +1,7 @@
+import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/constants/text_styles.dart';
 import 'package:artevo/common/widgets/image_viewer.dart';
-import 'package:artevo/features/painting/painting_zoom_screen.dart';
+import 'package:artevo/features/painting/views/painting_zoom_view.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:artevo/services/hive/hive_content_data_service.dart';
 import 'package:artevo_package/models/painting.dart';
@@ -8,6 +9,8 @@ import 'package:artevo_package/models/section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
+
+// TODO: make this class modular.
 
 class PaintingDetailScreen extends ConsumerWidget {
   const PaintingDetailScreen({super.key});
@@ -27,11 +30,11 @@ class PaintingDetailScreen extends ConsumerWidget {
           alignment: Alignment.topCenter,
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(defaultPadding),
               child: SingleChildScrollView(
                 child: Center(
                   child: SizedBox(
-                    width: 600,
+                    width: 600, // TODO: fix, make it responsive
                     child: Column(
                       children: [
                         InkWell(
@@ -42,18 +45,18 @@ class PaintingDetailScreen extends ConsumerWidget {
                             children: [
                               ImageViewer(url: painting.imageUrl),
                               const Icon(Icons.zoom_out_map_outlined,
-                                  color: Colors.white, size: 32),
+                                  color: Colors.white, size: xLargeIconSize),
                             ],
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: defaultPadding),
                         Text("${painting.painter} - ${painting.name}",
                             style: TextStyles.body,
                             textAlign: TextAlign.center),
-                        Text("(${painting.year},${painting.category})",
+                        Text("(${painting.year}${painting.category})",
                             style: TextStyles.info,
                             textAlign: TextAlign.center),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: defaultPadding),
 
                         //? painting detail is not found
                         if (paintingDetail.content.length <= 5)

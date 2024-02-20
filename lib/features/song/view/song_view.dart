@@ -1,16 +1,16 @@
 import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/helpers/functions.dart';
-import 'package:artevo/features/song/audio_player_repository.dart';
-import 'package:artevo/features/song/song_providers.dart';
+import 'package:artevo/features/song/repository/audio_player_repository.dart';
+import 'package:artevo/features/song/controllers/song_controllers.dart';
 import 'package:artevo/common/widgets/image_viewer.dart';
-import 'package:artevo/features/song/widgets/song_detail_dialog.dart';
+import 'package:artevo/features/song/view/widgets/song_detail_dialog.dart';
 import 'package:artevo_package/models/song.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 
-class SongLayout extends StatelessWidget {
-  const SongLayout({super.key});
+class SongView extends StatelessWidget {
+  const SongView({super.key});
 
   @override
   Widget build(BuildContext context) {

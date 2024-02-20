@@ -1,4 +1,4 @@
-import 'package:artevo/features/song/audio_player_repository.dart';
+import 'package:artevo/features/song/repository/audio_player_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final audioPlayerRepositoryProvider =

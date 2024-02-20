@@ -106,13 +106,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get rateArtevo => 'Artevo\'yu Değerlendirin';
 
   @override
-  String get sendFeedback => 'Geribildirim Gönder';
-
-  @override
   String get settings => 'Ayarlar';
 
   @override
   String get submit => 'Gönder';
+
+  @override
+  String get submitFeedback => 'Geribildirim Gönder';
 
   @override
   String get termsOfUse => 'Kullanım Koşulları';

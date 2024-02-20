@@ -1,23 +1,8 @@
+import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/helpers/functions.dart';
+import 'package:artevo/features/song/models/music_platforms.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-enum MusicPlatform { ytMusic, spotify, appleMusic }
-
-extension MusicPlatformExtension on MusicPlatform {
-  String _path() {
-    switch (this) {
-      case MusicPlatform.ytMusic:
-        return "yt_music";
-      case MusicPlatform.spotify:
-        return "spotify";
-      case MusicPlatform.appleMusic:
-        return "apple_music";
-    }
-  }
-
-  String get path => "assets/music_platforms/${_path()}.svg";
-}
 
 class MusicPlatformButtonWidget extends StatelessWidget {
   const MusicPlatformButtonWidget(
@@ -30,11 +15,11 @@ class MusicPlatformButtonWidget extends StatelessWidget {
     return IconButton(
       onPressed: isExistUrl ? () => Functions.openUrl(context, url!) : null,
       style: ButtonStyle(
-          shape: MaterialStatePropertyAll(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)))),
+          shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(defaultPadding)))),
       icon: SvgPicture.asset(
         platform.path,
-        height: 25,
+        height: smallImageSize,
         colorFilter: !isExistUrl
             ? const ColorFilter.mode(Colors.grey, BlendMode.srcATop)
             : null,

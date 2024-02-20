@@ -1,5 +1,5 @@
 import 'package:artevo/screens/home/home_screen.dart';
-import 'package:artevo/features/painting/painting_detail_screen.dart';
+import 'package:artevo/features/painting/views/painting_detail_view.dart';
 import 'package:artevo/screens/setting/setting_screen.dart';
 import 'package:artevo/screens/splash/splash_screen.dart';
 import 'package:artevo/screens/welcome/welcome_screen.dart';

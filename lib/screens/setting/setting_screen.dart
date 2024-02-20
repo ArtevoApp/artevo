@@ -60,7 +60,7 @@ class SettingScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(Icons.discord_sharp, size: defaultIconSize),
+            Icon(Icons.discord_sharp, size: smallIconSize),
             SizedBox(width: defaultPadding),
             Text(discord)
           ]),

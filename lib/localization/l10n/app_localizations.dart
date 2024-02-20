@@ -291,12 +291,6 @@ abstract class AppLocalizations {
   /// **'Rate Artevo'**
   String get rateArtevo;
 
-  /// No description provided for @sendFeedback.
-  ///
-  /// In en, this message translates to:
-  /// **'Send Feedback'**
-  String get sendFeedback;
-
   /// No description provided for @settings.
   ///
   /// In en, this message translates to:
@@ -308,6 +302,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Submit'**
   String get submit;
+
+  /// No description provided for @submitFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit Feedback'**
+  String get submitFeedback;
 
   /// No description provided for @termsOfUse.
   ///

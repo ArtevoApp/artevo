@@ -5,6 +5,8 @@ import 'package:zoom_widget/zoom_widget.dart';
 
 class PaintingZoomScreen extends StatelessWidget {
   const PaintingZoomScreen({super.key, required this.url});
+
+  // image url
   final String url;
 
   static Future<void> show(
@@ -18,10 +20,7 @@ class PaintingZoomScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.loc.back),
-        centerTitle: false,
-      ),
+      appBar: AppBar(title: Text(context.loc.back), centerTitle: false),
       body: Zoom(
         initTotalZoomOut: true,
         backgroundColor: Colors.transparent,

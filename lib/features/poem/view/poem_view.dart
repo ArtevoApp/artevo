@@ -4,8 +4,8 @@ import 'package:artevo_package/models/section.dart';
 import 'package:flutter/material.dart';
 import 'package:artevo/services/hive/hive_content_data_service.dart';
 
-class PoemLayout extends StatelessWidget {
-  const PoemLayout({super.key});
+class PoemView extends StatelessWidget {
+  const PoemView({super.key});
 
   @override
   Widget build(BuildContext context) {

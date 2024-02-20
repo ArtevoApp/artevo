@@ -1,10 +1,10 @@
 import 'package:artevo/common/config/routes.dart';
 import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/constants/strings.dart';
-import 'package:artevo/features/painting/painting_layout.dart';
-import 'package:artevo/features/poem/poem_layout.dart';
-import 'package:artevo/features/poll/poll_layout.dart';
-import 'package:artevo/features/song/song_layout.dart';
+import 'package:artevo/features/painting/views/painting_view.dart';
+import 'package:artevo/features/poem/view/poem_view.dart';
+import 'package:artevo/features/rating/view/content_rating_view.dart';
+import 'package:artevo/features/song/view/song_view.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,32 +17,23 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(appName),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () =>
-                Navigator.pushNamed(context, Screens.settings.routeName),
-            icon: const Icon(Iconsax.setting),
-          )
+          title: const Text(appName), actions: [settingsIconButton(context)]),
+      body: ListView(
+        padding: const EdgeInsets.all(largePadding),
+        children: const [
+          SongView(),
+          SizedBox(height: hugePadding),
+          PaintingView(),
+          SizedBox(height: hugePadding),
+          PoemView(),
+          ContectRatingView(),
+          SizedBox(height: hugePadding * 2),
         ],
-      ),
-      body: const Padding(
-        padding: EdgeInsets.all(16),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SongLayout(),
-              SizedBox(height: hugePadding),
-              PaintingLayot(),
-              SizedBox(height: hugePadding),
-              PoemLayout(),
-              PollLayout(),
-              SizedBox(height: hugePadding * 2),
-            ],
-          ),
-        ),
       ),
     );
   }
+
+  IconButton settingsIconButton(BuildContext context) => IconButton(
+      onPressed: () => Navigator.pushNamed(context, Screens.settings.routeName),
+      icon: const Icon(Iconsax.setting));
 }

@@ -106,13 +106,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rateArtevo => 'Rate Artevo';
 
   @override
-  String get sendFeedback => 'Send Feedback';
-
-  @override
   String get settings => 'Settings';
 
   @override
   String get submit => 'Submit';
+
+  @override
+  String get submitFeedback => 'Submit Feedback';
 
   @override
   String get termsOfUse => 'Terms of Use';
