@@ -4,7 +4,7 @@
 
 — Johann Wolfgang von Goethe, Wilhelm Meister'ın Çıraklığı
 
-<a href= "artevoapp.github.io">Artevo</a>, sizleri her gün bir sanat eseri, bir şiir ve bir şarkı ile buluşturarak hayatınıza estetik bir dokunuş katmayı amaçlar.
+<a href= "https://artevoapp.github.io/">Artevo</a>, sizleri her gün bir sanat eseri, bir şiir ve bir şarkı ile buluşturarak hayatınıza estetik bir dokunuş katmayı amaçlar.
 
 ## Kullanılan Teknolojiler
 Flutter (Dart) ile geliştirildi. Kullanılan paketler için `pupspec.yaml` dosyasına bakabilirsiniz.
@@ -28,5 +28,5 @@ Flutter (Dart) ile geliştirildi. Kullanılan paketler için `pupspec.yaml` dosy
 </div>
 
 ## Diğer Bağlantılar
-
+https://artevoapp.github.io/
 https://github.com/ArtevoApp

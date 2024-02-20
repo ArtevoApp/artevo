@@ -145,3 +145,4 @@ firebase.json
 firestore.indexes.json
 .firebaserc
 .DS_Store
+.vscode
