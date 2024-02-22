@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-// TODO: Convert to static method
 class HiveUserDataService {
-  static Box box = Hive.box('userDataBox');
+  HiveUserDataService._();
 
-  HiveUserDataService() {
-    if (!box.isOpen) {
-      openBox();
+  static HiveUserDataService? _instance; // Singleton instance
+
+  static HiveUserDataService get instance {
+    _instance ??= HiveUserDataService._();
+    return _instance!;
+  }
+
+  static const _boxName = "userDataBox";
+
+  static Box box = Hive.box(_boxName);
+
+  Future<void> init() async {
+    if (!Hive.isBoxOpen(_boxName)) {
+      box = await openBox();
     }
   }
 

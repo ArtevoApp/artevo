@@ -9,7 +9,7 @@ mixin SplashScreenMixin on State<SplashScreen> {
 
   Future<void> loadData() async {
     /// user first login check
-    bool isFirstLogin = HiveUserDataService().getFirstLoginStatus;
+    bool isFirstLogin = HiveUserDataService.instance.getFirstLoginStatus;
 
     /// if first login go to welcome screen
     if (isFirstLogin) {

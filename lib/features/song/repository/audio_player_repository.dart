@@ -1,5 +1,5 @@
 import 'package:artevo/services/hive/hive_content_data_service.dart';
-import 'package:artevo_package/models/song.dart';
+import 'package:artevo_package/modev2/music_content.dart';
 import 'package:artevo_package/services/song_service.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
@@ -10,21 +10,26 @@ class AudioPlayerRepository extends ChangeNotifier {
 
   final _audioPlayer = AudioPlayer();
 
-  Song _currentSong = HiveContentDataService().getSongData() ??
-      Song(
-          artist: "Song is not found!",
-          name: "",
-          url: "",
-          albumImageUrl: "",
-          ytMusicUrl: "",
-          spotifyUrl: "",
-          appleMusicUrl: "");
+  MusicContent _currentSong =
+      HiveDailyContentDataService.instance.getSongData() ??
+          MusicContent(
+            title: '',
+            creator: '',
+            albumImageUrl: '',
+            ytMusicUrl: '',
+            langCode: 'en',
+            editorNickname: "",
+            editorUid: "",
+            musicSourceUrl: "",
+            appleMusicUrl: "",
+            spotifyUrl: "",
+          );
 
   AudioPlayer get player => _audioPlayer;
 
   String get getCurrentSongUrl => _currentSong.albumImageUrl;
 
-  Song get getCurrentSong => _currentSong;
+  MusicContent get getCurrentSong => _currentSong;
 
   bool get isPlaying => _audioPlayer.playing;
 
@@ -52,29 +57,28 @@ class AudioPlayerRepository extends ChangeNotifier {
     });
   }
 
-  Future<void> changeSong(Song? newSong) async {
-    if (newSong != null) {
+  Future<void> changeSong(MusicContent? music) async {
+    if (music != null) {
       try {
         String? songUrl =
-            await SongService().songDownloadUrlParser(newSong.url);
+            await SongService().songStreamUrlParser(music.musicSourceUrl);
 
         if (songUrl != null && songUrl != "") {
           UriAudioSource source = AudioSource.uri(
             Uri.parse(songUrl.toString()),
             tag: MediaItem(
               id: "3521544",
-              album: newSong.artist,
-              title: newSong.name,
-              artist: newSong.artist,
-              artUri: Uri.parse(newSong.albumImageUrl),
-              displayTitle: newSong.artist,
-              displaySubtitle: newSong.name,
+              title: music.title,
+              artist: music.creator,
+              artUri: Uri.parse(music.albumImageUrl),
+              displayTitle: music.creator,
+              displaySubtitle: music.title,
             ),
           );
 
           await _audioPlayer.setAudioSource(source);
 
-          _currentSong = newSong;
+          _currentSong = music;
 
           notifyListeners();
         }

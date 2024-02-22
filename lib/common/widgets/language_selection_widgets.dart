@@ -44,7 +44,7 @@ class LanguageSelectWithDropdownWidget extends StatelessWidget {
             if (p0 != null) {
               Locale locale = LanguageHelper.fromLanguageName(p0.toString());
               ref.read(selectedLanguageProvider.notifier).state = locale;
-              HiveUserDataService().setLocale(locale.languageCode);
+              HiveUserDataService.instance.setLocale(locale.languageCode);
             }
           },
           value: context.loc.languageName,

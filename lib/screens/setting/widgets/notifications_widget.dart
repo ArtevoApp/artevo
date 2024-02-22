@@ -15,7 +15,7 @@ class NotificationsWidget extends StatefulWidget {
 }
 
 class _NotificationsWidgetState extends State<NotificationsWidget> {
-  HiveUserDataService hive = HiveUserDataService();
+  final hive = HiveUserDataService.instance;
   int hour = 08;
   int min = 00;
   bool notificationStatus = false;

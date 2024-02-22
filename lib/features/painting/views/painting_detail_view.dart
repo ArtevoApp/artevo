@@ -4,28 +4,25 @@ import 'package:artevo/common/widgets/image_viewer.dart';
 import 'package:artevo/features/painting/views/painting_zoom_view.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:artevo/services/hive/hive_content_data_service.dart';
-import 'package:artevo_package/models/painting.dart';
-import 'package:artevo_package/models/section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
-
-// TODO: make this class modular.
 
 class PaintingDetailScreen extends ConsumerWidget {
   const PaintingDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context, ref) {
-    Painting? painting = HiveContentDataService().getPaintingData() ??
-        Painting(painter: "", name: "", year: "", category: "", imageUrl: "");
+    final hive = HiveDailyContentDataService.instance;
 
-    Section paintingDetail =
-        HiveContentDataService().getPaintingDetail(context.loc.langCode) ??
-            Section(title: "", content: "", author: "");
+    final painting = hive.getPaintingContentData();
+
+    final detail = hive.getPaintingDetail(context.loc.langCode);
+
+    if (painting == null) return const SizedBox.shrink();
 
     return Scaffold(
-        appBar: AppBar(title: Text(painting.name)),
+        appBar: AppBar(title: Text(painting.title)),
         body: Stack(
           alignment: Alignment.topCenter,
           children: [
@@ -34,7 +31,7 @@ class PaintingDetailScreen extends ConsumerWidget {
               child: SingleChildScrollView(
                 child: Center(
                   child: SizedBox(
-                    width: 600, // TODO: fix, make it responsive
+                    width: dialogWidth * 2,
                     child: Column(
                       children: [
                         InkWell(
@@ -50,16 +47,16 @@ class PaintingDetailScreen extends ConsumerWidget {
                           ),
                         ),
                         const SizedBox(height: defaultPadding),
-                        Text("${painting.painter} - ${painting.name}",
+                        Text("${painting.creator} - ${painting.title}",
                             style: TextStyles.body,
                             textAlign: TextAlign.center),
-                        Text("(${painting.year}${painting.category})",
+                        Text("(${painting.year}${painting.year})",
                             style: TextStyles.info,
                             textAlign: TextAlign.center),
                         const SizedBox(height: defaultPadding),
 
                         //? painting detail is not found
-                        if (paintingDetail.content.length <= 5)
+                        if (detail == null) ...{
                           Padding(
                             padding: const EdgeInsets.only(top: 32),
                             child: Text(
@@ -68,35 +65,26 @@ class PaintingDetailScreen extends ConsumerWidget {
                               textAlign: TextAlign.center,
                             ),
                           ),
-
-                        //? painting detail
-                        if (paintingDetail.content.length > 5)
+                        } else ...{
                           Column(
                             children: [
-                              // * Title
                               Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Text(
-                                  paintingDetail.title,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyles.title,
-                                ),
-                              ),
-
-                              // * TEXT
+                                  padding: const EdgeInsets.all(largePadding),
+                                  child: Text(detail.title,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyles.title)),
                               Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Text(
-                                    paintingDetail.content,
-                                    style: TextStyles.body,
-                                  )),
-                              // * Author
+                                  padding: const EdgeInsets.all(
+                                      largePadding), // TODO BU GEREKSİZ OLABİLİRS
+                                  child: Text(detail.detail,
+                                      style: TextStyles.body)),
                               ListTile(
-                                  title: Text(paintingDetail.author,
+                                  title: Text(detail.creator,
                                       textAlign: TextAlign.end),
                                   trailing: const Icon(Iconsax.user)),
                             ],
                           ),
+                        },
                         const SizedBox(height: 200),
                       ],
                     ),

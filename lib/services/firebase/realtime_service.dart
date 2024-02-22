@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:artevo/services/api/ip_address_service.dart';
+import 'package:artevo/services/apis/ip_address_service.dart';
 import 'package:artevo_package/models/version_data.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:uuid/uuid.dart';

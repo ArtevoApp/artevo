@@ -2,10 +2,8 @@ import 'package:artevo/common/config/routes.dart';
 import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/constants/text_styles.dart';
 import 'package:artevo/common/widgets/image_viewer.dart';
-
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:artevo/services/hive/hive_content_data_service.dart';
-import 'package:artevo_package/models/painting.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +12,10 @@ class PaintingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Painting painting = HiveContentDataService().getPaintingData() ??
-        Painting(name: "", imageUrl: "", category: "", painter: "", year: "");
+    final painting =
+        HiveDailyContentDataService.instance.getPaintingContentData();
+
+    if (painting == null) return const SizedBox.shrink();
 
     return Column(
       children: [
@@ -29,7 +29,7 @@ class PaintingView extends StatelessWidget {
           crossAxisAlignment: WrapCrossAlignment.center,
           spacing: smallPadding,
           children: [
-            Text(painting.name,
+            Text(painting.title,
                 style: TextStyles.bodyv2, textAlign: TextAlign.center),
             CupertinoButton(
               padding: const EdgeInsets.all(0),

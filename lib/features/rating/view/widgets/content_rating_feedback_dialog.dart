@@ -79,12 +79,12 @@ class ContentRatingFeedBackDialog extends ConsumerWidget {
               child: Text(context.loc.cancel)),
           FilledButton(
               onPressed: () async {
-                String date = HiveContentDataService().getDate();
+                String date = HiveDailyContentDataService.instance.getDate();
                 RealtimeService().sendPollFeedBack(
                     date: date,
                     comment: commentController.text,
                     rating: rating);
-                HiveUserDataService().setLastPollFeedbackDate(date);
+                HiveUserDataService.instance.setLastPollFeedbackDate(date);
                 ref.read(showContentRatingProvider.notifier).state = true;
                 ref.read(_ratingFeedbackDialogShowThanksStatus.notifier).state =
                     true;

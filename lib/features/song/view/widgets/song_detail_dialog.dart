@@ -2,18 +2,18 @@ import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/features/song/models/music_platforms.dart';
 import 'package:artevo/common/widgets/image_viewer.dart';
 import 'package:artevo/features/song/view/widgets/music_platform.dart';
-import 'package:artevo_package/models/song.dart';
+import 'package:artevo_package/modev2/music_content.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 class SongDetailDialog extends StatelessWidget {
-  const SongDetailDialog({super.key, required this.song});
+  const SongDetailDialog({super.key, required this.music});
 
-  final Song song;
+  final MusicContent music;
 
-  static Future<void> show(BuildContext context, Song song) async {
+  static Future<void> show(BuildContext context, MusicContent music) async {
     return showDialog(
-        context: context, builder: (context) => SongDetailDialog(song: song));
+        context: context, builder: (context) => SongDetailDialog(music: music));
   }
 
   @override
@@ -25,7 +25,7 @@ class SongDetailDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           ImageViewer(
-              url: song.albumImageUrl,
+              url: music.albumImageUrl,
               height: xLargeImageSize,
               width: xLargeImageSize),
           const SizedBox(height: 8),
@@ -35,7 +35,7 @@ class SongDetailDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(Iconsax.user, size: 14, color: Colors.grey),
-              Expanded(child: Text(song.artist, textAlign: TextAlign.center))
+              Expanded(child: Text(music.creator, textAlign: TextAlign.center))
             ],
           ),
           const SizedBox(height: 16),
@@ -43,7 +43,7 @@ class SongDetailDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(Icons.track_changes, size: 14, color: Colors.grey),
-              Expanded(child: Text(song.name, textAlign: TextAlign.center))
+              Expanded(child: Text(music.title, textAlign: TextAlign.center))
             ],
           ),
           const SizedBox(height: 8),
@@ -52,11 +52,11 @@ class SongDetailDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               MusicPlatformButtonWidget(
-                  platform: MusicPlatform.ytMusic, url: song.ytMusicUrl),
+                  platform: MusicPlatform.ytMusic, url: music.ytMusicUrl),
               MusicPlatformButtonWidget(
-                  platform: MusicPlatform.spotify, url: song.spotifyUrl),
+                  platform: MusicPlatform.spotify, url: music.spotifyUrl),
               MusicPlatformButtonWidget(
-                  platform: MusicPlatform.appleMusic, url: song.appleMusicUrl),
+                  platform: MusicPlatform.appleMusic, url: music.appleMusicUrl),
             ],
           ),
         ],

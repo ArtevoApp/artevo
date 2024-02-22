@@ -28,7 +28,7 @@ class AppInitialize {
     await Hive.openBox('contentDataBox');
 
     // notification service.
-    if (HiveUserDataService().getNotificationSendingStatus) {
+    if (HiveUserDataService.instance.getNotificationSendingStatus) {
       NotificationsService.init();
     }
 

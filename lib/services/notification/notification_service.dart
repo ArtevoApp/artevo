@@ -31,8 +31,8 @@ class NotificationsService {
   }
 
   Future<void> initialize() async {
-    hours = HiveUserDataService().getNotificationHour;
-    minutes = HiveUserDataService().getNotificationMinute;
+    hours = HiveUserDataService.instance.getNotificationHour;
+    minutes = HiveUserDataService.instance.getNotificationMinute;
 
     await _flutterLocalNotificationsPlugin.cancelAll();
 

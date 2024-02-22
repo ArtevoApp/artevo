@@ -4,7 +4,7 @@ import 'package:artevo/features/song/repository/audio_player_repository.dart';
 import 'package:artevo/features/song/controllers/song_controllers.dart';
 import 'package:artevo/common/widgets/image_viewer.dart';
 import 'package:artevo/features/song/view/widgets/song_detail_dialog.dart';
-import 'package:artevo_package/models/song.dart';
+import 'package:artevo_package/modev2/music_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
@@ -17,10 +17,10 @@ class SongView extends StatelessWidget {
     return Consumer(builder: (context, ref, child) {
       AudioPlayerRepository player = ref.watch(audioPlayerRepositoryProvider);
 
-      Song currentSong =
+      MusicContent currentSong =
           ref.watch(audioPlayerRepositoryProvider).getCurrentSong;
 
-      String songName = "${currentSong.artist} - ${currentSong.name}";
+      String songName = "${currentSong.creator} - ${currentSong.title}";
 
       Duration? position =
           ref.watch(positionStreamProvider).value ?? Duration.zero;
@@ -54,17 +54,17 @@ class SongView extends StatelessWidget {
     });
   }
 
-  IconButton playPauseButton(
-      AudioPlayerRepository player, Song currentSong, BuildContext context) {
+  IconButton playPauseButton(AudioPlayerRepository player,
+      MusicContent currentSong, BuildContext context) {
     return IconButton(
       icon: Icon(
-        player.isPlaying && currentSong.url != ''
+        player.isPlaying && currentSong.musicSourceUrl != ''
             ? Iconsax.pause
             : Iconsax.play,
         size: 24,
         color: Theme.of(context).colorScheme.primary,
       ),
-      onPressed: () => player.isPlaying && currentSong.url != ''
+      onPressed: () => player.isPlaying && currentSong.musicSourceUrl != ''
           ? player.pause()
           : player.play(),
     );
@@ -135,7 +135,7 @@ class SongView extends StatelessWidget {
     );
   }
 
-  Padding albulCoverWidget(_, Song currentsong) {
+  Padding albulCoverWidget(_, MusicContent currentsong) {
     return Padding(
       padding: const EdgeInsets.only(left: 8.0),
       child: InkWell(

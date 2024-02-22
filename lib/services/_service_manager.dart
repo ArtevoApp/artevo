@@ -2,26 +2,24 @@ import 'package:artevo/common/constants/strings.dart';
 import 'package:artevo/services/firebase/firestore_service.dart';
 import 'package:artevo/services/hive/hive_content_data_service.dart';
 import 'package:artevo/services/firebase/realtime_service.dart';
-import 'package:artevo_package/models/content.dart';
 import 'package:artevo_package/models/version_data.dart';
+import 'package:artevo_package/modev2/daily_content.dart';
 
-// TODO: DATA MANAGER ŞEKLİNDE İSİMLENDİRİLEBİLİR
-// SPLASH SCR MİXİN'DE KULLANILIYOR
+// TODO: change class name
 class ServiceManger {
   Future<bool> checkContentData() async {
     try {
-      var hiveBox = HiveContentDataService();
+      var hiveBox = HiveDailyContentDataService.instance;
 
       DateTime now = await RealtimeService().getServerTime() ?? DateTime.now();
 
       String todayDate = "${now.year}-${now.month}-${now.day}";
 
-      Content? fsContentData;
-
       if (hiveBox.isEmty() || hiveBox.getDate() != todayDate) {
-        fsContentData = await FirestoreService().getContentData(todayDate);
+        DailyContent? fsContentData =
+            await FirestoreService().getContentData(todayDate);
         if (fsContentData != null) {
-          await hiveBox.setAllData(fsContentData);
+          await hiveBox.setDailyContentData(fsContentData);
         } else {
           return false;
         }

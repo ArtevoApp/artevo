@@ -1,26 +1,38 @@
-import 'package:artevo_package/models/content.dart';
-import 'package:artevo_package/models/painting.dart';
-import 'package:artevo_package/models/section.dart';
-import 'package:artevo_package/models/song.dart';
+import 'package:artevo_package/modev2/daily_content.dart';
+import 'package:artevo_package/modev2/music_content.dart';
+import 'package:artevo_package/modev2/painting_content.dart';
+import 'package:artevo_package/modev2/painting_detail_content.dart';
+import 'package:artevo_package/modev2/poetry_content.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-class HiveContentDataService {
-  final Box box = Hive.box('contentDataBox');
+class HiveDailyContentDataService {
+  HiveDailyContentDataService._();
 
-  HiveContentDataService() {
-    if (!box.isOpen) {
-      openBox();
+  static HiveDailyContentDataService? _instance; // Singleton instance
+
+  static HiveDailyContentDataService get instance {
+    _instance ??= HiveDailyContentDataService._();
+    return _instance!;
+  }
+
+  static const _boxName = "contentDataBox";
+
+  static Box box = Hive.box(_boxName);
+
+  Future<void> init() async {
+    if (!Hive.isBoxOpen(_boxName)) {
+      box = await openBox();
     }
   }
 
-  Future openBox() async => await Hive.openBox('contentDataBox');
+  Future openBox() async => await Hive.openBox(_boxName);
 
   bool isEmty() => box.isEmpty;
 
   String getDate() => box.get("date").toString();
 
-  /// set all data in [Content] model.
-  Future<void> setAllData(Content data) async {
+  /// set all data in [DailyContent] model.
+  Future<void> setDailyContentData(DailyContent data) async {
     try {
       await box.putAll(data.toMap());
     } on Exception catch (e) {
@@ -28,37 +40,37 @@ class HiveContentDataService {
     }
   }
 
-  /// fetching [Song] data from cached content data.
-  Song? getSongData() {
+  /// fetching [MusicContent] data from cached content data.
+  MusicContent? getSongData() {
     try {
-      return Song.fromMap(box.get("song").cast());
+      return MusicContent.fromMap(box.get("song").cast());
     } catch (e) {
       return null;
     }
   }
 
-  /// fetching [Painting] data from cached content data.
-  Painting? getPaintingData() {
+  /// fetching [PaintingContent] data from cached content data.
+  PaintingContent? getPaintingContentData() {
     try {
-      return Painting.fromMap(box.get("painting").cast());
+      return PaintingContent.fromMap(box.get("painting").cast());
     } catch (e) {
       return null;
     }
   }
 
-  /// fetching [Section] -poem  data from cached content data.
-  Section? getPoemData(String lang) {
+  /// fetching [PoetryContent] -poem  data from cached content data.
+  PoetryContent? getPoetryContentData(String lang) {
     try {
-      return Section.fromMap(box.get("$lang" "Poem").cast());
+      return PoetryContent.fromMap(box.get("$lang" "Poetry").cast());
     } catch (e) {
       return null;
     }
   }
 
-  /// fetching [Section] -painting detail  data from cached content data.
-  Section? getPaintingDetail(String lang) {
+  /// fetching [PaintingDetailContent] -painting detail  data from cached content data.
+  PaintingDetailContent? getPaintingDetail(String lang) {
     try {
-      return Section.fromMap(box.get("$lang" "PaintingDetail").cast());
+      return PaintingDetailContent.fromMap(box.get("$lang" "Detail").cast());
     } catch (e) {
       return null;
     }

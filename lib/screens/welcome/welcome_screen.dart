@@ -48,7 +48,7 @@ class WelcomeScreen extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: CupertinoButton.filled(
           onPressed: () async {
-            HiveUserDataService().setFirstLoginStatus(false);
+            HiveUserDataService.instance.setFirstLoginStatus(false);
             Navigator.pushNamedAndRemoveUntil(
                 context, Screens.splash.routeName, (route) => false);
           },

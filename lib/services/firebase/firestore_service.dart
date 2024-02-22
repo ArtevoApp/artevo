@@ -1,18 +1,18 @@
-import 'package:artevo_package/models/content.dart';
+import 'package:artevo_package/modev2/daily_content.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  /// get content data from firestore by [date]
-  Future<Content?> getContentData(String date) async {
+  /// get daily content data from firestore by [date]
+  Future<DailyContent?> getContentData(String date) async {
     try {
       return await firestore
-          .collection("contents")
+          .collection("dailyContents")
           .where("date", isEqualTo: date)
           .limit(1)
           .get()
-          .then((value) => Content.fromMap(value.docs.first.data()));
+          .then((value) => DailyContent.fromMap(value.docs.first.data()));
     } catch (e) {
       return null;
     }
