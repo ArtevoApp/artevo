@@ -38,12 +38,12 @@ class _ContentRatingBarState extends State<ContentRatingBar> {
     }
   }
 
-  void onHorizontalDragEnd(DragEndDetails details) {
+  void onHorizontalDragEnd(DragEndDetails details) async {
     double rating = (dxNotifier.value + 4) / barMaxWidth * itemCount;
     if (rating <= 1) rating = 1.0;
     if (rating >= 5) rating = 5.0;
 
-    ContentRatingFeedBackDialog.show(
+    await ContentRatingFeedBackDialog.show(
         context, double.parse(rating.toStringAsFixed(1)));
   }
 

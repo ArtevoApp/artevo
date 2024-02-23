@@ -47,11 +47,9 @@ class PaintingDetailScreen extends ConsumerWidget {
                           ),
                         ),
                         const SizedBox(height: defaultPadding),
-                        Text("${painting.creator} - ${painting.title}",
+                        Text(
+                            "${painting.title} (${painting.year})\n${painting.creator}",
                             style: TextStyles.body,
-                            textAlign: TextAlign.center),
-                        Text("(${painting.year}${painting.year})",
-                            style: TextStyles.info,
                             textAlign: TextAlign.center),
                         const SizedBox(height: defaultPadding),
 
@@ -66,26 +64,25 @@ class PaintingDetailScreen extends ConsumerWidget {
                             ),
                           ),
                         } else ...{
-                          Column(
-                            children: [
-                              Padding(
-                                  padding: const EdgeInsets.all(largePadding),
-                                  child: Text(detail.title,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyles.title)),
-                              Padding(
-                                  padding: const EdgeInsets.all(
-                                      largePadding), // TODO BU GEREKSİZ OLABİLİRS
-                                  child: Text(detail.detail,
-                                      style: TextStyles.body)),
-                              ListTile(
-                                  title: Text(detail.creator,
-                                      textAlign: TextAlign.end),
-                                  trailing: const Icon(Iconsax.user)),
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.all(largePadding),
+                            child: Column(
+                              children: [
+                                Text(detail.title,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyles.title),
+                                const SizedBox(height: hugePadding),
+                                Text(detail.detail, style: TextStyles.body),
+                                ListTile(
+                                    title: Text(detail.creator,
+                                        textAlign: TextAlign.end),
+                                    trailing: const Icon(Iconsax.user,
+                                        size: smallIconSize)),
+                              ],
+                            ),
                           ),
                         },
-                        const SizedBox(height: 200),
+                        const SizedBox(height: hugePadding),
                       ],
                     ),
                   ),

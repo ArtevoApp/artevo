@@ -19,7 +19,7 @@ class MusicPlatformButtonWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(defaultPadding)))),
       icon: SvgPicture.asset(
         platform.path,
-        height: smallImageSize,
+        height: xsmallImageSize,
         colorFilter: !isExistUrl
             ? const ColorFilter.mode(Colors.grey, BlendMode.srcATop)
             : null,

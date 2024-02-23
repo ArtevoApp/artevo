@@ -85,7 +85,7 @@ class ContentRatingFeedBackDialog extends ConsumerWidget {
                     comment: commentController.text,
                     rating: rating);
                 HiveUserDataService.instance.setLastPollFeedbackDate(date);
-                ref.read(showContentRatingProvider.notifier).state = true;
+                ref.read(showContentRatingProvider.notifier).state = false;
                 ref.read(_ratingFeedbackDialogShowThanksStatus.notifier).state =
                     true;
               },
