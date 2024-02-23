@@ -1,7 +1,7 @@
 import 'package:artevo/common/constants/text_styles.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:flutter/material.dart';
-import 'package:artevo/services/hive/hive_content_data_service.dart';
+import 'package:artevo/services/hive/hive_daily_content_data_service.dart';
 
 class PoemView extends StatelessWidget {
   const PoemView({super.key});

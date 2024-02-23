@@ -3,7 +3,7 @@ import 'package:artevo/common/constants/text_styles.dart';
 import 'package:artevo/common/widgets/image_viewer.dart';
 import 'package:artevo/features/painting/views/painting_zoom_view.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
-import 'package:artevo/services/hive/hive_content_data_service.dart';
+import 'package:artevo/services/hive/hive_daily_content_data_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';

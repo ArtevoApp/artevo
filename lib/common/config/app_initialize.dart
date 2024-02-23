@@ -25,7 +25,7 @@ class AppInitialize {
     // hive boxes
     await Hive.initFlutter();
     await Hive.openBox('userDataBox');
-    await Hive.openBox('contentDataBox');
+    await Hive.openBox('dailyContentDataBox');
 
     // notification service.
     if (HiveUserDataService.instance.getNotificationSendingStatus) {

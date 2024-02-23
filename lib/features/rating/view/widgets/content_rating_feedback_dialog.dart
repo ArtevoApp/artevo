@@ -3,7 +3,7 @@ import 'package:artevo/common/constants/paths.dart';
 import 'package:artevo/features/rating/controllers/content_rating_controllers.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:artevo/services/firebase/realtime_service.dart';
-import 'package:artevo/services/hive/hive_content_data_service.dart';
+import 'package:artevo/services/hive/hive_daily_content_data_service.dart';
 import 'package:artevo/services/hive/hive_user_data_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

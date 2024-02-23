@@ -3,7 +3,7 @@ import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/constants/text_styles.dart';
 import 'package:artevo/common/widgets/image_viewer.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
-import 'package:artevo/services/hive/hive_content_data_service.dart';
+import 'package:artevo/services/hive/hive_daily_content_data_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

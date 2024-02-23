@@ -1,4 +1,4 @@
-import 'package:artevo/services/hive/hive_content_data_service.dart';
+import 'package:artevo/services/hive/hive_daily_content_data_service.dart';
 import 'package:artevo_package/modev2/music_content.dart';
 import 'package:artevo_package/services/song_service.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +11,9 @@ class AudioPlayerRepository extends ChangeNotifier {
   final _audioPlayer = AudioPlayer();
 
   MusicContent _currentSong =
-      HiveDailyContentDataService.instance.getSongData() ??
+      HiveDailyContentDataService.instance.getMusicData() ??
           MusicContent(
-            title: '',
+            title: 'Music is not found',
             creator: '',
             albumImageUrl: '',
             ytMusicUrl: '',
