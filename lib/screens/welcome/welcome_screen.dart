@@ -50,7 +50,7 @@ class WelcomeScreen extends StatelessWidget {
           onPressed: () async {
             HiveUserDataService.instance.setFirstLoginStatus(false);
             Navigator.pushNamedAndRemoveUntil(
-                context, Screens.splash.routeName, (route) => false);
+                context, splashRoute, (route) => false);
           },
           child: Text(context.loc.continuee)),
     );

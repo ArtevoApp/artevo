@@ -17,7 +17,9 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(appName), actions: [settingsIconButton(context)]),
+          title: const Text(appName),
+          centerTitle: true,
+          actions: [settingsIconButton(context)]),
       body: ListView(
         padding: const EdgeInsets.all(largePadding),
         children: const [
@@ -34,6 +36,6 @@ class HomeScreen extends ConsumerWidget {
   }
 
   IconButton settingsIconButton(BuildContext context) => IconButton(
-      onPressed: () => Navigator.pushNamed(context, Screens.settings.routeName),
+      onPressed: () => Navigator.pushNamed(context, settingsRoute),
       icon: const Icon(Iconsax.setting));
 }

@@ -10,10 +10,14 @@ class Admob {
   }
 
   static Future<InterstitialAd?> loadInterstitialAd() async {
+    String? adUnitId = AdUnits.interstitialAdUnitId;
+
+    if (adUnitId == null) return null;
+
     Completer<InterstitialAd?> completer = Completer();
 
     InterstitialAd.load(
-        adUnitId: AdUnits.interstitialAdUnitId,
+        adUnitId: adUnitId,
         request: const AdRequest(),
         adLoadCallback: InterstitialAdLoadCallback(
             onAdLoaded: (ad) {
@@ -39,13 +43,17 @@ class Admob {
  */
 class AdUnits {
   /// home screen interstitial
-  static String get interstitialAdUnitId {
+  static String? get interstitialAdUnitId {
     if (Platform.isIOS) {
       return appmode == AppMode.debug
           ? "ca-app-pub-3940256099942544/4411468910" // ! TEST
           : "ca-app-pub-4083839786740154/2159070535"; // ! RELEASE
+    } else if (Platform.isAndroid) {
+      return appmode == AppMode.debug
+          ? "ca-app-pub-3940256099942544/1033173712" // ! TEST
+          : "ca-app-pub-4083839786740154/2159070535"; // ! RELEASE
     } else {
-      throw UnsupportedError("Unsupported platform");
+      return null;
     }
   }
 }

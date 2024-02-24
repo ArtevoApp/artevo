@@ -7,7 +7,7 @@ mixin SplashScreenMixin on State<SplashScreen> {
     loadData();
   }
 
-  Future<void> loadData() async {
+  void loadData() async {
     /// user first login check
     bool isFirstLogin = HiveUserDataService.instance.getFirstLoginStatus;
 
@@ -15,7 +15,7 @@ mixin SplashScreenMixin on State<SplashScreen> {
     if (isFirstLogin) {
       SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
         Navigator.pushNamedAndRemoveUntil(
-            context, Screens.welcome.routeName, (route) => false);
+            context, welcomeRoute, (route) => false);
       });
     }
 
@@ -44,7 +44,7 @@ mixin SplashScreenMixin on State<SplashScreen> {
             // if version is up to date and the content is found:
             // go to home screen and show the interstitial.
             Navigator.pushNamedAndRemoveUntil(
-                context, Screens.home.routeName, (route) => false);
+                context, homeRoute, (route) => false);
 
             // interstitial data control
             if (controls[2] != null) (controls[2] as InterstitialAd).show();
