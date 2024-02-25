@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/constants/strings.dart';
 import 'package:artevo/common/constants/text_styles.dart';
@@ -79,7 +81,8 @@ class SettingScreen extends StatelessWidget {
               inAppReview.requestReview();
               //await inAppReview.openStoreListing(appStoreId: appStoreID);
             } else {
-              Functions.openUrl(context, appStoreUrl);
+              Functions.openUrl(
+                  context, Platform.isIOS ? appStoreUrl : playStoreUrl);
             }
           });
         } catch (e) {

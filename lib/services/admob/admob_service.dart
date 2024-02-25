@@ -51,7 +51,7 @@ class AdUnits {
     } else if (Platform.isAndroid) {
       return appmode == AppMode.debug
           ? "ca-app-pub-3940256099942544/1033173712" // ! TEST
-          : "ca-app-pub-4083839786740154/2159070535"; // ! RELEASE
+          : "ca-app-pub-4083839786740154/6366132561"; // ! RELEASE
     } else {
       return null;
     }

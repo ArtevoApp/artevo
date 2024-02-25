@@ -86,7 +86,8 @@ class NotificationsService {
     var androidChannel = AndroidNotificationDetails(
         'com.opifer.artevo.channel.notification', notificationChannelName,
         channelDescription: notificationChannelDsc,
-        importance: Importance.max,
+        icon: "@mipmap/ic_launcher_foreground",
+        importance: Importance.high,
         priority: Priority.high,
         playSound: true);
 
@@ -109,7 +110,7 @@ class NotificationsService {
       _scheduledDateTime,
       platformChannel,
       payload: 'Default_Sound',
-      //androidAllowWhileIdle: true,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
     );
