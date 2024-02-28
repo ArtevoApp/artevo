@@ -146,3 +146,6 @@ firestore.indexes.json
 .firebaserc
 .DS_Store
 .vscode
+.metadata
+analysis_options.yaml
+
