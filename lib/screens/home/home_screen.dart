@@ -5,16 +5,14 @@ import 'package:artevo/features/painting/views/painting_view.dart';
 import 'package:artevo/features/poem/view/poem_view.dart';
 import 'package:artevo/features/rating/view/content_rating_view.dart';
 import 'package:artevo/features/song/view/song_view.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           title: const Text(appName),

@@ -70,7 +70,7 @@ class _ContentRatingBarState extends State<ContentRatingBar> {
           itemCount,
           (i) => const CircleAvatar(
               radius: xsmallImageSize,
-              backgroundImage: AssetImage(vincentGrey))));
+              backgroundImage: AssetImage(vincentGreyPath))));
 
   Widget ratingBarForeground() => Container(
       // Don't delete this container.
@@ -84,6 +84,6 @@ class _ContentRatingBarState extends State<ContentRatingBar> {
                 itemCount,
                 (i) => const CircleAvatar(
                     radius: xsmallImageSize,
-                    backgroundImage: AssetImage(vincent)),
+                    backgroundImage: AssetImage(vincentPath)),
               ))));
 }

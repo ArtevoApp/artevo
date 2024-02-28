@@ -25,6 +25,7 @@ class ImageViewer extends StatelessWidget {
             if (snapshot.hasData && snapshot.data is! DownloadProgress) {
               return Image(
                 image: FileImage(File((snapshot.data! as FileInfo).file.path)),
+                fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return Tooltip(
                       message: context.loc.imageNotFound,

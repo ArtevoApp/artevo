@@ -1,5 +1,6 @@
 import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/constants/text_styles.dart';
+import 'package:artevo/common/widgets/custom_divider.dart';
 import 'package:artevo/features/rating/controllers/content_rating_controllers.dart';
 import 'package:artevo/features/rating/view/widgets/content_rating_bar.dart';
 
@@ -16,9 +17,7 @@ class ContectRatingView extends ConsumerWidget {
 
     return Column(
       children: [
-        const Padding(
-            padding: EdgeInsets.symmetric(vertical: mediumPadding),
-            child: Divider()),
+        const CustomDivider(),
         Text(context.loc.wouldYouRateTodaysContent, style: TextStyles.bodyv2),
         const SizedBox(height: xLargePadding),
         const ContentRatingBar(),
