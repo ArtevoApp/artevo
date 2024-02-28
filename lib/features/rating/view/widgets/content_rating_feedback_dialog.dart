@@ -61,7 +61,7 @@ class ContentRatingFeedBackDialog extends ConsumerWidget {
                   children: [
                     const CircleAvatar(
                         radius: xsmallImageSize / 2,
-                        backgroundImage: AssetImage(vincent)),
+                        backgroundImage: AssetImage(vincentPath)),
                     Text(" $rating", style: const TextStyle(fontSize: 18)),
                   ],
                 ),

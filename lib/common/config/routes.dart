@@ -5,37 +5,35 @@ import 'package:artevo/screens/splash/splash_screen.dart';
 import 'package:artevo/screens/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
-enum Screens { welcome, splash, home, settings, paintingDetail }
-
-extension ScreenExtension on Screens {
-  Widget _screen() {
-    switch (this) {
-      case Screens.welcome:
-        return const WelcomeScreen();
-      case Screens.splash:
-        return const SplashScreen();
-      case Screens.home:
-        return const HomeScreen();
-      case Screens.settings:
-        return const SettingScreen();
-      case Screens.paintingDetail:
-        return const PaintingDetailScreen();
-    }
-  }
-
-  String get routeName => "/$name";
-}
+const String splashRoute = "/";
+const String homeRoute = "/homeRoute";
+const String welcomeRoute = "/welcomeRoute";
+const String settingsRoute = "/settingsRoute";
+const String paintingDetailRoute = "/paintingDetailRoute";
 
 class Routes {
-  Route<dynamic> generateRoute(RouteSettings settings) {
-    try {
-      Widget screen = Screens.values
-          .byName((settings.name ?? Screens.splash.routeName).substring(1))
-          ._screen();
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case splashRoute:
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
+      case homeRoute:
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
+      case welcomeRoute:
+        return MaterialPageRoute(builder: (_) => const WelcomeScreen());
+      case settingsRoute:
+        return MaterialPageRoute(builder: (_) => const SettingScreen());
+      case paintingDetailRoute:
+        return MaterialPageRoute(builder: (_) => const PaintingDetailScreen());
 
-      return MaterialPageRoute(builder: (_) => screen);
-    } catch (e) {
-      return MaterialPageRoute(builder: (_) => Screens.splash._screen());
+      default:
+        return MaterialPageRoute(
+          builder: (_) => Scaffold(
+            appBar: AppBar(),
+            body: const Center(
+              child: Text("Error 404: Page not found"),
+            ),
+          ),
+        );
     }
   }
 }

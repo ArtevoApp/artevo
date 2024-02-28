@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/constants/strings.dart';
 import 'package:artevo/common/constants/text_styles.dart';
@@ -20,24 +22,29 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text(appName), centerTitle: true),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: largePadding),
-        children: [
-          sectionWidget(context.loc.settings),
-          const LanguageSelectWithDropdownWidget(isSmallWidget: false),
-          const ThemeModeToggleWidget(),
-          const NotificationsWidget(),
-          sectionWidget(context.loc.contactUs),
-          Text(context.loc.contactText,
-              style: TextStyles.bodyv3, textAlign: TextAlign.center),
-          CupertinoButton(
-              child: const Text(appContactMail),
-              onPressed: () => appContactMailOnPressed(context)),
-          discordButton(context),
-          sectionWidget(context.loc.other),
-          rateArtevo(context),
-          const FooterWidget(),
-        ],
+      body: Center(
+        child: SizedBox(
+          width: columnWidth,
+          child: ListView(
+            padding: const EdgeInsets.symmetric(horizontal: largePadding),
+            children: [
+              sectionWidget(context.loc.settings),
+              const LanguageSelectWithDropdownWidget(isSmallWidget: false),
+              const ThemeModeToggleWidget(),
+              const NotificationsWidget(),
+              sectionWidget(context.loc.contactUs),
+              Text(context.loc.contactText,
+                  style: TextStyles.bodyv3, textAlign: TextAlign.center),
+              CupertinoButton(
+                  child: const Text(appContactMail),
+                  onPressed: () => appContactMailOnPressed(context)),
+              discordButton(context),
+              sectionWidget(context.loc.other),
+              rateArtevo(context),
+              const FooterWidget(),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -79,7 +86,8 @@ class SettingScreen extends StatelessWidget {
               inAppReview.requestReview();
               //await inAppReview.openStoreListing(appStoreId: appStoreID);
             } else {
-              Functions.openUrl(context, appStoreUrl);
+              Functions.openUrl(
+                  context, Platform.isIOS ? appStoreUrl : playStoreUrl);
             }
           });
         } catch (e) {

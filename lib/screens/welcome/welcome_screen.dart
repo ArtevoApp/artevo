@@ -21,10 +21,11 @@ class WelcomeScreen extends StatelessWidget {
           padding: const EdgeInsets.all(largePadding),
           child: Column(
             children: [
-              const SizedBox(height: hugePadding),
+              const Spacer(),
               const Text(appName, style: TextStyles.welcomeTitle),
-              const SizedBox(height: hugePadding),
+              const Spacer(),
               Text(context.loc.welcome, style: TextStyles.welcomeTitle),
+              const Spacer(),
               Text(context.loc.appPurpose,
                   style: TextStyles.welcomeBody, textAlign: TextAlign.center),
               const Spacer(),
@@ -50,7 +51,7 @@ class WelcomeScreen extends StatelessWidget {
           onPressed: () async {
             HiveUserDataService.instance.setFirstLoginStatus(false);
             Navigator.pushNamedAndRemoveUntil(
-                context, Screens.splash.routeName, (route) => false);
+                context, splashRoute, (route) => false);
           },
           child: Text(context.loc.continuee)),
     );

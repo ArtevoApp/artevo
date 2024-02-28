@@ -15,7 +15,8 @@ class PoemView extends StatelessWidget {
 
     return Column(
       children: [
-        Text(poetry.title, style: TextStyles.title),
+        Text(poetry.title,
+            style: TextStyles.title, textAlign: TextAlign.center),
         const SizedBox(height: 16),
         SelectableText(poetry.poem, style: TextStyles.body),
         const SizedBox(height: 16),

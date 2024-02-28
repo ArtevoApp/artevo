@@ -50,8 +50,8 @@ class ArtevoApp extends StatelessWidget {
             fontFamily: Fonts.domine),
 
         // routes
-        initialRoute: Screens.splash.routeName,
-        onGenerateRoute: Routes().generateRoute,
+        initialRoute: splashRoute,
+        onGenerateRoute: Routes.generateRoute,
       );
     });
   }

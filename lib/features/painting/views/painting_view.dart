@@ -20,8 +20,7 @@ class PaintingView extends StatelessWidget {
     return Column(
       children: [
         InkWell(
-            onTap: () =>
-                Navigator.pushNamed(context, Screens.paintingDetail.routeName),
+            onTap: () => Navigator.pushNamed(context, paintingDetailRoute),
             child: ImageViewer(url: painting.imageUrl)),
         const SizedBox(height: defaultPadding),
         Wrap(
@@ -35,8 +34,8 @@ class PaintingView extends StatelessWidget {
               padding: const EdgeInsets.all(0),
               minSize: xsmallImageSize,
               child: Text(context.loc.more, style: TextStyles.bodyv2),
-              onPressed: () => Navigator.pushNamed(
-                  context, Screens.paintingDetail.routeName),
+              onPressed: () =>
+                  Navigator.pushNamed(context, paintingDetailRoute),
             ),
           ],
         ),

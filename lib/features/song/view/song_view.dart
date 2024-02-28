@@ -32,24 +32,29 @@ class SongView extends StatelessWidget {
 
       if (songName.length > 35) songName = '${songName.substring(0, 32)}...';
 
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Column(
-              children: [
-                Text(songName),
-                Row(
+      return Center(
+        child: SizedBox(
+          width: columnWidth,
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
                   children: [
-                    playPauseButton(player, currentSong, context),
-                    sliderWidget(duration, position, context, buffered, player)
+                    Text(songName),
+                    Row(
+                      children: [
+                        playPauseButton(player, currentSong, context),
+                        sliderWidget(
+                            duration, position, context, buffered, player)
+                      ],
+                    ),
                   ],
                 ),
-              ],
-            ),
+              ),
+              albulCoverWidget(context, currentSong),
+            ],
           ),
-          albulCoverWidget(context, currentSong),
-        ],
+        ),
       );
     });
   }

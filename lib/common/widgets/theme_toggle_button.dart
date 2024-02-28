@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final themeModeProvider = StateProvider<ThemeMode>(
-    (ref) => HiveUserDataService.instance.getTheme() ?? ThemeMode.dark);
+    (ref) => HiveUserDataService.instance.getTheme() ?? ThemeMode.light);
 
 class ThemeModeToggleWidget extends StatelessWidget {
   const ThemeModeToggleWidget({super.key});

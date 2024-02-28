@@ -1,7 +1,8 @@
 import 'dart:io';
 import 'package:artevo/services/hive/hive_user_data_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
+
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -38,7 +39,7 @@ class NotificationsService {
 
     // initialize Timezone
     tz.initializeTimeZones();
-    final String timeZoneName = await FlutterNativeTimezone.getLocalTimezone();
+    final String timeZoneName = await FlutterTimezone.getLocalTimezone();
     tz.setLocalLocation(tz.getLocation(timeZoneName));
 
     // initialize Platform
@@ -85,7 +86,8 @@ class NotificationsService {
     var androidChannel = AndroidNotificationDetails(
         'com.opifer.artevo.channel.notification', notificationChannelName,
         channelDescription: notificationChannelDsc,
-        importance: Importance.max,
+        icon: "@mipmap/ic_launcher_foreground",
+        importance: Importance.high,
         priority: Priority.high,
         playSound: true);
 
@@ -108,7 +110,7 @@ class NotificationsService {
       _scheduledDateTime,
       platformChannel,
       payload: 'Default_Sound',
-      //androidAllowWhileIdle: true,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
     );
