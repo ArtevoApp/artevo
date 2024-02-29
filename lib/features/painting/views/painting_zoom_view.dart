@@ -22,12 +22,11 @@ class PaintingZoomScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(context.loc.back), centerTitle: false),
       body: Zoom(
-        maxZoomWidth: 1800,
-        maxZoomHeight: 1800,
+        maxScale: 25,
         initTotalZoomOut: true,
         backgroundColor: Colors.transparent,
         canvasColor: Colors.transparent,
-        child: ImageViewer(url: url),
+        child: ImageViewer(url: url, width: MediaQuery.of(context).size.width),
       ),
     );
   }

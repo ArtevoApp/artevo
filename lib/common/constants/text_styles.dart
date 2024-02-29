@@ -9,7 +9,7 @@ abstract class TextStyles {
       TextStyle(fontSize: 16, fontWeight: FontWeight.w600);
 
   // common text styles
-  static const title = TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
+  static const title = TextStyle(fontSize: 20, fontWeight: FontWeight.w600);
 
   static const body = TextStyle(fontSize: 16, wordSpacing: 3);
 
