@@ -47,7 +47,9 @@ mixin SplashScreenMixin on State<SplashScreen> {
                 context, homeRoute, (route) => false);
 
             // interstitial data control
-            if (controls[2] != null) (controls[2] as InterstitialAd).show();
+            if (controls[2] != null) {
+              controls[2].show().then((value) => controls[2].dispose());
+            }
           }
         }
       });

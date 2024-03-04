@@ -37,6 +37,7 @@ dependencies:
   iconsax: ^0.0.8
   flutter_svg: ^2.0.9
   zoom_widget: ^2.0.1
+  glassmorphism: ^3.0.0
   cupertino_icons: ^1.0.2
   flutter_animate: ^4.2.0+1
   #-- for audio player 

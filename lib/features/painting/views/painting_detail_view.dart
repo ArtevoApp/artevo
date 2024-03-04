@@ -6,7 +6,9 @@ import 'package:artevo/features/painting/views/painting_zoom_view.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:artevo/services/hive/hive_daily_content_data_service.dart';
 import 'package:artevo_package/modev2/painting_detail_content.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PaintingDetailScreen extends ConsumerWidget {
@@ -54,6 +56,11 @@ class PaintingDetailScreen extends ConsumerWidget {
               child: Column(
                 children: [
                   Text(detail.detail, style: TextStyles.body),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child:
+                        Text('— ${detail.creator}', style: TextStyles.bodyv3),
+                  ),
                   const CustomDivider(),
                   const SizedBox(height: hugePadding),
                 ],

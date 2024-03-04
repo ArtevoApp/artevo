@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/constants/strings.dart';
 import 'package:artevo/common/constants/text_styles.dart';
