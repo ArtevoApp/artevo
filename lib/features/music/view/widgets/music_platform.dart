@@ -1,6 +1,6 @@
 import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/helpers/functions.dart';
-import 'package:artevo/features/song/models/music_platforms.dart';
+import 'package:artevo/features/music/models/music_platforms.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
