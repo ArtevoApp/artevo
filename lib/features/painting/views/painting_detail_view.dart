@@ -1,5 +1,6 @@
 import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/constants/text_styles.dart';
+import 'package:artevo/common/widgets/add_bookmark_button.dart';
 import 'package:artevo/common/widgets/custom_divider.dart';
 import 'package:artevo/common/widgets/image_viewer.dart';
 import 'package:artevo/features/painting/views/painting_zoom_view.dart';
@@ -95,6 +96,7 @@ class PaintingDetailAppBar extends SliverPersistentHeaderDelegate {
     return Stack(fit: StackFit.expand, children: [
       appBarBackground(_),
       appBarBackButton(topPadding),
+      appBarAddBookmarkButton(topPadding),
       appBarTitle(topPadding)
     ]);
   }
@@ -120,6 +122,17 @@ class PaintingDetailAppBar extends SliverPersistentHeaderDelegate {
       child: CircleAvatar(
           radius: smallIconSize,
           child: BackButton(color: Colors.white),
+          backgroundColor: Colors.grey.shade900.withOpacity(0.7)));
+
+  Widget appBarAddBookmarkButton(double topPadding) => Positioned(
+      top: topPadding,
+      right: defaultPadding,
+      child: CircleAvatar(
+          radius: smallIconSize,
+          child: AddBookmarkButton(
+              size: smallIconSize * 2,
+              iconSize: defaultIconSize,
+              color: Colors.white),
           backgroundColor: Colors.grey.shade900.withOpacity(0.7)));
 
   Padding appBarTitle(double topPadding) => Padding(

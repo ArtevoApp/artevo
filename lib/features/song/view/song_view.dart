@@ -1,5 +1,6 @@
 import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/helpers/functions.dart';
+import 'package:artevo/common/widgets/add_bookmark_button.dart';
 import 'package:artevo/features/song/repository/audio_player_repository.dart';
 import 'package:artevo/features/song/controllers/song_controllers.dart';
 import 'package:artevo/common/widgets/image_viewer.dart';
@@ -8,6 +9,7 @@ import 'package:artevo_package/models/music_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:text_scroll/text_scroll.dart';
 
 class SongView extends StatelessWidget {
   const SongView({super.key});
@@ -20,8 +22,6 @@ class SongView extends StatelessWidget {
       MusicContent currentSong =
           ref.watch(audioPlayerRepositoryProvider).getCurrentSong;
 
-      String songName = "${currentSong.creator} - ${currentSong.title}";
-
       Duration? position =
           ref.watch(positionStreamProvider).value ?? Duration.zero;
 
@@ -30,7 +30,7 @@ class SongView extends StatelessWidget {
 
       AsyncValue<Duration?> duration = ref.watch(durationStreamProvider);
 
-      if (songName.length > 35) songName = '${songName.substring(0, 32)}...';
+      String songName = "${currentSong.creator} - ${currentSong.title}";
 
       return Center(
         child: SizedBox(
@@ -40,7 +40,7 @@ class SongView extends StatelessWidget {
               Expanded(
                 child: Column(
                   children: [
-                    Text(songName),
+                    header(songName),
                     Row(
                       children: [
                         playPauseButton(player, currentSong, context),
@@ -57,6 +57,28 @@ class SongView extends StatelessWidget {
         ),
       );
     });
+  }
+
+  Widget header(String songName) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(width: defaultIconSize),
+        Expanded(
+            child: Align(
+          alignment: Alignment.center,
+          child: TextScroll(
+            songName,
+            mode: TextScrollMode.endless,
+            velocity: Velocity(pixelsPerSecond: Offset(20, 0)),
+            delayBefore: Duration(milliseconds: 500),
+            textAlign: TextAlign.right,
+            selectable: true,
+          ),
+        )),
+        AddBookmarkButton(),
+      ],
+    );
   }
 
   IconButton playPauseButton(AudioPlayerRepository player,
