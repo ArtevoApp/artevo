@@ -4,7 +4,7 @@ import 'package:artevo/features/song/repository/audio_player_repository.dart';
 import 'package:artevo/features/song/controllers/song_controllers.dart';
 import 'package:artevo/common/widgets/image_viewer.dart';
 import 'package:artevo/features/song/view/widgets/song_detail_dialog.dart';
-import 'package:artevo_package/modev2/music_content.dart';
+import 'package:artevo_package/models/music_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';

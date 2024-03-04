@@ -2,7 +2,7 @@ import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/features/song/models/music_platforms.dart';
 import 'package:artevo/common/widgets/image_viewer.dart';
 import 'package:artevo/features/song/view/widgets/music_platform.dart';
-import 'package:artevo_package/modev2/music_content.dart';
+import 'package:artevo_package/models/music_content.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 

@@ -1,10 +1,11 @@
-import 'package:artevo_package/modev2/daily_content.dart';
-import 'package:artevo_package/modev2/music_content.dart';
-import 'package:artevo_package/modev2/painting_content.dart';
-import 'package:artevo_package/modev2/painting_detail_content.dart';
-import 'package:artevo_package/modev2/poetry_content.dart';
+import 'package:artevo_package/models/daily_content.dart';
+import 'package:artevo_package/models/music_content.dart';
+import 'package:artevo_package/models/painting_content.dart';
+import 'package:artevo_package/models/painting_detail_content.dart';
+import 'package:artevo_package/models/poetry_content.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+/// ? This service is used to store and cache daily content data in hive database.
 class HiveDailyContentDataService {
   HiveDailyContentDataService._();
 
@@ -29,7 +30,7 @@ class HiveDailyContentDataService {
 
   bool isEmty() => box.isEmpty;
 
-  String getDate() => box.get("date").toString();
+  String getDate() => box.get("title").toString();
 
   /// set all data in [DailyContent] model.
   Future<void> setDailyContentData(DailyContent data) async {
