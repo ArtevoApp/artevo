@@ -6,46 +6,44 @@ import 'package:artevo/common/helpers/functions.dart';
 import 'package:artevo/common/widgets/language_selection_widgets.dart';
 import 'package:artevo/common/widgets/theme_toggle_button.dart';
 import 'package:artevo/common/widgets/footer_widget.dart';
-import 'package:artevo/screens/setting/widgets/notifications_widget.dart';
+import 'package:artevo/common/widgets/notifications_widget.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:in_app_review/in_app_review.dart';
 
-class SettingScreen extends StatelessWidget {
-  const SettingScreen({super.key});
+class SettingView extends StatelessWidget {
+  const SettingView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text(appName), centerTitle: true),
-      body: Center(
-        child: SizedBox(
-          width: columnWidth,
-          child: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: largePadding),
-            children: [
-              sectionWidget(context.loc.settings),
-              const LanguageSelectWithDropdownWidget(isSmallWidget: false),
-              const ThemeModeToggleWidget(),
-              const NotificationsWidget(),
-              sectionWidget(context.loc.contactUs),
-              Text(context.loc.contactText,
-                  style: TextStyles.bodyv3, textAlign: TextAlign.center),
-              CupertinoButton(
-                  child: const Text(appContactMail),
-                  onPressed: () => appContactMailOnPressed(context)),
-              discordButton(context),
-              sectionWidget(context.loc.other),
-              rateArtevo(context),
-              const FooterWidget(),
-            ],
-          ),
+    return Center(
+      child: SizedBox(
+        width: columnWidth,
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: largePadding),
+          children: [
+            sectionWidget(context.loc.settings),
+            const LanguageSelectWithDropdownWidget(isSmallWidget: false),
+            const ThemeModeToggleWidget(),
+            const NotificationsWidget(),
+            sectionWidget(context.loc.contactUs),
+            Text(context.loc.contactText,
+                style: TextStyles.bodyv3, textAlign: TextAlign.center),
+            CupertinoButton(
+                child: const Text(appContactMail),
+                onPressed: () => appContactMailOnPressed(context)),
+            discordButton(context),
+            sectionWidget(context.loc.other),
+            rateArtevo(context),
+            const FooterWidget(),
+          ],
         ),
       ),
-    );
+    ).animate().fade(duration: const Duration(milliseconds: 500));
   }
 
   static appContactMailOnPressed(BuildContext _) async =>

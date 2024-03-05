@@ -213,6 +213,12 @@ abstract class AppLocalizations {
   /// **'Every day one should at least hear one little song, read one good poem, see one fine painting and -- if at all possible -- speak a few sensible words.'**
   String get goetheQuote;
 
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
   /// No description provided for @imageNotFound.
   ///
   /// In en, this message translates to:
@@ -236,6 +242,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'English'**
   String get languageName;
+
+  /// No description provided for @library.
+  ///
+  /// In en, this message translates to:
+  /// **'Library'**
+  String get library;
 
   /// No description provided for @licenses.
   ///

@@ -20,7 +20,7 @@ class AddBookmarkButton extends StatelessWidget {
       height: size ?? defaultIconSize,
       child: IconButton(
         onPressed: () {},
-        icon: const Icon(Icons.bookmark_border_outlined),
+        icon: const Icon(Icons.bookmark_outline_rounded),
         padding: EdgeInsets.all(0),
         iconSize: iconSize ?? smallIconSize,
         color: color,

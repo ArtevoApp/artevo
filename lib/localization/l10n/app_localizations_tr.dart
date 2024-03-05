@@ -65,6 +65,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get goetheQuote => 'İnsan her gün bir parça müzik dinlemeli, İyi bir şiir okumalı, güzel bir tablo görmeli ve mümkünse birkaç mantıklı cümle söylemeli.';
 
   @override
+  String get home => 'Ana Sayfa';
+
+  @override
   String get imageNotFound => 'Görsel Bulunamadı!';
 
   @override
@@ -75,6 +78,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get languageName => 'Türkçe';
+
+  @override
+  String get library => 'Kütüphane';
 
   @override
   String get licenses => 'Lisanslar';

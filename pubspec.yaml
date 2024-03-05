@@ -38,9 +38,9 @@ dependencies:
   flutter_svg: ^2.0.9
   zoom_widget: ^2.0.1
   text_scroll: ^0.2.0
-  glassmorphism: ^3.0.0
   cupertino_icons: ^1.0.2
   flutter_animate: ^4.2.0+1
+  salomon_bottom_bar: ^3.3.2
   #-- for audio player 
   just_audio: ^0.9.35
   audio_service: ^0.18.12
