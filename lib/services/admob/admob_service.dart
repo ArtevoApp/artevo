@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:async';
-import 'package:artevo/main.dart';
+import 'package:artevo/artevo_app.dart';
 import 'package:artevo/common/enums/app_mode.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 

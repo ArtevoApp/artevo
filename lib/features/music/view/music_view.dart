@@ -17,15 +17,13 @@ class MusicView extends ConsumerWidget {
     MusicContent currentSong = ref
         .watch(audioPlayerRepositoryProvider.select((v) => v.getCurrentSong));
 
-    String songName = currentSong.creator + " - " + currentSong.title;
-
     return Center(
       child: SizedBox(
         width: columnWidth,
         child: Row(
           children: [
             Expanded(
-                child: Column(children: [header(songName), MusicPlayer()])),
+                child: Column(children: [header(currentSong), MusicPlayer()])),
             albulCoverWidget(context, currentSong),
           ],
         ),
@@ -33,7 +31,7 @@ class MusicView extends ConsumerWidget {
     );
   }
 
-  Widget header(String songName) {
+  Widget header(MusicContent content) {
     return Row(
       children: [
         SizedBox(width: defaultIconSize),
@@ -41,7 +39,7 @@ class MusicView extends ConsumerWidget {
           child: Align(
             alignment: Alignment.center,
             child: TextScroll(
-              songName,
+              content.creator + " - " + content.title,
               mode: TextScrollMode.endless,
               velocity: Velocity(pixelsPerSecond: Offset(20, 0)),
               delayBefore: Duration(milliseconds: 500),
@@ -50,7 +48,7 @@ class MusicView extends ConsumerWidget {
             ),
           ),
         ),
-        AddBookmarkButton(),
+        AddBookmarkButton(content: content),
       ],
     );
   }

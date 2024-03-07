@@ -1,8 +1,10 @@
 import 'package:artevo/common/constants/dimens.dart';
+import 'package:artevo_package/models/content.dart';
 import 'package:flutter/material.dart';
 
 class AddBookmarkButton extends StatelessWidget {
-  const AddBookmarkButton({super.key, this.size, this.iconSize, this.color});
+  const AddBookmarkButton(
+      {super.key, this.size, this.iconSize, this.color, required this.content});
 
   /// Widget size (Hover size)
   final double? size;
@@ -12,6 +14,9 @@ class AddBookmarkButton extends StatelessWidget {
 
   /// Icon color
   final Color? color;
+
+  /// Content
+  final Content content;
 
   @override
   Widget build(BuildContext context) {

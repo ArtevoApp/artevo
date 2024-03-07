@@ -1,4 +1,6 @@
 import 'package:artevo/services/admob/admob_service.dart';
+import 'package:artevo/services/hive/hive_daily_content_data_service.dart';
+import 'package:artevo/services/hive/hive_saved_content_service.dart';
 import 'package:artevo/services/notification/notification_service.dart';
 import 'package:artevo/services/firebase/firebase_options.dart';
 import 'package:artevo/services/hive/hive_user_data_service.dart';
@@ -24,8 +26,9 @@ class AppInitialize {
 
     // hive boxes
     await Hive.initFlutter();
-    await Hive.openBox('userDataBox');
-    await Hive.openBox('dailyContentDataBox');
+    await HiveUserDataService.instance.init();
+    await HiveDailyContentDataService.instance.init();
+    await HiveSavedContentService.instance.init();
 
     // notification service.
     if (HiveUserDataService.instance.getNotificationSendingStatus) {
@@ -42,9 +45,10 @@ class AppInitialize {
 
     // audio
     await JustAudioBackground.init(
-        androidNotificationChannelId: 'com.opifer.artevo.channel.audio',
-        androidNotificationChannelName: 'Artevo Music',
-        androidNotificationOngoing: true);
+      androidNotificationChannelId: 'com.opifer.artevo.channel.audio',
+      androidNotificationChannelName: 'Artevo Music',
+      androidNotificationOngoing: true,
+    );
 
     if (!kIsWeb) {
       SystemChrome.setPreferredOrientations(

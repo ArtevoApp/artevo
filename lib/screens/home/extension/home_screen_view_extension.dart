@@ -13,8 +13,8 @@ extension HomeScreenViewExtension on HomeScreenView {
     switch (this) {
       case HomeScreenView.home:
         return SalomonBottomBarItem(
-          icon: Icon(Icons.home),
-          title: Text(_.loc.home),
+          icon: Icon(Iconsax.home_2),
+          title: Text("Artevo"), // contex.loc.home,
           selectedColor: Colors.purple,
         );
       case HomeScreenView.bookmarks:

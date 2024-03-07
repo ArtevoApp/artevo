@@ -6,6 +6,7 @@ import 'package:artevo/common/widgets/image_viewer.dart';
 import 'package:artevo/features/painting/views/painting_zoom_view.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:artevo/services/hive/hive_daily_content_data_service.dart';
+import 'package:artevo_package/models/painting_content.dart';
 import 'package:artevo_package/models/painting_detail_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,7 +33,7 @@ class PaintingDetailScreen extends ConsumerWidget {
       return Scaffold(
         body: CustomScrollView(
           slivers: [
-            appBar(detail.title, painting.imageUrl, height),
+            appBar(detail.title, painting, height),
             body(detail),
           ],
         ),
@@ -40,11 +41,11 @@ class PaintingDetailScreen extends ConsumerWidget {
     }
   }
 
-  Widget appBar(String title, String imageUrl, double height) =>
+  Widget appBar(String title, PaintingContent painting, double height) =>
       SliverPersistentHeader(
           pinned: true,
           delegate: PaintingDetailAppBar(
-              title: title, imageUrl: imageUrl, screenHeight: height));
+              title: title, painting: painting, screenHeight: height));
 
   Widget body(PaintingDetailContent detail) => SliverToBoxAdapter(
         child: Center(
@@ -72,15 +73,15 @@ class PaintingDetailScreen extends ConsumerWidget {
 
 class PaintingDetailAppBar extends SliverPersistentHeaderDelegate {
   PaintingDetailAppBar(
-      {required this.imageUrl,
+      {required this.painting,
       required this.title,
       required this.screenHeight});
 
   /// The Title of the AppBar.
   final String title;
 
-  /// The image url of the AppBar.
-  final String imageUrl;
+  /// The painting content
+  final PaintingContent painting;
 
   /// Screen height to calculate the maximum height ([maxExtent]) of the AppBar.
   final double screenHeight;
@@ -113,8 +114,9 @@ class PaintingDetailAppBar extends SliverPersistentHeaderDelegate {
             ).createShader(bounds);
           },
           child: InkWell(
-              onTap: () => PaintingZoomScreen.show(url: imageUrl, context: _),
-              child: ImageViewer(url: imageUrl, height: maxExtent))));
+              onTap: () =>
+                  PaintingZoomScreen.show(url: painting.imageUrl, context: _),
+              child: ImageViewer(url: painting.imageUrl, height: maxExtent))));
 
   Widget appBarBackButton(double topPadding) => Positioned(
       top: topPadding,
@@ -130,9 +132,11 @@ class PaintingDetailAppBar extends SliverPersistentHeaderDelegate {
       child: CircleAvatar(
           radius: smallIconSize,
           child: AddBookmarkButton(
-              size: smallIconSize * 2,
-              iconSize: defaultIconSize,
-              color: Colors.white),
+            size: smallIconSize * 2,
+            iconSize: defaultIconSize,
+            color: Colors.white,
+            content: painting,
+          ),
           backgroundColor: Colors.grey.shade900.withOpacity(0.7)));
 
   Padding appBarTitle(double topPadding) => Padding(

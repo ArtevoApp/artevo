@@ -21,7 +21,7 @@ class HiveUserDataService {
     }
   }
 
-  Future openBox() async => Hive.box('userDataBox');
+  Future openBox() async => Hive.openBox('userDataBox');
 
   bool isEmty() => box.isEmpty;
 
