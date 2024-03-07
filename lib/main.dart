@@ -9,6 +9,3 @@ Future<void> main() async {
 
   runApp(const ProviderScope(child: ArtevoApp()));
 }
-
-/// global variable to access context information from anywhere in the app.
-final navigatorKey = GlobalKey<NavigatorState>();
