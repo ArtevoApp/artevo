@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:async';
-import 'package:artevo/artevo_app.dart';
 import 'package:artevo/common/enums/app_mode.dart';
+import 'package:artevo/global_veriables.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class Admob {

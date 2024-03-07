@@ -5,11 +5,10 @@ import 'package:artevo/common/constants/strings.dart';
 import 'package:artevo/common/enums/app_mode.dart';
 import 'package:artevo/common/widgets/language_selection_widgets.dart';
 import 'package:artevo/common/widgets/theme_toggle_button.dart';
+import 'package:artevo/global_veriables.dart';
 import 'package:artevo/localization/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-const appmode = AppMode.debug;
 
 class ArtevoApp extends StatelessWidget {
   const ArtevoApp({super.key});
