@@ -47,6 +47,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get darkTheme => 'Koyu Tema';
 
   @override
+  String get discover => 'Keşfet';
+
+  @override
   String get edit => 'Düzenle';
 
   @override
@@ -89,6 +92,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get more => 'daha fazla...';
 
   @override
+  String get music => 'Müzik';
+
+  @override
   String get notificationDescriptionText => 'Günde bir kere, istediğin saatte.';
 
   @override
@@ -106,10 +112,19 @@ class AppLocalizationsTr extends AppLocalizations {
   String get other => 'Diğer';
 
   @override
+  String get painting => 'Tablo';
+
+  @override
+  String get poem => 'Şiir';
+
+  @override
   String get privacyPolicy => 'Gizlilik Politikası';
 
   @override
   String get rateArtevo => 'Artevo\'yu Değerlendirin';
+
+  @override
+  String get search => 'Ara';
 
   @override
   String get settings => 'Ayarlar';

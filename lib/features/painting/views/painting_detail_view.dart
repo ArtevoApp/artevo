@@ -1,3 +1,4 @@
+import 'package:artevo/common/config/color_schemes.dart';
 import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/constants/text_styles.dart';
 import 'package:artevo/common/widgets/add_bookmark_button.dart';
@@ -124,7 +125,7 @@ class PaintingDetailAppBar extends SliverPersistentHeaderDelegate {
       child: CircleAvatar(
           radius: smallIconSize,
           child: BackButton(color: Colors.white),
-          backgroundColor: Colors.grey.shade900.withOpacity(0.7)));
+          backgroundColor: darkColorScheme.background));
 
   Widget appBarAddBookmarkButton(double topPadding) => Positioned(
       top: topPadding,
@@ -137,7 +138,7 @@ class PaintingDetailAppBar extends SliverPersistentHeaderDelegate {
             color: Colors.white,
             content: painting,
           ),
-          backgroundColor: Colors.grey.shade900.withOpacity(0.7)));
+          backgroundColor: darkColorScheme.background));
 
   Padding appBarTitle(double topPadding) => Padding(
       padding: EdgeInsets.only(

@@ -47,6 +47,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get darkTheme => 'Dark Theme';
 
   @override
+  String get discover => 'Discover';
+
+  @override
   String get edit => 'Edit';
 
   @override
@@ -89,6 +92,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get more => 'more...';
 
   @override
+  String get music => 'Music';
+
+  @override
   String get notificationDescriptionText => 'Once a day, whenever you want.';
 
   @override
@@ -106,10 +112,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get other => 'Other';
 
   @override
+  String get painting => 'Painting';
+
+  @override
+  String get poem => 'Poem';
+
+  @override
   String get privacyPolicy => 'Privacy Policy';
 
   @override
   String get rateArtevo => 'Rate Artevo';
+
+  @override
+  String get search => 'Search';
 
   @override
   String get settings => 'Settings';

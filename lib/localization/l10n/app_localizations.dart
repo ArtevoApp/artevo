@@ -177,6 +177,12 @@ abstract class AppLocalizations {
   /// **'Dark Theme'**
   String get darkTheme;
 
+  /// No description provided for @discover.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover'**
+  String get discover;
+
   /// No description provided for @edit.
   ///
   /// In en, this message translates to:
@@ -261,6 +267,12 @@ abstract class AppLocalizations {
   /// **'more...'**
   String get more;
 
+  /// No description provided for @music.
+  ///
+  /// In en, this message translates to:
+  /// **'Music'**
+  String get music;
+
   /// No description provided for @notificationDescriptionText.
   ///
   /// In en, this message translates to:
@@ -291,6 +303,18 @@ abstract class AppLocalizations {
   /// **'Other'**
   String get other;
 
+  /// No description provided for @painting.
+  ///
+  /// In en, this message translates to:
+  /// **'Painting'**
+  String get painting;
+
+  /// No description provided for @poem.
+  ///
+  /// In en, this message translates to:
+  /// **'Poem'**
+  String get poem;
+
   /// No description provided for @privacyPolicy.
   ///
   /// In en, this message translates to:
@@ -302,6 +326,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Rate Artevo'**
   String get rateArtevo;
+
+  /// No description provided for @search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get search;
 
   /// No description provided for @settings.
   ///

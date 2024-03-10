@@ -1,7 +1,7 @@
 import 'package:artevo/services/hive/hive_daily_content_data_service.dart';
 import 'package:artevo_package/enums/content_type.dart';
 import 'package:artevo_package/models/music_content.dart';
-import 'package:artevo_package/services/song_service.dart';
+import 'package:artevo_package/services/music_service.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
@@ -29,8 +29,6 @@ class AudioPlayerRepository extends ChangeNotifier {
 
   AudioPlayer get player => _audioPlayer;
 
-  String get getCurrentSongUrl => _currentSong.albumImageUrl;
-
   MusicContent get getCurrentSong => _currentSong;
 
   bool get isPlaying => _audioPlayer.playing;
@@ -40,7 +38,7 @@ class AudioPlayerRepository extends ChangeNotifier {
   }
 
   void _init() async {
-    await changeSong(_currentSong);
+    // await changeSong(_currentSong);
 
     _audioPlayer.playerStateStream.listen((playerState) {
       final isPlaying = playerState.playing;
@@ -60,33 +58,39 @@ class AudioPlayerRepository extends ChangeNotifier {
   }
 
   Future<void> changeSong(MusicContent? music) async {
-    if (music != null) {
-      try {
-        String? songUrl =
-            await SongService().songStreamUrlParser(music.musicSourceUrl);
+    if (music == null) return;
 
-        if (songUrl != null && songUrl != "") {
-          UriAudioSource source = AudioSource.uri(
-            Uri.parse(songUrl.toString()),
-            tag: MediaItem(
-              id: "3521544",
-              title: music.title,
-              artist: music.creator,
-              artUri: Uri.parse(music.albumImageUrl),
-              displayTitle: music.creator,
-              displaySubtitle: music.title,
-            ),
-          );
+    try {
+      String? songUrl =
+          await MusicService.streamUrlFromSourceUrl(music.musicSourceUrl);
 
-          await _audioPlayer.setAudioSource(source);
+      if (songUrl == null) return;
 
-          _currentSong = music;
+      UriAudioSource source = AudioSource.uri(
+        Uri.parse(songUrl.toString()),
+        tag: MediaItem(
+          id: "3521544",
+          title: music.title,
+          artist: music.creator,
+          artUri: Uri.parse(music.albumImageUrl),
+          displayTitle: music.creator,
+          displaySubtitle: music.title,
+        ),
+      );
 
-          notifyListeners();
-        }
-      } catch (e) {
-        Null;
-      }
+      await _audioPlayer.pause();
+
+      await _audioPlayer.setAudioSource(source);
+
+      await seek(Duration.zero);
+
+      await _audioPlayer.play();
+
+      _currentSong = music;
+
+      notifyListeners();
+    } catch (e) {
+      Null;
     }
   }
 

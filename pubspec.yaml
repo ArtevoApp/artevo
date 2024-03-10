@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
 
   artevo_package:
+    #path: ../artevo_package
     git:
       url: https://github.com/opiasdream/artevo_package.git
       ref: main

@@ -11,17 +11,19 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(largePadding),
-      children: const [
-        MusicView(),
-        SizedBox(height: hugePadding),
-        PaintingView(),
-        SizedBox(height: hugePadding),
-        PoemView(),
-        ContectRatingView(),
-        SizedBox(height: hugePadding * 2),
-      ],
-    ).animate().fade(duration: const Duration(milliseconds: 500));
+    return SafeArea(
+      child: ListView(
+        padding: const EdgeInsets.all(largePadding),
+        children: const [
+          MusicView(),
+          SizedBox(height: hugePadding),
+          PaintingView(),
+          SizedBox(height: hugePadding),
+          PoemView(),
+          ContectRatingView(),
+          SizedBox(height: hugePadding * 2),
+        ],
+      ).animate().fade(duration: const Duration(milliseconds: 500)),
+    );
   }
 }

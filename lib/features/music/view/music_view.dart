@@ -2,7 +2,7 @@ import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/widgets/add_bookmark_button.dart';
 import 'package:artevo/features/music/controllers/music_controllers.dart';
 import 'package:artevo/common/widgets/image_viewer.dart';
-import 'package:artevo/features/music/view/widgets/music_player.dart';
+import 'package:artevo/features/music/view/widgets/music_player_controllers.dart';
 import 'package:artevo/features/music/view/widgets/song_detail_dialog.dart';
 import 'package:artevo_package/models/music_content.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,8 @@ class MusicView extends ConsumerWidget {
         child: Row(
           children: [
             Expanded(
-                child: Column(children: [header(currentSong), MusicPlayer()])),
+                child: Column(
+                    children: [header(currentSong), MusicPlayerControllers()])),
             albulCoverWidget(context, currentSong),
           ],
         ),

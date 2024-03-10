@@ -1,12 +1,13 @@
 import 'package:artevo/localization/app_localizations_context.dart';
 import 'package:artevo/screens/home/views/bookmark_view.dart';
+import 'package:artevo/screens/home/views/discover_view.dart';
 import 'package:artevo/screens/home/views/home_view.dart';
 import 'package:artevo/screens/home/views/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-enum HomeScreenView { home, bookmarks, settings }
+enum HomeScreenView { home, discover, bookmarks, settings }
 
 extension HomeScreenViewExtension on HomeScreenView {
   SalomonBottomBarItem toBottomNavigationBarItem(BuildContext _) {
@@ -15,6 +16,12 @@ extension HomeScreenViewExtension on HomeScreenView {
         return SalomonBottomBarItem(
           icon: Icon(Iconsax.home_2),
           title: Text("Artevo"), // contex.loc.home,
+          selectedColor: Colors.purple,
+        );
+      case HomeScreenView.discover:
+        return SalomonBottomBarItem(
+          icon: Icon(Iconsax.discover),
+          title: Text(_.loc.discover),
           selectedColor: Colors.purple,
         );
       case HomeScreenView.bookmarks:
@@ -36,6 +43,8 @@ extension HomeScreenViewExtension on HomeScreenView {
     switch (this) {
       case HomeScreenView.home:
         return const HomeView();
+      case HomeScreenView.discover:
+        return const DiscoverView();
       case HomeScreenView.bookmarks:
         return const BookmarkView();
       case HomeScreenView.settings:

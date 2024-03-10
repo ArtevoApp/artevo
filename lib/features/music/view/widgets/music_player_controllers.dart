@@ -6,8 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 
 /// Play/Pause Button, Slider and Duration
-class MusicPlayer extends ConsumerWidget {
-  const MusicPlayer({super.key});
+class MusicPlayerControllers extends ConsumerWidget {
+  const MusicPlayerControllers({super.key});
 
   @override
   Widget build(BuildContext context, ref) {

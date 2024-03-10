@@ -20,7 +20,7 @@ const hugeIconSize = 40.0;
 // image sized
 const xsmallImageSize = 25.0;
 const smallImageSize = 65.0;
-const mediumImageSize = 97.5;
+const mediumImageSize = 84.5;
 const largeImageSize = 130.0;
 const xLargeImageSize = 150.0;
 
