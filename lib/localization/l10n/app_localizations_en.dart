@@ -47,6 +47,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get darkTheme => 'Dark Theme';
 
   @override
+  String get dataIsNotFound => 'Data is not found!';
+
+  @override
   String get discover => 'Discover';
 
   @override

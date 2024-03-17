@@ -177,6 +177,12 @@ abstract class AppLocalizations {
   /// **'Dark Theme'**
   String get darkTheme;
 
+  /// No description provided for @dataIsNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Data is not found!'**
+  String get dataIsNotFound;
+
   /// No description provided for @discover.
   ///
   /// In en, this message translates to:

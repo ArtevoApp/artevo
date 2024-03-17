@@ -47,6 +47,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get darkTheme => 'Koyu Tema';
 
   @override
+  String get dataIsNotFound => 'Veri bulunamadı!';
+
+  @override
   String get discover => 'Keşfet';
 
   @override
