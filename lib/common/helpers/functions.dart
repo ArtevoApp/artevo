@@ -2,6 +2,7 @@ import 'package:artevo/common/widgets/error_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// Helper Functions
 abstract class Functions {
   /// open @url
   static Future<void> openUrl(BuildContext context, String url) async {
@@ -29,5 +30,13 @@ abstract class Functions {
     } else {
       return "0:00";
     }
+  }
+
+  /// Convert a string expression to a string expression shorter than @length.
+  /// default length is 30.
+  static String stringShorter(String str, {int? length = 30}) {
+    if (str.length > length!) return str.substring(0, length - 3) + "...";
+
+    return str;
   }
 }
