@@ -4,13 +4,15 @@ import 'package:artevo/common/constants/text_styles.dart';
 import 'package:artevo/common/widgets/add_bookmark_button.dart';
 import 'package:artevo/common/widgets/custom_divider.dart';
 import 'package:artevo/common/widgets/image_viewer.dart';
-import 'package:artevo/features/painting/views/painting_zoom_view.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
+import 'package:artevo/screens/error/error_screen.dart';
 import 'package:artevo/services/hive/hive_daily_content_data_service.dart';
 import 'package:artevo_package/models/painting_content.dart';
 import 'package:artevo_package/models/painting_detail_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:widget_zoom/widget_zoom.dart';
 
 class PaintingDetailScreen extends ConsumerWidget {
   const PaintingDetailScreen({super.key});
@@ -25,7 +27,9 @@ class PaintingDetailScreen extends ConsumerWidget {
 
     final detail = hive.getPaintingDetail(context.loc.langCode);
 
-    if (painting == null || detail == null) {
+    if (painting == null) return ErrorScreen();
+    // TODO
+    if (detail == null) {
       return Scaffold(
         appBar: AppBar(title: Text(context.loc.back), centerTitle: false),
         body: Center(child: Text(context.loc.contentIsNotFound)),
@@ -57,10 +61,13 @@ class PaintingDetailScreen extends ConsumerWidget {
               child: Column(
                 children: [
                   Text(detail.detail, style: TextStyles.body),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child:
-                        Text('— ${detail.creator}', style: TextStyles.bodyv3),
+                  const SizedBox(height: largePadding),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text('@${detail.creator}  ', style: TextStyles.body),
+                      Icon(Iconsax.profile_circle, size: smallIconSize),
+                    ],
                   ),
                   const CustomDivider(),
                   const SizedBox(height: hugePadding),
@@ -114,10 +121,12 @@ class PaintingDetailAppBar extends SliverPersistentHeaderDelegate {
               colors: [Colors.black, Colors.transparent],
             ).createShader(bounds);
           },
-          child: InkWell(
-              onTap: () =>
-                  PaintingZoomScreen.show(url: painting.imageUrl, context: _),
-              child: ImageViewer(url: painting.imageUrl, height: maxExtent))));
+          child: WidgetZoom(
+              heroAnimationTag: 'paintingDetail',
+              zoomWidget: ImageViewer(
+                  url: painting.imageUrl,
+                  boxFit: BoxFit.cover,
+                  height: maxExtent))));
 
   Widget appBarBackButton(double topPadding) => Positioned(
       top: topPadding,
