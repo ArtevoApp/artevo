@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class ImageViewer extends StatelessWidget {
-  const ImageViewer({super.key, required this.url, this.height, this.width});
+  const ImageViewer(
+      {super.key, required this.url, this.height, this.width, this.boxFit});
 
   final String url;
   final double? width;
   final double? height;
+  final BoxFit? boxFit;
 
   @override
   Widget build(BuildContext context) {
@@ -25,23 +27,25 @@ class ImageViewer extends StatelessWidget {
             if (snapshot.hasData && snapshot.data is! DownloadProgress) {
               return Image(
                 image: FileImage(File((snapshot.data! as FileInfo).file.path)),
-                fit: BoxFit.cover,
+                fit: boxFit ?? BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return Tooltip(
-                      message: context.loc.imageNotFound,
-                      child: Icon(
-                        Icons.image_not_supported_outlined,
-                        size: (height ?? smallImageSize) / 3,
-                      ));
+                    message: context.loc.imageNotFound,
+                    child: Icon(
+                      Icons.image_not_supported_outlined,
+                      size: (height ?? smallImageSize) / 3,
+                    ),
+                  );
                 },
               );
             } else if (snapshot.hasError) {
               return Tooltip(
-                  message: context.loc.imageNotFound,
-                  child: Icon(
-                    Icons.image_not_supported_outlined,
-                    size: (height ?? smallImageSize) / 3,
-                  ));
+                message: context.loc.imageNotFound,
+                child: Icon(
+                  Icons.image_not_supported_outlined,
+                  size: (height ?? smallImageSize) / 3,
+                ),
+              );
             } else {
               return const Loader();
             }
