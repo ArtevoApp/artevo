@@ -1,24 +1,21 @@
 import 'package:artevo/common/config/color_schemes.dart';
 import 'package:artevo/common/constants/dimens.dart';
 import 'package:artevo/common/constants/text_styles.dart';
-import 'package:artevo/common/widgets/add_bookmark_button.dart';
+import 'package:artevo/common/widgets/bookmarking_button.dart';
 import 'package:artevo/common/widgets/custom_divider.dart';
 import 'package:artevo/common/widgets/image_viewer.dart';
+import 'package:artevo/features/painting/views/widgets/painting_zoom_dialog.dart';
 import 'package:artevo/localization/app_localizations_context.dart';
-import 'package:artevo/screens/error/error_screen.dart';
 import 'package:artevo/services/hive/hive_daily_content_data_service.dart';
 import 'package:artevo_package/models/painting_content.dart';
 import 'package:artevo_package/models/painting_detail_content.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:widget_zoom/widget_zoom.dart';
 
-class PaintingDetailScreen extends ConsumerWidget {
+class PaintingDetailScreen extends StatelessWidget {
   const PaintingDetailScreen({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
 
     final hive = HiveDailyContentDataService.instance;
@@ -27,9 +24,7 @@ class PaintingDetailScreen extends ConsumerWidget {
 
     final detail = hive.getPaintingDetail(context.loc.langCode);
 
-    if (painting == null) return ErrorScreen();
-    // TODO
-    if (detail == null) {
+    if (painting == null || detail == null) {
       return Scaffold(
         appBar: AppBar(title: Text(context.loc.back), centerTitle: false),
         body: Center(child: Text(context.loc.contentIsNotFound)),
@@ -62,13 +57,10 @@ class PaintingDetailScreen extends ConsumerWidget {
                 children: [
                   Text(detail.detail, style: TextStyles.body),
                   const SizedBox(height: largePadding),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text('@${detail.creator}  ', style: TextStyles.body),
-                      Icon(Iconsax.profile_circle, size: smallIconSize),
-                    ],
-                  ),
+                  Align(
+                      alignment: Alignment.centerRight,
+                      child:
+                          Text('@${detail.creator}  ', style: TextStyles.body)),
                   const CustomDivider(),
                   const SizedBox(height: hugePadding),
                 ],
@@ -105,7 +97,7 @@ class PaintingDetailAppBar extends SliverPersistentHeaderDelegate {
     return Stack(fit: StackFit.expand, children: [
       appBarBackground(_),
       appBarBackButton(topPadding),
-      appBarAddBookmarkButton(topPadding),
+      appBarBookmarkingButton(topPadding),
       appBarTitle(topPadding)
     ]);
   }
@@ -113,20 +105,20 @@ class PaintingDetailAppBar extends SliverPersistentHeaderDelegate {
   Widget appBarBackground(_) => Container(
       color: Theme.of(_).scaffoldBackgroundColor,
       child: ShaderMask(
-          blendMode: BlendMode.dstIn,
-          shaderCallback: (Rect bounds) {
-            return const LinearGradient(
-              begin: FractionalOffset(0.0, 0.5), //Alignment.center,
-              end: FractionalOffset(0.0, 1),
-              colors: [Colors.black, Colors.transparent],
-            ).createShader(bounds);
-          },
-          child: WidgetZoom(
-              heroAnimationTag: 'paintingDetail',
-              zoomWidget: ImageViewer(
-                  url: painting.imageUrl,
-                  boxFit: BoxFit.cover,
-                  height: maxExtent))));
+        blendMode: BlendMode.dstIn,
+        shaderCallback: (Rect bounds) {
+          return const LinearGradient(
+            begin: FractionalOffset(0.0, 0.5), //Alignment.center,
+            end: FractionalOffset(0.0, 1),
+            colors: [Colors.black, Colors.transparent],
+          ).createShader(bounds);
+        },
+        child: InkWell(
+          onTap: () => PaintingZoomDialog.show(_, painting),
+          child: ImageViewer(
+              url: painting.imageUrl, boxFit: BoxFit.cover, height: maxExtent),
+        ),
+      ));
 
   Widget appBarBackButton(double topPadding) => Positioned(
       top: topPadding,
@@ -136,12 +128,12 @@ class PaintingDetailAppBar extends SliverPersistentHeaderDelegate {
           child: BackButton(color: Colors.white),
           backgroundColor: darkColorScheme.background));
 
-  Widget appBarAddBookmarkButton(double topPadding) => Positioned(
+  Widget appBarBookmarkingButton(double topPadding) => Positioned(
       top: topPadding,
       right: defaultPadding,
       child: CircleAvatar(
           radius: smallIconSize,
-          child: AddBookmarkButton(
+          child: BookmarkingButton(
             size: smallIconSize * 2,
             iconSize: defaultIconSize,
             color: Colors.white,
