@@ -29,4 +29,5 @@ Flutter (Dart) ile geliştirildi. Kullanılan paketler için `pupspec.yaml` dosy
 
 ## Diğer Bağlantılar
 https://artevoapp.github.io/
+
 https://github.com/ArtevoApp
