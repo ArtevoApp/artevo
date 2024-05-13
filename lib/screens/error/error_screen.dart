@@ -1,6 +1,8 @@
-import 'package:artevo/common/constants/dimens.dart';
-import 'package:artevo/common/constants/strings.dart';
-import 'package:artevo/localization/app_localizations_context.dart';
+import '../../common/constants/dimens.dart';
+import '../../common/constants/strings.dart';
+import '../../common/enums/errors.dart';
+import '../../common/extensions/error_extension.dart';
+import '../../localization/app_localizations_context.dart';
 import 'package:flutter/material.dart';
 
 class ErrorScreen extends StatelessWidget {
@@ -18,7 +20,7 @@ class ErrorScreen extends StatelessWidget {
       padding: const EdgeInsets.all(defaultPadding),
       child: Center(
           child: Text(
-        msg ?? context.loc.unknowErrorText(appContactMail),
+        msg ?? IError.errUnknow.msg(context, data: appContactMail),
         textAlign: TextAlign.center,
       )),
     );

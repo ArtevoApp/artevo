@@ -1,4 +1,4 @@
-import 'package:artevo/common/constants/dimens.dart';
+import '../constants/dimens.dart';
 import 'package:flutter/material.dart';
 
 class Loader extends StatelessWidget {
@@ -6,11 +6,9 @@ class Loader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: SizedBox(
-          height: largePadding,
-          width: largePadding,
-          child: CircularProgressIndicator(color: Color(0xFFB1CCC3))),
-    );
+    return const SizedBox(
+        height: xsmallIconSize,
+        width: xsmallIconSize,
+        child: CircularProgressIndicator(color: Color(0xFFB1CCC3)));
   }
 }

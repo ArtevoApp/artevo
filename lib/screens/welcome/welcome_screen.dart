@@ -1,11 +1,11 @@
-import 'package:artevo/common/config/routes.dart';
-import 'package:artevo/common/constants/dimens.dart';
-import 'package:artevo/common/constants/strings.dart';
-import 'package:artevo/common/constants/text_styles.dart';
-import 'package:artevo/common/widgets/language_selection_widgets.dart';
-import 'package:artevo/common/widgets/footer_widget.dart';
-import 'package:artevo/localization/app_localizations_context.dart';
-import 'package:artevo/services/hive/hive_user_data_service.dart';
+import '../../common/config/routes.dart';
+import '../../common/constants/dimens.dart';
+import '../../common/constants/strings.dart';
+import '../../common/constants/text_styles.dart';
+import '../../common/widgets/language_selection_widgets.dart';
+import '../../common/widgets/footer_widget.dart';
+import '../../localization/app_localizations_context.dart';
+import '../../services/cache/user_data_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -49,7 +49,7 @@ class WelcomeScreen extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: CupertinoButton.filled(
           onPressed: () async {
-            HiveUserDataService.instance.setFirstLoginStatus(false);
+            UserDataManager.instance.setFirstLoginStatus(false);
             Navigator.pushNamedAndRemoveUntil(
                 context, splashRoute, (route) => false);
           },

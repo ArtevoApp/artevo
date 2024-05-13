@@ -99,6 +99,24 @@ abstract class AppLocalizations {
   /// **'Add a comment...'**
   String get addAComment;
 
+  /// No description provided for @addBookmarks.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Bookmarks'**
+  String get addBookmarks;
+
+  /// No description provided for @addQueue.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Queue'**
+  String get addQueue;
+
+  /// No description provided for @addToPlaylist.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Playlist'**
+  String get addToPlaylist;
+
   /// No description provided for @appPurpose.
   ///
   /// In en, this message translates to:
@@ -129,11 +147,29 @@ abstract class AppLocalizations {
   /// **'Back'**
   String get back;
 
+  /// No description provided for @bookmarks.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmarks'**
+  String get bookmarks;
+
   /// No description provided for @cancel.
   ///
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancel;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @closePlayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Close Player'**
+  String get closePlayer;
 
   /// No description provided for @contactText.
   ///
@@ -171,6 +207,24 @@ abstract class AppLocalizations {
   /// **'Could not open url!'**
   String get couldNotOpenUrl;
 
+  /// No description provided for @cover.
+  ///
+  /// In en, this message translates to:
+  /// **'Cover'**
+  String get cover;
+
+  /// No description provided for @create.
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get create;
+
+  /// No description provided for @createPlaylist.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Playlist'**
+  String get createPlaylist;
+
   /// No description provided for @darkTheme.
   ///
   /// In en, this message translates to:
@@ -182,6 +236,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Data is not found!'**
   String get dataIsNotFound;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete!'**
+  String get delete;
 
   /// No description provided for @discover.
   ///
@@ -195,17 +255,41 @@ abstract class AppLocalizations {
   /// **'Edit'**
   String get edit;
 
-  /// No description provided for @error.
+  /// No description provided for @err.
   ///
   /// In en, this message translates to:
   /// **'Error'**
-  String get error;
+  String get err;
 
-  /// No description provided for @errorPaintingLoaded.
+  /// No description provided for @errConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection Problem'**
+  String get errConnection;
+
+  /// No description provided for @errInternetConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check your internet connection!'**
+  String get errInternetConnection;
+
+  /// No description provided for @errPaintingLoaded.
   ///
   /// In en, this message translates to:
   /// **'Painting not loaded!'**
-  String get errorPaintingLoaded;
+  String get errPaintingLoaded;
+
+  /// No description provided for @errTimeSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Your device date and time are out of date! '**
+  String get errTimeSync;
+
+  /// No description provided for @errUnknow.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown error occurred. Please try again. If the error persists, please contact us Mail: {mailAdress}'**
+  String errUnknow(Object mailAdress);
 
   /// No description provided for @forceUpdateText.
   ///
@@ -255,17 +339,17 @@ abstract class AppLocalizations {
   /// **'English'**
   String get languageName;
 
-  /// No description provided for @library.
-  ///
-  /// In en, this message translates to:
-  /// **'Library'**
-  String get library;
-
   /// No description provided for @licenses.
   ///
   /// In en, this message translates to:
   /// **'Licenses'**
   String get licenses;
+
+  /// No description provided for @listenAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen Again'**
+  String get listenAgain;
 
   /// No description provided for @more.
   ///
@@ -278,6 +362,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Music'**
   String get music;
+
+  /// No description provided for @musics.
+  ///
+  /// In en, this message translates to:
+  /// **'Musics'**
+  String get musics;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @noPlaylistFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No playlists found.\nWould you like to create one now?'**
+  String get noPlaylistFound;
 
   /// No description provided for @notificationDescriptionText.
   ///
@@ -315,11 +417,71 @@ abstract class AppLocalizations {
   /// **'Painting'**
   String get painting;
 
+  /// No description provided for @paintings.
+  ///
+  /// In en, this message translates to:
+  /// **'Paintings'**
+  String get paintings;
+
+  /// No description provided for @pause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get pause;
+
+  /// No description provided for @play.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get play;
+
+  /// No description provided for @playAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Play All'**
+  String get playAll;
+
+  /// No description provided for @playlist.
+  ///
+  /// In en, this message translates to:
+  /// **'Playlist'**
+  String get playlist;
+
+  /// No description provided for @playlistName.
+  ///
+  /// In en, this message translates to:
+  /// **'Playlist Name'**
+  String get playlistName;
+
+  /// No description provided for @playlists.
+  ///
+  /// In en, this message translates to:
+  /// **'Playlists'**
+  String get playlists;
+
   /// No description provided for @poem.
   ///
   /// In en, this message translates to:
   /// **'Poem'**
   String get poem;
+
+  /// No description provided for @poems.
+  ///
+  /// In en, this message translates to:
+  /// **'Poems'**
+  String get poems;
+
+  /// No description provided for @pollQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Did you enjoy these selections?'**
+  String get pollQuestion;
+
+  /// No description provided for @previous.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous'**
+  String get previous;
 
   /// No description provided for @privacyPolicy.
   ///
@@ -333,17 +495,53 @@ abstract class AppLocalizations {
   /// **'Rate Artevo'**
   String get rateArtevo;
 
+  /// No description provided for @refresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get refresh;
+
+  /// No description provided for @removeBookmarks.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from Bookmarks'**
+  String get removeBookmarks;
+
+  /// No description provided for @removeFromPlaylist.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from Playlist'**
+  String get removeFromPlaylist;
+
   /// No description provided for @search.
   ///
   /// In en, this message translates to:
   /// **'Search'**
   String get search;
 
+  /// No description provided for @searchHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Search History'**
+  String get searchHistory;
+
+  /// No description provided for @searchResultFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Search result for \'{text}\':'**
+  String searchResultFor(Object text);
+
   /// No description provided for @settings.
   ///
   /// In en, this message translates to:
   /// **'Settings'**
   String get settings;
+
+  /// No description provided for @showAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Show All'**
+  String get showAll;
 
   /// No description provided for @submit.
   ///
@@ -356,6 +554,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Submit Feedback'**
   String get submitFeedback;
+
+  /// No description provided for @success.
+  ///
+  /// In en, this message translates to:
+  /// **'Success!'**
+  String get success;
 
   /// No description provided for @termsOfUse.
   ///
@@ -381,23 +585,23 @@ abstract class AppLocalizations {
   /// **'Thanks for your feedback.'**
   String get thanksForYourFeedback;
 
-  /// No description provided for @unknowErrorText.
+  /// No description provided for @todayInArtevo.
   ///
   /// In en, this message translates to:
-  /// **'Unknown error occurred. Please try again. If the error persists, please contact us Mail: {mailAdress}'**
-  String unknowErrorText(Object mailAdress);
+  /// **'Today in Artevo'**
+  String get todayInArtevo;
+
+  /// No description provided for @visualArtworks.
+  ///
+  /// In en, this message translates to:
+  /// **'Visual Artworks'**
+  String get visualArtworks;
 
   /// No description provided for @welcome.
   ///
   /// In en, this message translates to:
   /// **'Welcome'**
   String get welcome;
-
-  /// No description provided for @wouldYouRateTodaysContent.
-  ///
-  /// In en, this message translates to:
-  /// **'Would you rate today\'s content?'**
-  String get wouldYouRateTodaysContent;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

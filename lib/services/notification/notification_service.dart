@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:artevo/services/hive/hive_user_data_service.dart';
+import '../cache/user_data_manager.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 
@@ -32,8 +32,9 @@ class NotificationsService {
   }
 
   Future<void> initialize() async {
-    hours = HiveUserDataService.instance.getNotificationHour;
-    minutes = HiveUserDataService.instance.getNotificationMinute;
+    final repository = UserDataManager.instance;
+    hours = repository.getNotificationHour;
+    minutes = repository.getNotificationMinute;
 
     await _flutterLocalNotificationsPlugin.cancelAll();
 
@@ -46,7 +47,7 @@ class NotificationsService {
     const initializationSettingsAndroid =
         AndroidInitializationSettings("app_icon");
 
-    var initializationSettingsIOS = const DarwinInitializationSettings(
+    final initializationSettingsIOS = const DarwinInitializationSettings(
         requestAlertPermission: true, requestSoundPermission: true);
 
     initializationSettings = InitializationSettings(
@@ -83,7 +84,7 @@ class NotificationsService {
       notificationChannelName = "Artevo Reminder";
     }
 
-    var androidChannel = AndroidNotificationDetails(
+    final androidChannel = AndroidNotificationDetails(
         'com.opifer.artevo.channel.notification', notificationChannelName,
         channelDescription: notificationChannelDsc,
         icon: "@mipmap/ic_launcher_foreground",
@@ -91,14 +92,14 @@ class NotificationsService {
         priority: Priority.high,
         playSound: true);
 
-    var iosChannel = const DarwinNotificationDetails(
+    final iosChannel = const DarwinNotificationDetails(
       sound: 'default.wav',
       presentAlert: true,
       // presentBadge: true,
       presentSound: true,
     );
 
-    var platformChannel = NotificationDetails(
+    final platformChannel = NotificationDetails(
       android: androidChannel,
       iOS: iosChannel,
     );
@@ -117,7 +118,7 @@ class NotificationsService {
   }
 
   Future<bool?> requestPermission(bool permission) async {
-    bool? result = Platform.isIOS
+    final bool? result = Platform.isIOS
         ? await _flutterLocalNotificationsPlugin
             .resolvePlatformSpecificImplementation<
                 IOSFlutterLocalNotificationsPlugin>()

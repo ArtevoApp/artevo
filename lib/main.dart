@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:artevo/artevo_app.dart';
-import 'package:artevo/common/config/app_initialize.dart';
+import 'artevo_app.dart';
+import 'common/config/app_initialize.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

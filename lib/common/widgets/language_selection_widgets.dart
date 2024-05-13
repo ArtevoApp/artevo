@@ -1,13 +1,13 @@
-import 'package:artevo/common/constants/text_styles.dart';
-import 'package:artevo/common/widgets/custom_dropdown.dart';
-import 'package:artevo/localization/app_localizations_context.dart';
-import 'package:artevo/localization/l10n/app_localizations.dart';
-import 'package:artevo/services/hive/hive_user_data_service.dart';
+import '../constants/text_styles.dart';
+import 'custom_dropdown.dart';
+import '../../localization/app_localizations_context.dart';
+import '../../localization/l10n/app_localizations.dart';
+import '../../services/cache/user_data_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final selectedLanguageProvider = StateProvider.autoDispose<Locale?>(
-    (ref) => HiveUserDataService.getLocale());
+final selectedLanguageProvider =
+    StateProvider.autoDispose<Locale?>((ref) => UserDataManager.getLocale());
 
 class LanguageSelectWithDropdownWidget extends StatelessWidget {
   const LanguageSelectWithDropdownWidget(
@@ -42,9 +42,10 @@ class LanguageSelectWithDropdownWidget extends StatelessWidget {
               .toList(),
           onChanged: (p0) {
             if (p0 != null) {
-              Locale locale = LanguageHelper.fromLanguageName(p0.toString());
+              final Locale locale =
+                  LanguageHelper.fromLanguageName(p0.toString());
               ref.read(selectedLanguageProvider.notifier).state = locale;
-              HiveUserDataService.instance.setLocale(locale.languageCode);
+              UserDataManager.instance.setLocale(locale.languageCode);
             }
           },
           value: context.loc.languageName,

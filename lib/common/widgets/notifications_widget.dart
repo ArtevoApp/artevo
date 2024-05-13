@@ -1,9 +1,9 @@
-import 'package:artevo/common/constants/dimens.dart';
-import 'package:artevo/common/widgets/error_dialog.dart';
-import 'package:artevo/localization/app_localizations_context.dart';
-import 'package:artevo/services/notification/notification_service.dart';
-import 'package:artevo/common/constants/text_styles.dart';
-import 'package:artevo/services/hive/hive_user_data_service.dart';
+import '../constants/dimens.dart';
+import 'error_dialog.dart';
+import '../../localization/app_localizations_context.dart';
+import '../../services/notification/notification_service.dart';
+import '../constants/text_styles.dart';
+import '../../services/cache/user_data_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class NotificationsWidget extends StatefulWidget {
 }
 
 class _NotificationsWidgetState extends State<NotificationsWidget> {
-  final hive = HiveUserDataService.instance;
+  final hive = UserDataManager.instance;
   int hour = 08;
   int min = 00;
   bool notificationStatus = false;
@@ -36,7 +36,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
   }
 
   void notificationTimeEditFunction() async {
-    TimeOfDay? selectedTime = await showTimePicker(
+    final TimeOfDay? selectedTime = await showTimePicker(
         context: context,
         initialEntryMode: TimePickerEntryMode.input,
         initialTime: TimeOfDay(hour: hour, minute: min),
@@ -61,7 +61,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
     }
   }
 
-  void notificationStatusSwitchFunction(newStatus) async {
+  void notificationStatusSwitchFunction(bool newStatus) async {
     NotificationsService().requestPermission(newStatus).then((result) async {
       // artevo notifications opened.
       if (newStatus) {

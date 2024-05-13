@@ -1,15 +1,20 @@
-import 'package:artevo/services/admob/admob_service.dart';
-import 'package:artevo/services/hive/hive_daily_content_data_service.dart';
-import 'package:artevo/services/hive/hive_saved_content_service.dart';
-import 'package:artevo/services/notification/notification_service.dart';
-import 'package:artevo/services/firebase/firebase_options.dart';
-import 'package:artevo/services/hive/hive_user_data_service.dart';
+import 'package:audio_service/audio_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:just_audio_background/just_audio_background.dart';
+
+import '../../features/music/service/audio_player_handler.dart';
+import '../../services/ads/admob_service.dart';
+import '../../services/cache/lazy_user_data_manager.dart';
+import '../../services/database/firebase/firebase_options.dart';
+import '../../services/database/local/local_data_service.dart';
+import '../../services/notification/notification_service.dart';
+import '../constants/fonts.dart';
+import '../global_variables/global_audio_handler.dart';
+import '../../services/cache/daily_content_data_manager.dart';
+import '../../services/cache/user_data_manager.dart';
 
 class AppInitialize {
   const AppInitialize._();
@@ -22,37 +27,40 @@ class AppInitialize {
         options: MobileAppFirebaseOptions.currentPlatform);
 
     // admob service
-    await Admob.initialize();
+    await AdmobService.initialize();
 
     // hive boxes
     await Hive.initFlutter();
-    await HiveUserDataService.instance.init();
-    await HiveDailyContentDataService.instance.init();
-    await HiveSavedContentService.instance.init();
+    await UserDataManager.instance.init();
+    await LazyUserDataManager.instance.init();
+    await DailyContentDataManager.instance.init();
+
+    // local database
+    await LocalDataService.instance.init();
 
     // notification service.
-    if (HiveUserDataService.instance.getNotificationSendingStatus) {
+    if (UserDataManager.instance.getNotificationSendingStatus) {
       NotificationsService.init();
     }
 
     // Saving the font license file.
     LicenseRegistry.addLicense(() async* {
-      final license =
-          await rootBundle.loadString('assets/license/domine_ofl.txt');
+      final license = await rootBundle.loadString(Fonts.domineLicencePath);
 
       yield LicenseEntryWithLineBreaks(['Domine OFL'], license);
     });
 
-    // audio
-    await JustAudioBackground.init(
-      androidNotificationChannelId: 'com.opifer.artevo.channel.audio',
-      androidNotificationChannelName: 'Artevo Music',
-      androidNotificationOngoing: true,
+    // Music service
+    audioHandler = await AudioService.init(
+      builder: AudioPlayerHandlerImpl.new,
+      config: const AudioServiceConfig(
+        androidNotificationChannelId: 'com.opifer.artevo.channel.audio',
+        androidNotificationChannelName: 'Artevo Music',
+        androidNotificationOngoing: true,
+        androidShowNotificationBadge: true,
+      ),
     );
 
-    if (!kIsWeb) {
-      SystemChrome.setPreferredOrientations(
-          [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-    }
+    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
 }

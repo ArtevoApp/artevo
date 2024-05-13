@@ -1,7 +1,9 @@
-import 'package:artevo/common/constants/strings.dart';
-import 'package:artevo/common/constants/dimens.dart';
-import 'package:artevo/localization/app_localizations_context.dart';
+import '../constants/strings.dart';
+import '../constants/dimens.dart';
 import 'package:flutter/material.dart';
+
+import '../enums/errors.dart';
+import '../extensions/error_extension.dart';
 
 class ErrorDialog extends StatelessWidget {
   const ErrorDialog({super.key, this.msg});
@@ -18,13 +20,13 @@ class ErrorDialog extends StatelessWidget {
     return AlertDialog(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [Text(context.loc.error), const CloseButton()],
+        children: [Text(IError.err.msg(context)), const CloseButton()],
       ),
       content: SizedBox(
         width: dialogWidth,
         child: Text(msg != null
             ? msg.toString()
-            : context.loc.unknowErrorText(appContactMail)),
+            : IError.errUnknow.msg(context, data: appContactMail)),
       ),
     );
   }

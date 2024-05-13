@@ -1,4 +1,4 @@
-import 'package:artevo/common/models/ip_adress.dart';
+import '../../../common/models/ip_adress.dart';
 
 class ContentRating {
   String uuid;
@@ -42,11 +42,11 @@ class ContentRating {
 
   factory ContentRating.fromMap(Map<String, dynamic> map) {
     return ContentRating(
-      uuid: map['uuid'] ?? '',
-      date: map['date'] ?? '',
-      comment: map['comment'] ?? '',
-      rating: map['rating']?.toDouble() ?? 0.0,
-      ip: IpAddress.fromMap(map['ip']),
+      uuid: map['uuid'].toString(),
+      date: map['date'].toString(),
+      comment: map['comment'].toString(),
+      rating: (map['rating'] as int?)?.toDouble() ?? 0.0,
+      ip: IpAddress.fromMap(map['ip'] as Map<String, dynamic>),
     );
   }
 }

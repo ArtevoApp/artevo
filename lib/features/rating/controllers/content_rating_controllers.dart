@@ -1,11 +1,15 @@
-import 'package:artevo/services/hive/hive_daily_content_data_service.dart';
-import 'package:artevo/services/hive/hive_user_data_service.dart';
+import '../../../services/cache/daily_content_data_manager.dart';
+import '../../../services/cache/user_data_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final showContentRatingProvider = StateProvider.autoDispose<bool>((ref) {
-  String lastFeedBackDate =
-      HiveUserDataService.instance.getLastPollFeedbackDate();
-  String contentDate = HiveDailyContentDataService.instance.getDate();
+  final String lastFeedBackDate =
+      UserDataManager.instance.getLastPollFeedbackDate();
+  final String contentDate = DailyContentDataManager.instance.getDate;
 
   return contentDate != lastFeedBackDate;
 });
+
+/// It holds bool value to show "thanks" content when the submit button is pressed.
+final ratingFeedbackDialogShowThanksStatus =
+    StateProvider.autoDispose<bool>((ref) => false);

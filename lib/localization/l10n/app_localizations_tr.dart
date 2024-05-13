@@ -8,6 +8,15 @@ class AppLocalizationsTr extends AppLocalizations {
   String get addAComment => 'Bir yorum ekleyin...';
 
   @override
+  String get addBookmarks => 'Kaydedilenler\'e Ekle';
+
+  @override
+  String get addQueue => 'Kuyruğa Ekle';
+
+  @override
+  String get addToPlaylist => 'Çalma Listesine Ekle';
+
+  @override
   String get appPurpose => 'Artevo, sizleri her gün bir sanat eseri, bir şiir ve bir şarkı ile buluşturarak hayatınıza estetik bir dokunuş katmayı amaçlar.';
 
   @override
@@ -23,7 +32,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get back => 'Geri';
 
   @override
+  String get bookmarks => 'Kaydedilenler';
+
+  @override
   String get cancel => 'İptal';
+
+  @override
+  String get close => 'Kapat';
+
+  @override
+  String get closePlayer => 'Oynatıcıyı Kapat';
 
   @override
   String get contactText => 'Ayrıntılı bilgi almak, öneri ya da şikayette bulunmak,  telif hakı bildirimi yapmak, destekte bulunmak veya editör olmak isterseniz e-mail adresi ya da Discord üzerinden iletişime geçebilirsiniz.';
@@ -44,10 +62,22 @@ class AppLocalizationsTr extends AppLocalizations {
   String get couldNotOpenUrl => 'URL açılamadı!';
 
   @override
+  String get cover => 'Kapak';
+
+  @override
+  String get create => 'Oluştur';
+
+  @override
+  String get createPlaylist => 'Çalma Listesi Oluştur';
+
+  @override
   String get darkTheme => 'Koyu Tema';
 
   @override
   String get dataIsNotFound => 'Veri bulunamadı!';
+
+  @override
+  String get delete => 'Sil!';
 
   @override
   String get discover => 'Keşfet';
@@ -56,10 +86,24 @@ class AppLocalizationsTr extends AppLocalizations {
   String get edit => 'Düzenle';
 
   @override
-  String get error => 'Hata';
+  String get err => 'Hata';
 
   @override
-  String get errorPaintingLoaded => 'Görsel yüklenemedi!';
+  String get errConnection => 'Bağlantı Sorunu';
+
+  @override
+  String get errInternetConnection => 'Lütfen internet bağlantınızı kontrol edin!';
+
+  @override
+  String get errPaintingLoaded => 'Görsel yüklenemedi!';
+
+  @override
+  String get errTimeSync => 'Cihazınızın tarihi ve saati güncel değil!';
+
+  @override
+  String errUnknow(Object mailAdress) {
+    return 'Bilinmeyen hata oluştu. Lütfen tekrar deneyin. Hata devam ederse lütfen bizimle iletişime geçin Mail: $mailAdress';
+  }
 
   @override
   String get forceUpdateText => 'Uygulamanın yeni bir sürümü mevcut. Devam etmek için güncellemeniz gerekmektedir.';
@@ -86,16 +130,25 @@ class AppLocalizationsTr extends AppLocalizations {
   String get languageName => 'Türkçe';
 
   @override
-  String get library => 'Kütüphane';
+  String get licenses => 'Lisanslar';
 
   @override
-  String get licenses => 'Lisanslar';
+  String get listenAgain => 'Tekrar Dinle';
 
   @override
   String get more => 'daha fazla...';
 
   @override
   String get music => 'Müzik';
+
+  @override
+  String get musics => 'Müzikler';
+
+  @override
+  String get next => 'Sonraki';
+
+  @override
+  String get noPlaylistFound => 'Çalma listesi bulunamadı.\nŞimdi bir tane oluşturmak ister misin?';
 
   @override
   String get notificationDescriptionText => 'Günde bir kere, istediğin saatte.';
@@ -118,7 +171,37 @@ class AppLocalizationsTr extends AppLocalizations {
   String get painting => 'Tablo';
 
   @override
+  String get paintings => 'Tablolar';
+
+  @override
+  String get pause => 'Duraklat';
+
+  @override
+  String get play => 'Oynat';
+
+  @override
+  String get playAll => 'Tümünü Oynat';
+
+  @override
+  String get playlist => 'Çalma Listesi';
+
+  @override
+  String get playlistName => 'Çalma Listesi Adı';
+
+  @override
+  String get playlists => 'Çalma Listeleri';
+
+  @override
   String get poem => 'Şiir';
+
+  @override
+  String get poems => 'Şiirler';
+
+  @override
+  String get pollQuestion => 'Bu seçkiler hoşunuza gitti mi?';
+
+  @override
+  String get previous => 'Önceki';
 
   @override
   String get privacyPolicy => 'Gizlilik Politikası';
@@ -127,16 +210,39 @@ class AppLocalizationsTr extends AppLocalizations {
   String get rateArtevo => 'Artevo\'yu Değerlendirin';
 
   @override
+  String get refresh => 'Yenile';
+
+  @override
+  String get removeBookmarks => 'Kaydedilenler\'den Kaldır';
+
+  @override
+  String get removeFromPlaylist => 'Çalma Listesinden Kaldır';
+
+  @override
   String get search => 'Ara';
 
   @override
+  String get searchHistory => 'Arama Geçmişi';
+
+  @override
+  String searchResultFor(Object text) {
+    return '\'$text\' için arama sonuçları:';
+  }
+
+  @override
   String get settings => 'Ayarlar';
+
+  @override
+  String get showAll => 'Tümünü Göster';
 
   @override
   String get submit => 'Gönder';
 
   @override
   String get submitFeedback => 'Geribildirim Gönder';
+
+  @override
+  String get success => 'Başarılı!';
 
   @override
   String get termsOfUse => 'Kullanım Koşulları';
@@ -151,13 +257,11 @@ class AppLocalizationsTr extends AppLocalizations {
   String get thanksForYourFeedback => 'Geribildiriminiz için teşekkürler.';
 
   @override
-  String unknowErrorText(Object mailAdress) {
-    return 'Bilinmeyen hata oluştu. Lütfen tekrar deneyin. Hata devam ederse lütfen bizimle iletişime geçin Mail: $mailAdress';
-  }
+  String get todayInArtevo => 'Artevo\'da Bugün';
+
+  @override
+  String get visualArtworks => 'Görsel Sanat Eserleri';
 
   @override
   String get welcome => 'Hoşgeldiniz';
-
-  @override
-  String get wouldYouRateTodaysContent => 'Bugünkü içeriği değerlendirir misiniz?';
 }

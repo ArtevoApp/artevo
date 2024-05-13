@@ -1,18 +1,14 @@
-import 'package:artevo/common/constants/dimens.dart';
-import 'package:artevo/common/constants/paths.dart';
-import 'package:artevo/features/rating/controllers/content_rating_controllers.dart';
-import 'package:artevo/localization/app_localizations_context.dart';
-import 'package:artevo/services/firebase/realtime_service.dart';
-import 'package:artevo/services/hive/hive_daily_content_data_service.dart';
-import 'package:artevo/services/hive/hive_user_data_service.dart';
+import '../../../../common/constants/dimens.dart';
+import '../../../../common/constants/paths.dart';
+import '../../controllers/content_rating_controllers.dart';
+import '../../../../localization/app_localizations_context.dart';
+import '../../../../services/database/firebase/realtime_service.dart';
+import '../../../../services/cache/daily_content_data_manager.dart';
+import '../../../../services/cache/user_data_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-/// It holds bool value to show "thanks" content when the submit button is pressed.
-final _ratingFeedbackDialogShowThanksStatus =
-    StateProvider.autoDispose<bool>((ref) => false);
 
 class ContentRatingFeedBackDialog extends ConsumerWidget {
   const ContentRatingFeedBackDialog({super.key, required this.rating});
@@ -27,8 +23,9 @@ class ContentRatingFeedBackDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    TextEditingController commentController = TextEditingController(text: "");
-    bool showThanks = ref.watch(_ratingFeedbackDialogShowThanksStatus);
+    final TextEditingController commentController =
+        TextEditingController(text: "");
+    final bool showThanks = ref.watch(ratingFeedbackDialogShowThanksStatus);
     return AlertDialog(
       scrollable: true,
       title: Text(context.loc.submitFeedback),
@@ -79,14 +76,14 @@ class ContentRatingFeedBackDialog extends ConsumerWidget {
               child: Text(context.loc.cancel)),
           FilledButton(
               onPressed: () async {
-                String date = HiveDailyContentDataService.instance.getDate();
+                final String date = DailyContentDataManager.instance.getDate;
                 RealtimeService().sendPollFeedBack(
                     date: date,
                     comment: commentController.text,
                     rating: rating);
-                HiveUserDataService.instance.setLastPollFeedbackDate(date);
+                UserDataManager.instance.setLastPollFeedbackDate(date);
                 ref.read(showContentRatingProvider.notifier).state = false;
-                ref.read(_ratingFeedbackDialogShowThanksStatus.notifier).state =
+                ref.read(ratingFeedbackDialogShowThanksStatus.notifier).state =
                     true;
               },
               child: Text(context.loc.submit)),

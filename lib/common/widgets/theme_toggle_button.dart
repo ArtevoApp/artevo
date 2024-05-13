@@ -1,10 +1,10 @@
-import 'package:artevo/localization/app_localizations_context.dart';
-import 'package:artevo/services/hive/hive_user_data_service.dart';
+import '../../localization/app_localizations_context.dart';
+import '../../services/cache/user_data_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final themeModeProvider = StateProvider<ThemeMode>(
-    (ref) => HiveUserDataService.instance.getTheme() ?? ThemeMode.light);
+    (ref) => UserDataManager.instance.getTheme() ?? ThemeMode.light);
 
 class ThemeModeToggleWidget extends StatelessWidget {
   const ThemeModeToggleWidget({super.key});
@@ -20,9 +20,9 @@ class ThemeModeToggleWidget extends StatelessWidget {
         trailing: Switch.adaptive(
           value: theme == ThemeMode.dark ? true : false,
           onChanged: (isDark) async {
-            ThemeMode mode = isDark ? ThemeMode.dark : ThemeMode.light;
+            final ThemeMode mode = isDark ? ThemeMode.dark : ThemeMode.light;
             ref.read(themeModeProvider.notifier).state = mode;
-            await HiveUserDataService.instance.setTheme(mode);
+            await UserDataManager.instance.setTheme(mode);
           },
         ),
       );

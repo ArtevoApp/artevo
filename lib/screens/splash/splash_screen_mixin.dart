@@ -4,12 +4,13 @@ mixin SplashScreenMixin on State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+
     loadData();
   }
 
   void loadData() async {
     /// user first login check
-    bool isFirstLogin = HiveUserDataService.instance.getFirstLoginStatus;
+    final bool isFirstLogin = UserDataManager.instance.getFirstLoginStatus;
 
     /// if first login go to welcome screen
     if (isFirstLogin) {
@@ -19,36 +20,41 @@ mixin SplashScreenMixin on State<SplashScreen> {
       });
     }
 
-    /// else check version
+    /// else check other controls
     else {
-      Future<bool> versionControl = ServiceManger().checkAppVersionData();
+      final dataManager = DataManager.instance;
+      final paintingsRepo = PaintingRepository.instance;
 
-      Future<bool> contentControl = ServiceManger().checkContentData();
+      final Future<bool> versionControl = dataManager.checkAppVersionData;
 
-      Future<InterstitialAd?> interstitial = Admob.loadInterstitialAd();
+      final Future<bool> localContent = paintingsRepo.checkSavedPaintingData;
 
-      Future delay = Future.delayed(const Duration(seconds: 3));
+      final Future<bool> interstitial = AdmobService.loadInterstitialAd();
 
-      await Future.wait([versionControl, contentControl, interstitial, delay])
-          .then((controls) {
+      final Future<bool> delay =
+          Future.delayed(const Duration(seconds: 3)).then((value) => true);
+
+      await Future.wait<bool>(
+              [versionControl, localContent, interstitial, delay])
+          .then((controls) async {
         // version control
+        // if version is old show force update dialog and not go to home.
         if (!controls[0]) {
-          // if version is old show force update dialog
-          ForceUpdateAlertDialog.show(context);
+          await ForceUpdateAlertDialog.show(context);
         } else {
-          // artevo content control
-          if (!controls[1]) {
-            // if content data is not found show error dialog and not go to home
+          // artevo dailyContent and saved content control
+          if (!controls[2]) {
+            // if content data is not found show error dialog and not go to home.
             ErrorDialog.show(context);
           } else {
             // if version is up to date and the content is found:
             // go to home screen and show the interstitial.
             Navigator.pushNamedAndRemoveUntil(
-                context, homeRoute, (route) => false);
+                context, mainRoute, (route) => false);
 
             // interstitial data control
-            if (controls[2] != null) {
-              controls[2].show().then((value) => controls[2].dispose());
+            if (controls[3] && AdmobService.interstitialAd != null) {
+              AdmobService.interstitialAd!.show();
             }
           }
         }

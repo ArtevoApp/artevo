@@ -1,4 +1,4 @@
-import 'package:artevo/common/constants/fonts.dart';
+import 'fonts.dart';
 import 'package:flutter/material.dart';
 
 abstract class TextStyles {
@@ -19,10 +19,20 @@ abstract class TextStyles {
 
   static const info = TextStyle(fontStyle: FontStyle.italic, fontSize: 12);
 
+  static const infoV2 = TextStyle(fontStyle: FontStyle.italic, fontSize: 10);
+
   // for quotes
   static const quote =
       TextStyle(fontSize: 20, wordSpacing: 5, fontWeight: FontWeight.w600);
 
+  static const quoteV2 =
+      TextStyle(fontSize: 16, wordSpacing: 3, fontWeight: FontWeight.w600);
+
   // for "Johann Wolfgang von Goethe"
-  static const goethe = TextStyle(fontFamily: Fonts.chomsky, fontSize: 26);
+  static const goethe = TextStyle(fontFamily: Fonts.chomsky, fontSize: 24);
+
+  static const pageTitle = TextStyle(fontSize: 22, fontWeight: FontWeight.w600);
+
+  static const pageSubtitle =
+      TextStyle(fontSize: 18, fontWeight: FontWeight.w600);
 }

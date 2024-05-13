@@ -1,51 +1,38 @@
+import 'dart:convert';
+
 class IpAddress {
-  IpAddress._();
-
-  static final instance = IpAddress._();
-
-  late String query; // ip adress
-  late String status;
-  late String city;
+  final String country;
+  final String regionName;
+  final String city;
+  final String timezone;
+  final String query;
 
   IpAddress({
-    required this.query,
-    required this.status,
+    required this.country,
+    required this.regionName,
     required this.city,
+    required this.timezone,
+    required this.query,
   });
 
-  Map<String, dynamic> toMap() {
-    return {'query': query, 'status': status, 'city': city};
-  }
+  factory IpAddress.fromJson(String str) =>
+      IpAddress.fromMap(json.decode(str) as Map<String, dynamic>);
 
-  factory IpAddress.fromMap(Map<String, dynamic> map) {
-    return IpAddress(
-        query: map['query'], status: map['status'], city: map['city']);
-  }
+  String toJson() => json.encode(toMap());
 
-  IpAddress.fromJson(Map<String, dynamic> json) {
-    query = json['query'];
-    status = json['status'];
-    city = json['city'];
-  }
+  factory IpAddress.fromMap(Map<String, dynamic> json) => IpAddress(
+        country: json["country"].toString(),
+        regionName: json["regionName"].toString(),
+        city: json["city"].toString(),
+        timezone: json["timezone"].toString(),
+        query: json["query"].toString(),
+      );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['query'] = query;
-    data['status'] = status;
-    data['city'] = city;
-    return data;
-  }
-
-  @override
-  String toString() => 'IpGeo(query: $query status: $status, city: $city)';
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is IpAddress && other.status == status && other.city == city;
-  }
-
-  @override
-  int get hashCode => status.hashCode ^ city.hashCode;
+  Map<String, dynamic> toMap() => {
+        "country": country,
+        "regionName": regionName,
+        "city": city,
+        "timezone": timezone,
+        "query": query,
+      };
 }

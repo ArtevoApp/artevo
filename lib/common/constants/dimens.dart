@@ -11,6 +11,7 @@ const xxLargePadding = 48.0;
 const dialogWidth = 300.0;
 
 // icon sized
+const xsmallIconSize = 16.0;
 const smallIconSize = 20.0;
 const defaultIconSize = 24.0;
 const largeIconSize = 28.0;
@@ -21,8 +22,10 @@ const hugeIconSize = 40.0;
 const xsmallImageSize = 25.0;
 const smallImageSize = 65.0;
 const mediumImageSize = 84.5;
-const largeImageSize = 130.0;
+const largeImageSize = 110.0;
 const xLargeImageSize = 150.0;
+
+const iconSize = 40.0;
 
 // column
 const columnWidth = 600.0;

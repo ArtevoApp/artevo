@@ -1,7 +1,7 @@
-import 'package:artevo/common/constants/strings.dart';
-import 'package:artevo/common/constants/text_styles.dart';
-import 'package:artevo/common/helpers/functions.dart';
-import 'package:artevo/localization/app_localizations_context.dart';
+import '../constants/strings.dart';
+import '../constants/text_styles.dart';
+import '../helpers/functions.dart';
+import '../../localization/app_localizations_context.dart';
 import 'package:flutter/cupertino.dart';
 
 class FooterWidget extends StatelessWidget {

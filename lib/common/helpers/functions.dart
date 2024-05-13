@@ -1,4 +1,4 @@
-import 'package:artevo/common/widgets/error_dialog.dart';
+import '../widgets/error_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -33,9 +33,9 @@ abstract class Functions {
   }
 
   /// Convert a string expression to a string expression shorter than @length.
-  /// default length is 30.
-  static String stringShorter(String str, {int? length = 30}) {
-    if (str.length > length!) return str.substring(0, length - 3) + "...";
+  /// default length is 27.
+  static String stringShorter(String str, {int? length = 27}) {
+    if (str.length > length!) return "${str.substring(0, length - 3)}...";
 
     return str;
   }

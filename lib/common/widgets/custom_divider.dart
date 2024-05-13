@@ -1,5 +1,5 @@
-import 'package:artevo/common/constants/dimens.dart';
-import 'package:artevo/common/constants/paths.dart';
+import '../constants/dimens.dart';
+import '../constants/paths.dart';
 import 'package:flutter/material.dart';
 
 class CustomDivider extends StatelessWidget {

@@ -1,11 +1,9 @@
-import 'package:artevo/common/constants/dimens.dart';
-import 'package:artevo/common/constants/paths.dart';
-import 'package:artevo/common/helpers/my_clipper.dart';
-import 'package:artevo/features/rating/view/widgets/content_rating_feedback_dialog.dart';
+import '../../../../common/constants/dimens.dart';
+import '../../../../common/constants/paths.dart';
+import '../../../../common/helpers/horizontal_clipper.dart';
+import 'content_rating_feedback_dialog.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-// fix
-// TODO: make this class modular.
 
 class ContentRatingBar extends StatefulWidget {
   const ContentRatingBar({super.key});
@@ -39,12 +37,18 @@ class _ContentRatingBarState extends State<ContentRatingBar> {
   }
 
   void onHorizontalDragEnd(DragEndDetails details) async {
-    double rating = (dxNotifier.value + 4) / barMaxWidth * itemCount;
+    final rating = await compute(_calculateRating, dxNotifier.value);
+    await ContentRatingFeedBackDialog.show(context, rating);
+  }
+
+  static double _calculateRating(double dx) {
+    double rating = (dx + 4) / 282 * 5;
     if (rating <= 1) rating = 1.0;
     if (rating >= 5) rating = 5.0;
 
-    await ContentRatingFeedBackDialog.show(
-        context, double.parse(rating.toStringAsFixed(1)));
+    rating = (rating * 10).round() / 10.0;
+
+    return rating;
   }
 
   @override
@@ -53,13 +57,13 @@ class _ContentRatingBarState extends State<ContentRatingBar> {
       children: [
         ratingBarBackground(),
         GestureDetector(
-            onHorizontalDragUpdate: onHorizontalDragUpdate,
-            onHorizontalDragEnd: onHorizontalDragEnd,
-            child: ValueListenableBuilder(
-                valueListenable: dxNotifier,
-                builder: (context, value, child) {
-                  return ratingBarForeground();
-                })),
+          onHorizontalDragUpdate: onHorizontalDragUpdate,
+          onHorizontalDragEnd: onHorizontalDragEnd,
+          child: ValueListenableBuilder(
+            valueListenable: dxNotifier,
+            builder: (context, value, child) => ratingBarForeground(),
+          ),
+        ),
       ],
     );
   }
@@ -73,17 +77,20 @@ class _ContentRatingBarState extends State<ContentRatingBar> {
               backgroundImage: AssetImage(vincentGreyPath))));
 
   Widget ratingBarForeground() => Container(
-      // Don't delete this container.
-      // If it is deleted, GestureDetector does not work properly.
-      color: Colors.transparent,
-      child: ClipRect(
-          clipper: MyClipper(dxNotifier.value),
+        // Don't delete this container.
+        // If it is deleted, GestureDetector does not work properly.
+        color: Colors.transparent,
+        child: ClipRect(
+          clipper: HorizontalClipper(dxNotifier.value),
           child: Wrap(
-              spacing: defaultPadding,
-              children: List.generate(
-                itemCount,
-                (i) => const CircleAvatar(
-                    radius: xsmallImageSize,
-                    backgroundImage: AssetImage(vincentPath)),
-              ))));
+            spacing: defaultPadding,
+            children: List.generate(
+              itemCount,
+              (i) => const CircleAvatar(
+                  radius: xsmallImageSize,
+                  backgroundImage: AssetImage(vincentPath)),
+            ),
+          ),
+        ),
+      );
 }

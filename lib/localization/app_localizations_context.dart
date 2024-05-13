@@ -1,4 +1,4 @@
-import 'package:artevo/localization/l10n/app_localizations.dart';
+import 'l10n/app_localizations.dart';
 import 'package:flutter/widgets.dart';
 
 ///

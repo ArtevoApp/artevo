@@ -8,6 +8,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addAComment => 'Add a comment...';
 
   @override
+  String get addBookmarks => 'Add to Bookmarks';
+
+  @override
+  String get addQueue => 'Add to Queue';
+
+  @override
+  String get addToPlaylist => 'Add to Playlist';
+
+  @override
   String get appPurpose => 'Artevo aims to add an aesthetic touch to your life by bringing you a work of art, a poem and a song every day.';
 
   @override
@@ -23,7 +32,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get back => 'Back';
 
   @override
+  String get bookmarks => 'Bookmarks';
+
+  @override
   String get cancel => 'Cancel';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get closePlayer => 'Close Player';
 
   @override
   String get contactText => 'If you would like to get detailed information, make a suggestion or complaint, make a copyright notification, provide support or become an editor, you can contact us via e-mail address or Discord.';
@@ -44,10 +62,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get couldNotOpenUrl => 'Could not open url!';
 
   @override
+  String get cover => 'Cover';
+
+  @override
+  String get create => 'Create';
+
+  @override
+  String get createPlaylist => 'Create Playlist';
+
+  @override
   String get darkTheme => 'Dark Theme';
 
   @override
   String get dataIsNotFound => 'Data is not found!';
+
+  @override
+  String get delete => 'Delete!';
 
   @override
   String get discover => 'Discover';
@@ -56,10 +86,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get edit => 'Edit';
 
   @override
-  String get error => 'Error';
+  String get err => 'Error';
 
   @override
-  String get errorPaintingLoaded => 'Painting not loaded!';
+  String get errConnection => 'Connection Problem';
+
+  @override
+  String get errInternetConnection => 'Please check your internet connection!';
+
+  @override
+  String get errPaintingLoaded => 'Painting not loaded!';
+
+  @override
+  String get errTimeSync => 'Your device date and time are out of date! ';
+
+  @override
+  String errUnknow(Object mailAdress) {
+    return 'Unknown error occurred. Please try again. If the error persists, please contact us Mail: $mailAdress';
+  }
 
   @override
   String get forceUpdateText => 'A new version of the application is available. You need to update to continue.';
@@ -86,16 +130,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get languageName => 'English';
 
   @override
-  String get library => 'Library';
+  String get licenses => 'Licenses';
 
   @override
-  String get licenses => 'Licenses';
+  String get listenAgain => 'Listen Again';
 
   @override
   String get more => 'more...';
 
   @override
   String get music => 'Music';
+
+  @override
+  String get musics => 'Musics';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get noPlaylistFound => 'No playlists found.\nWould you like to create one now?';
 
   @override
   String get notificationDescriptionText => 'Once a day, whenever you want.';
@@ -118,7 +171,37 @@ class AppLocalizationsEn extends AppLocalizations {
   String get painting => 'Painting';
 
   @override
+  String get paintings => 'Paintings';
+
+  @override
+  String get pause => 'Pause';
+
+  @override
+  String get play => 'Play';
+
+  @override
+  String get playAll => 'Play All';
+
+  @override
+  String get playlist => 'Playlist';
+
+  @override
+  String get playlistName => 'Playlist Name';
+
+  @override
+  String get playlists => 'Playlists';
+
+  @override
   String get poem => 'Poem';
+
+  @override
+  String get poems => 'Poems';
+
+  @override
+  String get pollQuestion => 'Did you enjoy these selections?';
+
+  @override
+  String get previous => 'Previous';
 
   @override
   String get privacyPolicy => 'Privacy Policy';
@@ -127,16 +210,39 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rateArtevo => 'Rate Artevo';
 
   @override
+  String get refresh => 'Refresh';
+
+  @override
+  String get removeBookmarks => 'Remove from Bookmarks';
+
+  @override
+  String get removeFromPlaylist => 'Remove from Playlist';
+
+  @override
   String get search => 'Search';
 
   @override
+  String get searchHistory => 'Search History';
+
+  @override
+  String searchResultFor(Object text) {
+    return 'Search result for \'$text\':';
+  }
+
+  @override
   String get settings => 'Settings';
+
+  @override
+  String get showAll => 'Show All';
 
   @override
   String get submit => 'Submit';
 
   @override
   String get submitFeedback => 'Submit Feedback';
+
+  @override
+  String get success => 'Success!';
 
   @override
   String get termsOfUse => 'Terms of Use';
@@ -151,13 +257,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get thanksForYourFeedback => 'Thanks for your feedback.';
 
   @override
-  String unknowErrorText(Object mailAdress) {
-    return 'Unknown error occurred. Please try again. If the error persists, please contact us Mail: $mailAdress';
-  }
+  String get todayInArtevo => 'Today in Artevo';
+
+  @override
+  String get visualArtworks => 'Visual Artworks';
 
   @override
   String get welcome => 'Welcome';
-
-  @override
-  String get wouldYouRateTodaysContent => 'Would you rate today\'s content?';
 }
