@@ -18,24 +18,21 @@ class ArtevoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, child) {
       final ThemeMode themeMode = ref.watch(themeModeProvider);
-
       final Locale? locale = ref.watch(selectedLanguageProvider);
-
       return AnnotatedRegion(
         value: const SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
-            statusBarIconBrightness: Brightness.dark,
-            statusBarBrightness: Brightness.light,
-            systemNavigationBarColor: Colors.transparent),
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.dark,
+          statusBarBrightness: Brightness.light,
+          systemNavigationBarColor: Colors.transparent,
+        ),
         child: MaterialApp(
           title: appName,
           debugShowCheckedModeBanner: appMode == AppMode.debug,
-
           // localizations
           locale: locale,
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-
           // theme settings
           themeMode: themeMode,
           theme: ThemeData(
@@ -55,7 +52,6 @@ class ArtevoApp extends StatelessWidget {
             colorScheme: MaterialTheme.darkHighContrastScheme().toColorScheme(),
             fontFamily: Fonts.domine,
           ),
-
           // routes
           initialRoute: splashRoute,
           onGenerateRoute: Routes.generateRoute,
