@@ -13,6 +13,9 @@ class MainLayoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     NavBarController.instance.init();
 
+    final maxHeight =
+        MediaQuery.paddingOf(context).bottom + kBottomNavigationBarHeight;
+
     return PersistentTabView(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       tabs: List.generate(
@@ -24,21 +27,21 @@ class MainLayoutScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const MusicPlayer(),
-          bottomNavBar(navBarConfig),
+          bottomNavBar(navBarConfig, maxHeight),
         ],
       ),
     );
   }
 
-  AnimatedBuilder bottomNavBar(NavBarConfig navBarConfig) {
+  AnimatedBuilder bottomNavBar(NavBarConfig navBarConfig, double maxHeight) {
     return AnimatedBuilder(
       animation: NavBarController.instance,
       builder: (context, child) {
-        final maxHeight =
-            MediaQuery.paddingOf(context).bottom + kBottomNavigationBarHeight;
+        final height =
+            !NavBarController.instance.isShowNavBar ? 0.0 : maxHeight;
 
         return AnimatedContainer(
-          height: !NavBarController.instance.isShowNavBar ? 0 : maxHeight,
+          height: height,
           duration: const Duration(milliseconds: 300),
           child: Style2BottomNavBar(
             navBarConfig: navBarConfig,
