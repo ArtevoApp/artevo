@@ -18,6 +18,8 @@ class DiscoveryScreen extends StatelessWidget {
       length: 2,
       initialIndex: discoveryScreenTabIndex,
       child: NestedScrollView(
+        floatHeaderSlivers: true,
+        restorationId: 'discovery_screen_nested_scroll_view',
         controller: NavBarController.instance.discoverScrollController,
         headerSliverBuilder: (_, __) => [tabbar(_)],
         body: const TabBarView(

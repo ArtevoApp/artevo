@@ -94,8 +94,7 @@ class HomeScreen extends StatelessWidget {
             height: xxLargePadding,
             width: xxLargePadding,
             decoration: BoxDecoration(
-              color:
-                  Theme.of(context).colorScheme.onBackground.withOpacity(.07),
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(.07),
               borderRadius: BorderRadius.circular(defaultPadding),
             ),
             padding: const EdgeInsets.all(4),
