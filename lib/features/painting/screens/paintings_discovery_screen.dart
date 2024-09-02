@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,7 +13,7 @@ import '../../../localization/app_localizations_context.dart';
 import '../../../screens/_main/nav_bar_controller.dart';
 import '../../../screens/discover/discovery_screen_variables.dart';
 import '../controllers/painting_discover_controllers.dart';
-import '../repository/painting_repository.dart';
+import '../repository/painting_discovery_repository.dart';
 import '../widgets/painting_discover_view_type_changer.dart';
 import '../widgets/painting_zoom_dialog.dart';
 
@@ -34,9 +33,10 @@ class _PaintingsDiscoveryScreenState extends State<PaintingsDiscoveryScreen>
   Widget build(BuildContext context) {
     discoveryScreenTabIndex = 0;
 
-    return RefreshIndicator(
+    return RefreshIndicator.adaptive(
       key: refreshIndicatorKey,
-      onRefresh: () async => getPaintings(clearList: true),
+      onRefresh: () async =>
+          PaintingDiscoveryRepository.instance.getPaintings(clearList: true),
       child: CustomScrollView(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -56,10 +56,13 @@ class _PaintingsDiscoveryScreenState extends State<PaintingsDiscoveryScreen>
               ),
             ),
           ),
-          ValueListenableBuilder(
-            valueListenable: paintings,
-            builder: (context, paintingList, child) {
-              if (paintingList.isNotEmpty) {
+          ListenableBuilder(
+            listenable: PaintingDiscoveryRepository.instance,
+            builder: (context, child) {
+              if (repository.paintings.isEmpty) {
+                repository.getPaintings();
+                return const SliverToBoxAdapter(child: Center(child: Loader()));
+              } else {
                 return Consumer(
                   builder: (context, ref, child) {
                     // if is GridView
@@ -72,12 +75,8 @@ class _PaintingsDiscoveryScreenState extends State<PaintingsDiscoveryScreen>
                   },
                 );
               }
-              return isLoading
-                  ? const SliverToBoxAdapter(child: Center(child: Loader()))
-                  : emtyWidget();
             },
           ),
-          moreButton()
         ],
       ),
     );
@@ -85,28 +84,19 @@ class _PaintingsDiscoveryScreenState extends State<PaintingsDiscoveryScreen>
 
   Widget paintingGridView() {
     return SliverGrid.builder(
-      itemCount: maxPaintingCount,
+      itemCount: repository.paintings.length,
+      itemBuilder: (_, i) => imageWidget(_, repository.paintings[i]),
       gridDelegate: gridViewDelegate(),
-      itemBuilder: itemBuilder,
     );
   }
 
   Widget paintingsListView() {
     return SliverList.separated(
-      itemCount: maxPaintingCount,
-      itemBuilder: itemBuilder,
+      itemCount: repository.paintings.length,
+      itemBuilder: (_, i) => imageWidget(_, repository.paintings[i]),
       separatorBuilder: (context, index) =>
           const SizedBox(height: smallPadding),
     );
-  }
-
-  Widget? itemBuilder(BuildContext context, int index) {
-    if (index == paintings.value.length - 3) getPaintings();
-
-    if (index < paintings.value.length) {
-      return imageWidget(context, paintings.value.elementAt(index));
-    }
-    return null;
   }
 
   Widget imageWidget(BuildContext context, PaintingContent painting) {
@@ -119,35 +109,6 @@ class _PaintingsDiscoveryScreenState extends State<PaintingsDiscoveryScreen>
       ),
     );
   }
-
-  Widget moreButton() {
-    return SliverToBoxAdapter(
-      child: ValueListenableBuilder(
-          valueListenable: paintings,
-          builder: (context, value, child) {
-            if (value.length < maxPaintingCount) return const SizedBox.shrink();
-
-            return Padding(
-              padding: const EdgeInsets.only(
-                  bottom: dialogWidth, top: xLargeIconSize),
-              child: CupertinoButton(
-                  onPressed: moreButtonOnPressed,
-                  child: Text(context.loc.more)),
-            );
-          }),
-    );
-  }
-
-  Widget emtyWidget() => SliverToBoxAdapter(
-        child: Padding(
-          padding: const EdgeInsets.only(top: largePadding),
-          child: Text(
-            context.loc.contentIsNotFound,
-            style: TextStyles.title,
-            textAlign: TextAlign.center,
-          ),
-        ),
-      );
 
   SliverQuiltedGridDelegate gridViewDelegate() => SliverQuiltedGridDelegate(
         crossAxisCount: 3,
