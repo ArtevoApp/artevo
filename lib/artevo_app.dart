@@ -1,5 +1,5 @@
+import 'common/config/color_schemes.dart';
 import 'common/config/routes.dart';
-import 'common/config/theme.dart';
 import 'common/constants/fonts.dart';
 import 'common/constants/strings.dart';
 import 'common/enums/app_mode.dart';
@@ -36,21 +36,14 @@ class ArtevoApp extends StatelessWidget {
           // theme settings
           themeMode: themeMode,
           theme: ThemeData(
-            colorScheme: MaterialTheme.lightScheme().toColorScheme(),
+            useMaterial3: true,
             fontFamily: Fonts.domine,
+            colorScheme: lightColorScheme,
           ),
           darkTheme: ThemeData(
-            colorScheme: MaterialTheme.darkScheme().toColorScheme(),
+            useMaterial3: true,
             fontFamily: Fonts.domine,
-          ),
-          highContrastTheme: ThemeData(
-            colorScheme:
-                MaterialTheme.lightHighContrastScheme().toColorScheme(),
-            fontFamily: Fonts.domine,
-          ),
-          highContrastDarkTheme: ThemeData(
-            colorScheme: MaterialTheme.darkHighContrastScheme().toColorScheme(),
-            fontFamily: Fonts.domine,
+            colorScheme: darkColorScheme,
           ),
           // routes
           initialRoute: splashRoute,
