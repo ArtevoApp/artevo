@@ -17,7 +17,7 @@ class LanguageSelectWithDropdownWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: const EdgeInsets.all(0),
-      title: Text(context.loc.language, style: TextStyles.body),
+      title: Text(context.loc.language),
       trailing: Consumer(
         builder: (context, ref, child) {
           return SizedBox(

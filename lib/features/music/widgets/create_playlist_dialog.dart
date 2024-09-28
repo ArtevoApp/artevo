@@ -94,7 +94,7 @@ class _CreatePlaylistDialogState extends State<CreatePlaylistDialog> {
                             ],
                           ),
                           const SizedBox(height: defaultPadding),
-                          Text(value?.title ?? "?_?", style: TextStyles.bodyv3),
+                          Text(value?.title ?? "?_?"),
                         ],
                       ),
                     )

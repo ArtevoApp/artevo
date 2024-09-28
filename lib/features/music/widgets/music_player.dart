@@ -180,7 +180,7 @@ class MusicPlayer extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: largePadding),
-            Text(mediaItem.artist!, style: TextStyles.body),
+            Text(mediaItem.artist!),
             musicPositionProgressBar(),
             const SizedBox(height: largePadding),
             controlButtons(),
@@ -274,8 +274,8 @@ class MusicPlayer extends StatelessWidget {
               thumbRadius: defaultPadding,
               thumbGlowRadius: smallIconSize,
               timeLabelLocation: TimeLabelLocation.sides,
-              timeLabelTextStyle:
-                  TextStyles.bodyv2.copyWith(color: bufferColor),
+              // timeLabelTextStyle:
+              //     TextStyles.bodyv2.copyWith(color: bufferColor),
             );
           },
         ),

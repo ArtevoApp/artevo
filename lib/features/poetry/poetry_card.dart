@@ -33,7 +33,6 @@ class PoemCard extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: Text(
                   poem.creator,
-                  style: TextStyles.body,
                   textAlign: TextAlign.end,
                 ),
               ),

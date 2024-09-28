@@ -13,10 +13,6 @@ dependencies:
   #-- core
   artevo_package:
     path: ../artevo_package
-    # git:
-    #   url: https://github.com/opiasdream/artevo_package.git
-    #   ref: main
-
   flutter_riverpod: ^2.3.6
 
   #-- loacalization
@@ -56,7 +52,6 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_animate: ^4.2.0+1
   salomon_bottom_bar: ^3.3.2
-  persistent_bottom_nav_bar_v2: ^5.2.3
   flutter_staggered_grid_view: ^0.7.0
 
   #-- audio player 

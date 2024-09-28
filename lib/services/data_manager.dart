@@ -18,17 +18,12 @@ class DataManager {
   Future<Object> checkDailyContentData() async {
     try {
       final clientTime = DateTime.now().toLocal();
-
       final serverTime = await RealtimeService().getServerTime();
-
       if (serverTime == null) return Future.error(IError.errInternetConnection);
-
       if (clientTime.difference(serverTime).inSeconds > 10) {
         return Future.error(IError.errTimeSync);
       }
-
       final repository = DailyContentDataManager.instance;
-
       final todayDate =
           "${serverTime.year}-${serverTime.month}-${serverTime.day}";
 

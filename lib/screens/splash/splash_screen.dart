@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> with SplashScreenMixin {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Spacer(),
-              const Text(appName, style: TextStyles.welcomeTitle),
+              const Text(appName, style: TextStyles.title),
               const Spacer(),
               Text(context.loc.goetheQuote,
                   style: TextStyles.quote, textAlign: TextAlign.center),

@@ -4,8 +4,7 @@ const logoPngPath = "assets/app/logo.png";
 
 // ornaments
 const dividerPath = "assets/ornaments/divider.png";
+
 // vincent van gogh
 const vincentPath = "assets/ornaments/vincent.png";
 const vincentGreyPath = "assets/ornaments/vincent_grey.png";
-
-const goethePath = "assets/ornaments/goethe.png";

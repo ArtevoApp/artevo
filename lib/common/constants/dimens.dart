@@ -1,4 +1,5 @@
 // paddings
+const xsmallPadding = 2.0;
 const smallPadding = 4.0;
 const defaultPadding = 8.0;
 const mediumPadding = 12.0;

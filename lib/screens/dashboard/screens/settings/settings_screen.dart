@@ -6,16 +6,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:in_app_review/in_app_review.dart';
-
-import '../../common/constants/dimens.dart';
-import '../../common/constants/strings.dart';
-import '../../common/constants/text_styles.dart';
-import '../../common/helpers/functions.dart';
-import '../../common/widgets/footer_widget.dart';
-import '../../common/widgets/language_selection_widgets.dart';
-import '../../common/widgets/notifications_widget.dart';
-import '../../common/widgets/theme_toggle_button.dart';
-import '../../localization/app_localizations_context.dart';
+import '../../../../common/constants/dimens.dart';
+import '../../../../common/constants/strings.dart';
+import '../../../../common/helpers/functions.dart';
+import '../../../../common/widgets/footer_widget.dart';
+import '../../../../common/widgets/language_selection_widgets.dart';
+import '../../../../common/widgets/notifications_widget.dart';
+import '../../../../common/widgets/theme_toggle_button.dart';
+import '../../../../localization/app_localizations_context.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -31,12 +29,11 @@ class SettingsScreen extends StatelessWidget {
           surfaceTintColor: Colors.transparent,
         ),
         sectionWidget(context.loc.settings),
-        const LanguageSelectWithDropdownWidget(isSmallWidget: false),
+        const LanguageSelectWithDropdownWidget(),
         const ThemeModeToggleWidget(),
         const NotificationsWidget(),
         sectionWidget(context.loc.contactUs),
-        Text(context.loc.contactText,
-            style: TextStyles.bodyv3, textAlign: TextAlign.center),
+        Text(context.loc.contactText, textAlign: TextAlign.center),
         CupertinoButton(
             child: const Text(appContactMail),
             onPressed: () => appContactMailOnPressed(context)),

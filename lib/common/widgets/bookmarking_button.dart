@@ -13,7 +13,7 @@ class BookmarkingButton extends StatefulWidget {
   /// Icon color
   final Color? color;
 
-  /// Content
+  /// Content Data
   final Content content;
 
   ///
@@ -23,7 +23,7 @@ class BookmarkingButton extends StatefulWidget {
       {Color? iconColor, Color? backgroundColor}) {
     return CircleAvatar(
       radius: smallIconSize,
-      backgroundColor: backgroundColor ?? darkColorScheme.background,
+      backgroundColor: backgroundColor ?? darkColorScheme.surface,
       child: BookmarkingButton(
         color: iconColor ?? Colors.white,
         content: content,

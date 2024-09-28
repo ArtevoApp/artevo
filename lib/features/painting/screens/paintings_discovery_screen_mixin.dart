@@ -8,7 +8,7 @@ mixin PaintingsDiscoveryMixin on State<PaintingsDiscoveryScreen> {
   final repository = PaintingDiscoveryRepository.instance;
 
   void moreButtonOnPressed() async {
-    NavBarController.instance.discoverScrollController.jumpTo(0);
+    // MainLayoutController.instance.discoverScrollController.jumpTo(0);
     await Future.delayed(500.milliseconds);
     refreshIndicatorKey.currentState!.show();
   }

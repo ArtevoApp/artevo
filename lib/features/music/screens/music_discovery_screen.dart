@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:artevo_package/models/music_content.dart';
-
 import '../../../services/cache/lazy_user_data_manager.dart';
 import '../models/playlist.dart';
 import '../widgets/create_playlist_dialog.dart';
 import '../widgets/music_card.dart';
 import '../repository/music_repository.dart';
 import '../widgets/playlist_info_card.dart';
-
 import '../../../common/config/color_schemes.dart';
 import '../../../common/constants/dimens.dart';
 import '../../../common/constants/text_styles.dart';
 import '../../../localization/app_localizations_context.dart';
-import '../../../screens/discover/discovery_screen_variables.dart';
 import 'music_search_screen.dart';
 
 part 'music_discovery_screen_mixin.dart';
@@ -29,7 +26,6 @@ class _MusicDiscoveryScreenState extends State<MusicDiscoveryScreen>
     with MusicDiscoveryScreenMixin {
   @override
   Widget build(BuildContext context) {
-    discoveryScreenTabIndex = 1;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: largePadding),
       child: RefreshIndicator(

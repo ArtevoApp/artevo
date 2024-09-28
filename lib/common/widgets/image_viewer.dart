@@ -9,21 +9,22 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:ionicons/ionicons.dart';
 
 class ImageViewer extends StatelessWidget {
-  const ImageViewer(
-      {super.key,
-      required this.url,
-      this.byDownloading,
-      this.height,
-      this.width,
-      this.boxFit,
-      this.borderRadius});
+  const ImageViewer({
+    super.key,
+    required this.url,
+    this.byDownloading,
+    this.height,
+    this.width,
+    this.boxFit,
+    this.borderRadius = smallPadding,
+  });
 
   final String url;
   final bool? byDownloading;
   final double? width;
   final double? height;
   final BoxFit? boxFit;
-  final double? borderRadius;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class ImageViewer extends StatelessWidget {
       width: width,
       height: height,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(borderRadius ?? smallPadding),
+        borderRadius: BorderRadius.circular(borderRadius),
         child: StreamBuilder<FileResponse>(
           stream: source,
           builder: (context, snapshot) {

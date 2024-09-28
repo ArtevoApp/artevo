@@ -37,7 +37,7 @@ class PlaylistInfoCard extends StatelessWidget {
           ],
         ),
       ),
-      title: Text(playlistInfo.name, style: TextStyles.bodyv2),
+      title: Text(playlistInfo.name),
       onTap: () async => showModalBottomSheet(
         context: context,
         useSafeArea: true,

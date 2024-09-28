@@ -150,3 +150,6 @@ firestore.indexes.json
 analysis_options.yaml
 todo.md
 
+
+
+.fvm/

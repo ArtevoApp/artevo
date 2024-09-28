@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
 import 'package:artevo_package/enums/content_type.dart';
 import 'package:artevo_package/models/content.dart';
 import 'package:artevo_package/models/music_content.dart';
 import 'package:artevo_package/models/painting_content.dart';
 import 'package:artevo_package/models/poetry_content.dart';
 import 'package:iconsax/iconsax.dart';
-
-import '../../common/constants/dimens.dart';
-import '../../common/constants/text_styles.dart';
-import '../../common/extensions/content_type_extension.dart';
-import '../../common/extensions/music_content_extension.dart';
-import '../../common/global_variables/global_audio_handler.dart';
-import '../../common/widgets/image_viewer.dart';
-import '../../common/widgets/loader.dart';
-import '../../features/bookmark/bookmark_repository.dart';
-import '../../features/music/widgets/music_card.dart';
-import '../../features/painting/widgets/painting_zoom_dialog.dart';
-import '../../features/poetry/poetry_card.dart';
-import '../../localization/app_localizations_context.dart';
+import '../../../../common/constants/dimens.dart';
+import '../../../../common/constants/text_styles.dart';
+import '../../../../common/extensions/content_type_extension.dart';
+import '../../../../common/extensions/music_content_extension.dart';
+import '../../../../common/global_variables/global_audio_handler.dart';
+import '../../../../common/widgets/image_viewer.dart';
+import '../../../../common/widgets/loader.dart';
+import '../../../../features/bookmark/bookmark_repository.dart';
+import '../../../../features/music/widgets/music_card.dart';
+import '../../../../features/painting/widgets/painting_zoom_dialog.dart';
+import '../../../../features/poetry/poetry_card.dart';
+import '../../../../localization/app_localizations_context.dart';
 import 'bookmarks_detail_screen.dart';
 
 class BookmarksScreen extends StatefulWidget {
@@ -70,8 +68,8 @@ class _BookmarksScreenState extends State<BookmarksScreen> {
                 Row(
                   children: [
                     Expanded(
-                        child: Text(type.title(context),
-                            style: TextStyles.pageSubtitle)),
+                        child:
+                            Text(type.title(context), style: TextStyles.title)),
                     TextButton.icon(
                       onPressed: () => audioHandler.updateQueue(
                           (snapshot.data!.cast<MusicContent>())
@@ -85,11 +83,11 @@ class _BookmarksScreenState extends State<BookmarksScreen> {
                 const Divider(height: 0),
                 musicList(context, snapshot.data!.cast())
               } else if (type.isPaintingContent) ...{
-                Text(type.title(context), style: TextStyles.pageSubtitle),
+                Text(type.title(context), style: TextStyles.title),
                 const Divider(),
                 paintingList(context, snapshot.data!.cast()),
               } else if (type.isPoetryContent) ...{
-                Text(type.title(context), style: TextStyles.pageSubtitle),
+                Text(type.title(context), style: TextStyles.title),
                 const Divider(),
                 poetyList(context, snapshot.data!.cast()),
               },

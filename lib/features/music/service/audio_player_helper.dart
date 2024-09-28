@@ -11,8 +11,12 @@ final class AudioPlayerHelper {
 
   static Future<void> addQueueAndPlay(MusicContent music,
       {bool addQueue = true}) async {
-    await audioHandler.addQueueItem(music.toMediaItem());
-    await audioHandler.skipToQueueItem(audioHandler.queue.value.length - 1);
-    await audioHandler.play();
+    try {
+      await audioHandler.addQueueItem(music.toMediaItem());
+      await audioHandler.skipToQueueItem(audioHandler.queue.value.length - 1);
+      await audioHandler.play();
+    } catch (e) {
+      print("$e");
+    }
   }
 }

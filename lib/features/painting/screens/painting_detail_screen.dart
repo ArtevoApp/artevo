@@ -55,12 +55,13 @@ class PaintingDetailScreen extends StatelessWidget {
               padding: const EdgeInsets.all(largePadding),
               child: Column(
                 children: [
-                  Text(detail.detail, style: TextStyles.body),
+                  Text(
+                    detail.detail,
+                  ),
                   const SizedBox(height: largePadding),
                   Align(
                       alignment: Alignment.centerRight,
-                      child:
-                          Text('@${detail.creator}  ', style: TextStyles.body)),
+                      child: Text('@${detail.creator}  ')),
                   const CustomDivider(),
                   const SizedBox(height: hugePadding),
                 ],

@@ -1,4 +1,4 @@
-import '../../screens/_main/main_layout_screen.dart';
+import '../../screens/dashboard/layout/main_layout.dart';
 import '../../features/painting/screens/painting_detail_screen.dart';
 import '../../screens/splash/splash_screen.dart';
 import '../../screens/welcome/welcome_screen.dart';

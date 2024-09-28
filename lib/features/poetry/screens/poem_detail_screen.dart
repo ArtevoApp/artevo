@@ -1,7 +1,6 @@
 import 'package:artevo_package/models/poetry_content.dart';
 import 'package:flutter/material.dart';
 import '../../../common/constants/dimens.dart';
-import '../../../common/constants/text_styles.dart';
 import '../../../common/widgets/bookmarking_button.dart';
 
 class PoemDetailScreen extends StatelessWidget {
@@ -23,9 +22,11 @@ class PoemDetailScreen extends StatelessWidget {
         body: ListView(
           padding: const EdgeInsets.all(hugePadding),
           children: [
-            Text(poetry.poem, style: TextStyles.body),
+            Text(
+              poetry.poem,
+            ),
             const SizedBox(height: hugePadding),
-            Center(child: Text(poetry.creator, style: TextStyles.body)),
+            Center(child: Text(poetry.creator)),
           ],
         ));
   }

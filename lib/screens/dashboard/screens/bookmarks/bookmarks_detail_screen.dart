@@ -5,14 +5,14 @@ import 'package:artevo_package/models/poetry_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-import '../../common/constants/dimens.dart';
-import '../../common/extensions/content_type_extension.dart';
-import '../../common/widgets/image_viewer.dart';
-import '../../features/bookmark/bookmark_repository.dart';
-import '../../features/music/widgets/music_card.dart';
-import '../../features/painting/widgets/painting_zoom_dialog.dart';
-import '../../features/poetry/poetry_card.dart';
-import '../../localization/app_localizations_context.dart';
+import '../../../../common/constants/dimens.dart';
+import '../../../../common/extensions/content_type_extension.dart';
+import '../../../../common/widgets/image_viewer.dart';
+import '../../../../features/bookmark/bookmark_repository.dart';
+import '../../../../features/music/widgets/music_card.dart';
+import '../../../../features/painting/widgets/painting_zoom_dialog.dart';
+import '../../../../features/poetry/poetry_card.dart';
+import '../../../../localization/app_localizations_context.dart';
 
 class BookmarksDetailScreen extends StatelessWidget {
   const BookmarksDetailScreen({super.key, required this.type});

@@ -31,7 +31,7 @@ class FooterWidget extends StatelessWidget {
           ],
         ),
         const Text("$appName v$appVersion\n$appCopyright",
-            style: TextStyles.bodyv3, textAlign: TextAlign.center),
+            textAlign: TextAlign.center),
       ],
     );
   }

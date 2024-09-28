@@ -10,8 +10,6 @@ import '../../../common/constants/text_styles.dart';
 import '../../../common/widgets/image_viewer.dart';
 import '../../../common/widgets/loader.dart';
 import '../../../localization/app_localizations_context.dart';
-import '../../../screens/_main/nav_bar_controller.dart';
-import '../../../screens/discover/discovery_screen_variables.dart';
 import '../controllers/painting_discover_controllers.dart';
 import '../repository/painting_discovery_repository.dart';
 import '../widgets/painting_discover_view_type_changer.dart';
@@ -29,17 +27,14 @@ class PaintingsDiscoveryScreen extends StatefulWidget {
 
 class _PaintingsDiscoveryScreenState extends State<PaintingsDiscoveryScreen>
     with PaintingsDiscoveryMixin {
+  final controller = ScrollController();
   @override
   Widget build(BuildContext context) {
-    discoveryScreenTabIndex = 0;
-
     return RefreshIndicator.adaptive(
       key: refreshIndicatorKey,
       onRefresh: () async =>
           PaintingDiscoveryRepository.instance.getPaintings(clearList: true),
       child: CustomScrollView(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
         slivers: [
           SliverToBoxAdapter(
             child: Padding(
@@ -49,7 +44,7 @@ class _PaintingsDiscoveryScreenState extends State<PaintingsDiscoveryScreen>
                 children: [
                   Expanded(
                     child: Text(context.loc.visualArtworks,
-                        style: TextStyles.pageSubtitle),
+                        style: TextStyles.title),
                   ),
                   const PaintingDiscoverViewTypeChanger(),
                 ],
