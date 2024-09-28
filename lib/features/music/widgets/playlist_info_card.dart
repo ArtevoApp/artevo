@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-
 import '../../../common/constants/dimens.dart';
-import '../../../common/constants/text_styles.dart';
 import '../../../common/widgets/image_viewer.dart';
 import '../models/playlist.dart';
 import '../screens/playlist_screen.dart';

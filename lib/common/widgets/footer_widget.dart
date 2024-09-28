@@ -1,5 +1,4 @@
 import '../constants/strings.dart';
-import '../constants/text_styles.dart';
 import '../helpers/functions.dart';
 import '../../localization/app_localizations_context.dart';
 import 'package:flutter/cupertino.dart';

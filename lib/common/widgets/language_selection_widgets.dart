@@ -1,5 +1,4 @@
 import 'package:ionicons/ionicons.dart';
-import '../constants/text_styles.dart';
 import 'custom_dropdown.dart';
 import '../../localization/app_localizations_context.dart';
 import '../../localization/l10n/app_localizations.dart';
