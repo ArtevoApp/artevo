@@ -1,12 +1,12 @@
-import '../../../common/config/color_schemes.dart';
+import '../../../core/config/color_schemes.dart';
 import '../../../common/constants/dimens.dart';
 import '../../../common/constants/text_styles.dart';
 import '../../../common/widgets/bookmarking_button.dart';
+import '../../../common/widgets/full_screen_image_viewer.dart';
 import '../../../common/widgets/image_viewer.dart';
 import 'package:artevo_package/models/painting_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:widget_zoom/widget_zoom.dart';
 
 class PaintingZoomDialog extends StatelessWidget {
   const PaintingZoomDialog({super.key, required this.painting});
@@ -24,42 +24,44 @@ class PaintingZoomDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      scrollable: true,
       contentPadding: const EdgeInsets.all(0),
       insetPadding: const EdgeInsets.all(largePadding),
-      scrollable: true,
       backgroundColor: Colors.transparent,
       content: SizedBox(
-        width: 500,
+        width: 600,
         child: Stack(
           children: [
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                WidgetZoom(
-                  heroAnimationTag: 'paintingZoom',
-                  zoomWidget: ImageViewer(
+                InkWell(
+                  onTap: () => FullScreenImageViewer.open(
+                      context: context, painting: painting),
+                  child: ImageViewer(
                     url: painting.imageUrl,
                     boxFit: BoxFit.contain,
-                    width: 400,
                   ),
                 ),
                 Container(
                   width: columnWidth,
                   padding: const EdgeInsets.all(defaultPadding),
                   decoration: BoxDecoration(
-                    color: darkColorScheme.background,
+                    color: darkColorScheme.surface,
                     border: Border(
                       top: BorderSide(
-                          color: lightColorScheme.background, width: .5),
+                        color: lightColorScheme.surface,
+                        width: .3,
+                      ),
                     ),
                     borderRadius: const BorderRadius.vertical(
                       bottom: Radius.circular(smallPadding),
                     ),
                   ),
-                  child: Text(
+                  child: SelectableText(
                       "${painting.title} by ${painting.creator}, ${painting.year}",
-                      style: TextStyles.info
-                          .copyWith(color: lightColorScheme.background),
+                      style: TextStyles.b2
+                          .copyWith(color: lightColorScheme.surface),
                       textAlign: TextAlign.center),
                 ),
               ],
@@ -74,8 +76,8 @@ class PaintingZoomDialog extends StatelessWidget {
               right: smallPadding,
               child: CircleAvatar(
                   radius: smallIconSize,
-                  child: CloseButton(color: lightColorScheme.background),
-                  backgroundColor: darkColorScheme.background),
+                  child: CloseButton(color: lightColorScheme.surface),
+                  backgroundColor: darkColorScheme.surface),
             ),
           ],
         ),

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import '../../../../common/constants/dimens.dart';
+import '../../../../common/constants/text_styles.dart';
 import '../../../../features/music/screens/music_discovery_screen.dart';
 import '../../../../features/painting/screens/paintings_discovery_screen.dart';
-
-import '../../../../localization/app_localizations_context.dart';
+import '../../../../core/localization/app_localizations_context.dart';
 import '../../layout/main_layout_controller.dart';
 
 class DiscoveryScreen extends StatefulWidget {
@@ -33,16 +32,20 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
 
   @override
   Widget build(BuildContext context) {
-    return NestedScrollView(
-      controller: scrollController,
-      restorationId: 'discovery_screen_nested_scroll_view',
-      headerSliverBuilder: (_, __) => [tabbar()],
-      body: TabBarView(
-        controller: tabController,
-        children: const [
-          PaintingsDiscoveryScreen(),
-          MusicDiscoveryScreen(),
-        ],
+    return Navigator(
+      onGenerateRoute: (settings) => MaterialPageRoute(
+        builder: (context) => NestedScrollView(
+          controller: scrollController,
+          restorationId: 'discovery_screen_nested_scroll_view',
+          headerSliverBuilder: (_, __) => [tabbar()],
+          body: TabBarView(
+            controller: tabController,
+            children: const [
+              PaintingsDiscoveryScreen(),
+              MusicDiscoveryScreen(),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -51,34 +54,43 @@ class _DiscoveryScreenState extends State<DiscoveryScreen>
     return SliverAppBar(
       pinned: false,
       centerTitle: true,
-      title: TabBar(
-        controller: tabController,
+      surfaceTintColor: Colors.transparent,
+      title: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(defaultPadding),
+          border: Border.all(
+            width: .2,
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+          color: Theme.of(context).colorScheme.tertiary,
+        ),
         padding: EdgeInsets.zero,
-        dividerColor: Colors.transparent,
-        unselectedLabelColor: Colors.grey,
-        indicatorSize: TabBarIndicatorSize.label,
-        tabs: [
-          Tab(
-            icon: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(Iconsax.brush_1),
-                const SizedBox(width: defaultPadding),
-                Text(context.loc.paintings),
-              ],
-            ),
+        child: TabBar(
+          controller: tabController,
+          padding: EdgeInsets.zero,
+          dividerColor: Colors.transparent,
+          indicatorSize: TabBarIndicatorSize.tab,
+          labelColor: Theme.of(context).colorScheme.surface,
+          unselectedLabelColor: Theme.of(context).colorScheme.secondary,
+          indicatorPadding: const EdgeInsets.symmetric(
+            horizontal: defaultPadding,
+            vertical: smallPadding,
           ),
-          Tab(
-            icon: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(Iconsax.music_dashboard),
-                const SizedBox(width: defaultPadding),
-                Text(context.loc.musics),
-              ],
-            ),
+          indicator: BoxDecoration(
+            color: Theme.of(context).colorScheme.primary,
+            borderRadius: BorderRadius.circular(defaultPadding),
           ),
-        ],
+          tabs: [
+            Tab(
+              height: 38,
+              child: Text(context.loc.paintings, style: TextStyles.b1),
+            ),
+            Tab(
+              height: 38,
+              child: Text(context.loc.musics, style: TextStyles.b1),
+            ),
+          ],
+        ),
       ),
     );
   }

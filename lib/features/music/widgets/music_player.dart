@@ -9,11 +9,11 @@ import "../../../common/helpers/functions.dart";
 import '../../../common/constants/dimens.dart';
 import '../../../common/constants/text_styles.dart';
 import '../../../common/extensions/media_item_extension.dart';
-import '../../../common/global_variables/global_audio_handler.dart';
+import '../../../common/global_variables/audio_handler.dart';
 import '../../../common/widgets/bookmarking_button.dart';
 import '../../../common/widgets/image_viewer.dart';
 import '../../../common/widgets/loader.dart';
-import '../../../localization/app_localizations_context.dart';
+import '../../../core/localization/app_localizations_context.dart';
 
 import '../controllers/music_player_controllers.dart';
 import '../models/position_data.dart';
@@ -156,100 +156,100 @@ class MusicPlayer extends StatelessWidget {
 
   Widget fullSizeMusicPlayer() {
     return StreamBuilder<MediaItem?>(
-        stream: audioHandler.mediaItem,
-        builder: (context, snapshot) {
-          final mediaItem = snapshot.data;
+      stream: audioHandler.mediaItem,
+      builder: (context, snapshot) {
+        final mediaItem = snapshot.data;
 
-          if (mediaItem == null) return const SizedBox.shrink();
+        if (mediaItem == null) return const SizedBox.shrink();
 
-          return Column(children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
+        return Column(children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const IconButton(onPressed: null, icon: Icon(null)),
+              ImageViewer(
+                  url: mediaItem.artUri.toString(), height: 140, width: 140),
+              BookmarkingButton(content: mediaItem.toMusicContent()),
+            ],
+          ),
+          const SizedBox(height: largePadding),
+          Text(
+            mediaItem.title,
+            style: TextStyles.title,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: largePadding),
+          Text(mediaItem.artist!),
+          musicPositionProgressBar(),
+          const SizedBox(height: largePadding),
+          controlButtons(),
+          const SizedBox(height: hugePadding),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+            child: Row(
               children: [
-                const IconButton(onPressed: null, icon: Icon(null)),
-                ImageViewer(
-                    url: mediaItem.artUri.toString(), height: 140, width: 140),
-                BookmarkingButton(content: mediaItem.toMusicContent()),
+                Expanded(
+                    child: Text(context.loc.playlist, style: TextStyles.title)),
+                StreamBuilder<bool>(
+                  stream: audioHandler.playbackState
+                      .map((state) =>
+                          state.shuffleMode == AudioServiceShuffleMode.all)
+                      .distinct(),
+                  builder: (context, snapshot) {
+                    final shuffleModeEnabled = snapshot.data ?? false;
+                    final activeColor = Theme.of(context).colorScheme.primary;
+
+                    return IconButton(
+                      icon: shuffleModeEnabled
+                          ? Icon(Iconsax.shuffle, color: activeColor)
+                          : const Icon(Iconsax.shuffle, color: Colors.grey),
+                      onPressed: () async {
+                        final enable = !shuffleModeEnabled;
+                        await audioHandler.setShuffleMode(enable
+                            ? AudioServiceShuffleMode.all
+                            : AudioServiceShuffleMode.none);
+                      },
+                    );
+                  },
+                ),
+                StreamBuilder<AudioServiceRepeatMode>(
+                  stream: audioHandler.playbackState
+                      .map((state) => state.repeatMode)
+                      .distinct(),
+                  builder: (context, snapshot) {
+                    final repeatMode =
+                        snapshot.data ?? AudioServiceRepeatMode.none;
+                    final activeColor = Theme.of(context).colorScheme.primary;
+                    final icons = [
+                      const Icon(Iconsax.repeat, color: Colors.grey),
+                      Icon(Iconsax.repeat, color: activeColor),
+                      Icon(Iconsax.repeate_one, color: activeColor),
+                    ];
+                    const cycleModes = [
+                      AudioServiceRepeatMode.none,
+                      AudioServiceRepeatMode.all,
+                      AudioServiceRepeatMode.one,
+                    ];
+                    final index = cycleModes.indexOf(repeatMode);
+                    return IconButton(
+                      icon: icons[index],
+                      onPressed: () {
+                        audioHandler.setRepeatMode(cycleModes[
+                            (cycleModes.indexOf(repeatMode) + 1) %
+                                cycleModes.length]);
+                      },
+                    );
+                  },
+                ),
               ],
             ),
-            const SizedBox(height: largePadding),
-            Text(
-              mediaItem.title,
-              style: TextStyles.title,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: largePadding),
-            Text(mediaItem.artist!),
-            musicPositionProgressBar(),
-            const SizedBox(height: largePadding),
-            controlButtons(),
-            const SizedBox(height: hugePadding),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-              child: Row(
-                children: [
-                  Expanded(
-                      child:
-                          Text(context.loc.playlist, style: TextStyles.title)),
-                  StreamBuilder<bool>(
-                    stream: audioHandler.playbackState
-                        .map((state) =>
-                            state.shuffleMode == AudioServiceShuffleMode.all)
-                        .distinct(),
-                    builder: (context, snapshot) {
-                      final shuffleModeEnabled = snapshot.data ?? false;
-                      final activeColor = Theme.of(context).colorScheme.primary;
-
-                      return IconButton(
-                        icon: shuffleModeEnabled
-                            ? Icon(Iconsax.shuffle, color: activeColor)
-                            : const Icon(Iconsax.shuffle, color: Colors.grey),
-                        onPressed: () async {
-                          final enable = !shuffleModeEnabled;
-                          await audioHandler.setShuffleMode(enable
-                              ? AudioServiceShuffleMode.all
-                              : AudioServiceShuffleMode.none);
-                        },
-                      );
-                    },
-                  ),
-                  StreamBuilder<AudioServiceRepeatMode>(
-                    stream: audioHandler.playbackState
-                        .map((state) => state.repeatMode)
-                        .distinct(),
-                    builder: (context, snapshot) {
-                      final repeatMode =
-                          snapshot.data ?? AudioServiceRepeatMode.none;
-                      final activeColor = Theme.of(context).colorScheme.primary;
-                      final icons = [
-                        const Icon(Iconsax.repeat, color: Colors.grey),
-                        Icon(Iconsax.repeat, color: activeColor),
-                        Icon(Iconsax.repeate_one, color: activeColor),
-                      ];
-                      const cycleModes = [
-                        AudioServiceRepeatMode.none,
-                        AudioServiceRepeatMode.all,
-                        AudioServiceRepeatMode.one,
-                      ];
-                      final index = cycleModes.indexOf(repeatMode);
-                      return IconButton(
-                        icon: icons[index],
-                        onPressed: () {
-                          audioHandler.setRepeatMode(cycleModes[
-                              (cycleModes.indexOf(repeatMode) + 1) %
-                                  cycleModes.length]);
-                        },
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-            const Divider(indent: defaultPadding, endIndent: defaultPadding),
-            queueList(),
-          ]);
-        });
+          ),
+          const Divider(indent: defaultPadding, endIndent: defaultPadding),
+          queueList(),
+        ]);
+      },
+    );
   }
 
   Widget musicPositionProgressBar() => Padding(
@@ -258,9 +258,7 @@ class MusicPlayer extends StatelessWidget {
           stream: _positionDataStream,
           builder: (context, snapshot) {
             final durationState = snapshot.data;
-
-            final bufferColor = Theme.of(context).colorScheme.onBackground;
-
+            final bufferColor = Theme.of(context).colorScheme.surface;
             return ProgressBar(
               progress: durationState?.position ?? Duration.zero,
               buffered: durationState?.bufferedPosition,
@@ -314,22 +312,24 @@ class MusicPlayer extends StatelessWidget {
       );
 
   StreamBuilder<QueueState> queueList() => StreamBuilder<QueueState>(
-      stream: audioHandler.queueState,
-      builder: (context, snapshot) {
-        final queueState = snapshot.data ?? QueueState.empty;
-        final queue = queueState.queue;
+        stream: audioHandler.queueState,
+        builder: (context, snapshot) {
+          final queueState = snapshot.data ?? QueueState.empty;
+          final queue = queueState.queue;
 
-        return Expanded(
-          child: ListView.builder(
-            padding: EdgeInsets.zero,
-            shrinkWrap: true,
-            itemCount: queue.length,
-            controller: ScrollController(initialScrollOffset: 500),
-            itemBuilder: (context, index) => MusicCard(
-              music: queue[index].toMusicContent(),
-              onTap: () async => await AudioPlayerHelper.playFromQueue(index),
+          return Expanded(
+            child: ListView.builder(
+              padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              itemCount: queue.length,
+              controller: ScrollController(initialScrollOffset: 500),
+              itemBuilder: (context, index) => MusicCard(
+                music: queue[index].toMusicContent(),
+                isSelected: audioHandler.mediaItem.value?.id == queue[index].id,
+                onTap: () => AudioPlayerHelper.playFromQueue(index),
+              ),
             ),
-          ),
-        );
-      });
+          );
+        },
+      );
 }

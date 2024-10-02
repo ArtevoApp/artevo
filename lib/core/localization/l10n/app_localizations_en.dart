@@ -31,6 +31,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get artevoReminder => 'Artevo Reminder';
 
   @override
+  String get artevoPlaylists => 'Artevo Playlists';
+
+  @override
   String get back => 'Back';
 
   @override
@@ -38,6 +41,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String get clearAll => 'Clear All';
 
   @override
   String get close => 'Close';
@@ -120,6 +126,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get home => 'Home';
 
   @override
+  String get history => 'History';
+
+  @override
   String get imageNotFound => 'Image not found!';
 
   @override
@@ -136,6 +145,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get listenAgain => 'Listen Again';
+
+  @override
+  String get listeningHistory => 'Listening History';
 
   @override
   String get more => 'more...';
@@ -263,6 +275,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get visualArtworks => 'Visual Artworks';
+
+  @override
+  String get yourLibrary => 'Your Library';
 
   @override
   String get welcome => 'Welcome';

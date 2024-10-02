@@ -108,13 +108,6 @@ mixin PlaylistScreenMixin<T extends StatefulWidget> on State<PlaylistScreen> {
     playlist.value.insert(newIndex, item);
   }
 
-  void deletePlaylist() {
-    final service = LazyUserDataManager.instance;
-    service.deletePlaylistInfo(playlistInfo.id);
-    service.deletePlaylist(playlistInfo.id);
-    Navigator.pop(context);
-  }
-
   void deletePlaylistItem(int index) {
     playlist.value.removeAt(index);
     setState(() {});

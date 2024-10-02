@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:artevo_package/enums/content_type.dart';
 import 'package:artevo_package/models/content.dart';
@@ -11,14 +10,14 @@ import '../../../../common/constants/dimens.dart';
 import '../../../../common/constants/text_styles.dart';
 import '../../../../common/extensions/content_type_extension.dart';
 import '../../../../common/extensions/music_content_extension.dart';
-import '../../../../common/global_variables/global_audio_handler.dart';
+import '../../../../common/global_variables/audio_handler.dart';
 import '../../../../common/widgets/image_viewer.dart';
 import '../../../../common/widgets/loader.dart';
 import '../../../../features/bookmark/bookmark_repository.dart';
 import '../../../../features/music/widgets/music_card.dart';
 import '../../../../features/painting/widgets/painting_zoom_dialog.dart';
 import '../../../../features/poetry/poetry_card.dart';
-import '../../../../localization/app_localizations_context.dart';
+import '../../../../core/localization/app_localizations_context.dart';
 import 'bookmarks_detail_screen.dart';
 
 class BookmarksScreen extends StatefulWidget {
@@ -41,15 +40,15 @@ class _BookmarksScreenState extends State<BookmarksScreen> {
         children: [
           AppBar(
             centerTitle: true,
-            title: Text(context.loc.bookmarks),
+            title: Text(context.loc.bookmarks, style: TextStyles.title),
             surfaceTintColor: Colors.transparent,
           ),
           _contents(context, ContentType.musicContent),
           _contents(context, ContentType.paintingContent),
           _contents(context, ContentType.poetryContent),
-          const SizedBox(height: xLargeImageSize),
+          const SizedBox(height: xxLargeImageSize),
         ],
-      ).animate().fade(duration: const Duration(milliseconds: 500)),
+      ),
     );
   }
 

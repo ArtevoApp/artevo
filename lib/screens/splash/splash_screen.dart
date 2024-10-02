@@ -1,4 +1,4 @@
-import '../../common/config/routes.dart';
+import '../../core/config/routes.dart';
 import '../../common/constants/dimens.dart';
 import '../../common/constants/strings.dart';
 import '../../common/constants/text_styles.dart';
@@ -6,7 +6,7 @@ import '../../common/widgets/error_dialog.dart';
 import '../../common/widgets/force_update_alert_dialog.dart';
 import '../../common/widgets/loader.dart';
 import '../../features/painting/repository/painting_repository.dart';
-import '../../localization/app_localizations_context.dart';
+import '../../core/localization/app_localizations_context.dart';
 import '../../services/data_manager.dart';
 import '../../services/ads/admob_service.dart';
 import '../../services/cache/user_data_manager.dart';

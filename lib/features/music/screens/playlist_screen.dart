@@ -9,13 +9,14 @@ import 'package:ionicons/ionicons.dart';
 import '../../../common/constants/dimens.dart';
 import '../../../common/constants/text_styles.dart';
 import '../../../common/extensions/music_content_extension.dart';
-import '../../../common/global_variables/global_audio_handler.dart';
+import '../../../common/global_variables/audio_handler.dart';
 import '../../../common/helpers/functions.dart';
 import '../../../common/widgets/image_viewer.dart';
-import '../../../localization/app_localizations_context.dart';
+import '../../../core/localization/app_localizations_context.dart';
 import '../../../services/cache/lazy_user_data_manager.dart';
 import '../../painting/repository/painting_repository.dart';
-import '../models/playlist.dart';
+import '../models/playlist_info.dart';
+import '../repository/playlist_repository.dart';
 import '../widgets/music_card.dart';
 
 part 'playlist_screen_mixin.dart';
@@ -35,8 +36,7 @@ class _PlaylistScreenState extends State<PlaylistScreen>
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
         valueListenable: editMode,
-        builder: (context, value, ch) {
-          final editModeIsOn = value == true;
+        builder: (context, editModeIsOn, ch) {
           return ListView(
             padding: const EdgeInsets.all(largePadding),
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -119,21 +119,19 @@ class _PlaylistScreenState extends State<PlaylistScreen>
                       child: PopupMenuButton(
                         icon: const Icon(Icons.more_vert),
                         tooltip: "",
-                        onSelected: (value) {
-                          if (value == 0) {
-                            editMode.value = true;
-                          }
-                          if (value == 1) deletePlaylist();
-                        },
                         itemBuilder: (context) => [
                           PopupMenuItem(
-                              value: 0,
+                              onTap: () => editMode.value = true,
                               child: ListTile(
                                 leading: const Icon(Iconsax.edit_2),
                                 title: Text(context.loc.edit),
                               )),
                           PopupMenuItem(
-                            value: 1,
+                            onTap: () {
+                              PlaylistRepository.instance
+                                  .deletePlaylist(playlistInfo.id);
+                              Navigator.pop(context);
+                            },
                             child: ListTile(
                               leading: const Icon(Icons.delete_outline),
                               title: Text(context.loc.delete),
@@ -215,7 +213,7 @@ class _PlaylistScreenState extends State<PlaylistScreen>
                   );
                 },
               ),
-              const SizedBox(height: xLargeImageSize),
+              const SizedBox(height: xxLargeImageSize),
             ],
           );
         });

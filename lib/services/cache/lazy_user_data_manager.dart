@@ -1,7 +1,7 @@
 import 'package:artevo_package/models/music_content.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../../features/music/models/playlist.dart';
+import '../../features/music/models/playlist_info.dart';
 
 class LazyUserDataManager {
   LazyUserDataManager._();
@@ -34,23 +34,16 @@ class LazyUserDataManager {
 
   Future<List<String>> getLastSearchedMusics() async {
     final lastSearchedMusics = await lazUserDataBox.get("lastSearchedMusics");
-
     if (lastSearchedMusics == null) return [];
-
     return lastSearchedMusics as List<String>;
   }
 
   Future<void> addLastSearchedMusic(String key) async {
     List<String> list = await getLastSearchedMusics();
-
     final indexOfKey = list.indexOf(key);
-
     if (indexOfKey != -1) list.removeAt(indexOfKey);
-
     list.insert(0, key);
-
     if (list.length > 20) list = list.sublist(0, 20);
-
     lazUserDataBox.put("lastSearchedMusics", list);
   }
 

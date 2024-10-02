@@ -1,5 +1,5 @@
-import '../../localization/app_localizations_context.dart';
-import '../config/color_schemes.dart';
+import '../../core/localization/app_localizations_context.dart';
+import '../../core/config/color_schemes.dart';
 import '../constants/dimens.dart';
 import '../../features/bookmark/bookmark_repository.dart';
 import 'package:artevo_package/models/content.dart';
@@ -75,7 +75,6 @@ class _BookmarkingButtonState extends State<BookmarkingButton> {
 
   void onPressed(bool isBookmarked) async {
     await bookmarkRepository.update(widget.content, !isBookmarked);
-
     setState(() {});
   }
 }

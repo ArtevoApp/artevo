@@ -1,6 +1,6 @@
 import 'package:artevo_package/models/music_content.dart';
 
-import "../../../common/global_variables/global_audio_handler.dart";
+import "../../../common/global_variables/audio_handler.dart";
 import "../../../common/extensions/music_content_extension.dart";
 
 final class AudioPlayerHelper {

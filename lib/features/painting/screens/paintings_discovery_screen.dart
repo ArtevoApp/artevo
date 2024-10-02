@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
 import 'package:artevo_package/models/painting_content.dart';
-
+import 'package:iconsax/iconsax.dart';
 import '../../../common/constants/dimens.dart';
 import '../../../common/constants/text_styles.dart';
+import '../../../common/widgets/full_screen_image_viewer.dart';
 import '../../../common/widgets/image_viewer.dart';
-import '../../../common/widgets/loader.dart';
-import '../../../localization/app_localizations_context.dart';
-import '../controllers/painting_discover_controllers.dart';
+import '../../../core/localization/app_localizations_context.dart';
 import '../repository/painting_discovery_repository.dart';
-import '../widgets/painting_discover_view_type_changer.dart';
 import '../widgets/painting_zoom_dialog.dart';
 
 part 'paintings_discovery_screen_mixin.dart';
@@ -27,7 +22,6 @@ class PaintingsDiscoveryScreen extends StatefulWidget {
 
 class _PaintingsDiscoveryScreenState extends State<PaintingsDiscoveryScreen>
     with PaintingsDiscoveryMixin {
-  final controller = ScrollController();
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator.adaptive(
@@ -38,15 +32,12 @@ class _PaintingsDiscoveryScreenState extends State<PaintingsDiscoveryScreen>
         slivers: [
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(left: largePadding),
+              padding: const EdgeInsets.symmetric(horizontal: largePadding),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: Text(context.loc.visualArtworks,
-                        style: TextStyles.title),
-                  ),
-                  const PaintingDiscoverViewTypeChanger(),
+                  Text(context.loc.visualArtworks, style: TextStyles.h1),
+                  buillViewTypeChanger(),
                 ],
               ),
             ),
@@ -55,18 +46,22 @@ class _PaintingsDiscoveryScreenState extends State<PaintingsDiscoveryScreen>
             listenable: PaintingDiscoveryRepository.instance,
             builder: (context, child) {
               if (repository.paintings.isEmpty) {
-                repository.getPaintings();
-                return const SliverToBoxAdapter(child: Center(child: Loader()));
+                return SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: xxLargePadding),
+                    child: Text(
+                      context.loc.dataIsNotFound,
+                      style: TextStyles.b2,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                );
               } else {
-                return Consumer(
-                  builder: (context, ref, child) {
-                    // if is GridView
-                    if (ref.watch(paintingDiscoverViewTypeIsGrid)) {
-                      return paintingGridView();
-                    }
-                    {
-                      return paintingsListView();
-                    }
+                return ValueListenableBuilder(
+                  valueListenable: paintingDiscoverViewTypeIsGrid,
+                  builder: (context, isGridView, child) {
+                    if (isGridView) return paintingGridView();
+                    return paintingsListView();
                   },
                 );
               }
@@ -77,10 +72,28 @@ class _PaintingsDiscoveryScreenState extends State<PaintingsDiscoveryScreen>
     );
   }
 
+  Widget buillViewTypeChanger() {
+    return ValueListenableBuilder(
+      valueListenable: paintingDiscoverViewTypeIsGrid,
+      builder: (context, isGridView, child) => SizedBox(
+        height: hugeIconSize,
+        width: hugeIconSize,
+        child: IconButton(
+          padding: EdgeInsets.zero,
+          splashRadius: 12,
+          onPressed: () => paintingDiscoverViewTypeIsGrid.value = !isGridView,
+          icon: isGridView
+              ? const Icon(Iconsax.grid_5)
+              : const Icon(Iconsax.slider_vertical),
+        ),
+      ),
+    );
+  }
+
   Widget paintingGridView() {
     return SliverGrid.builder(
       itemCount: repository.paintings.length,
-      itemBuilder: (_, i) => imageWidget(_, repository.paintings[i]),
+      itemBuilder: (_, i) => imageWidget(repository.paintings[i]),
       gridDelegate: gridViewDelegate(),
     );
   }
@@ -88,20 +101,18 @@ class _PaintingsDiscoveryScreenState extends State<PaintingsDiscoveryScreen>
   Widget paintingsListView() {
     return SliverList.separated(
       itemCount: repository.paintings.length,
-      itemBuilder: (_, i) => imageWidget(_, repository.paintings[i]),
+      itemBuilder: (_, i) => imageWidget(repository.paintings[i]),
       separatorBuilder: (context, index) =>
           const SizedBox(height: smallPadding),
     );
   }
 
-  Widget imageWidget(BuildContext context, PaintingContent painting) {
+  Widget imageWidget(PaintingContent painting) {
     return InkWell(
-      onTap: () => PaintingZoomDialog.show(context, painting),
+      onTap: () =>
+          FullScreenImageViewer.open(context: context, painting: painting),
       onLongPress: () => PaintingZoomDialog.show(context, painting),
-      child: ImageViewer(
-        url: painting.imageUrl,
-        height: 400,
-      ),
+      child: ImageViewer(url: painting.imageUrl, height: 400),
     );
   }
 

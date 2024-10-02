@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../localization/app_localizations_context.dart';
+import '../../core/localization/app_localizations_context.dart';
 import '../enums/errors.dart';
 
 extension ErrorExtension on IError {

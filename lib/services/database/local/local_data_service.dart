@@ -24,9 +24,8 @@ class LocalDataService {
   Future<void> init() async {
     if (_database == null) {
       final databasesPath = await getDatabasesPath();
-
+      print(databasesPath);
       final path = join(databasesPath, _dbName);
-
       _database = await openDatabase(path, version: _dbVersion);
     }
 
@@ -39,7 +38,7 @@ class LocalDataService {
       {int? limit, bool? getAll}) async {
     try {
       limit ??= 5;
-      if (getAll == true) {
+      if (getAll ?? false) {
         return await database!.rawQuery(
           'SELECT * FROM $tableName WHERE isBookmarked = 1 ORDER BY bookmarkedAt DESC',
         );

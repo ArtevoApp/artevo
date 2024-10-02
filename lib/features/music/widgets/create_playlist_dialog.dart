@@ -2,15 +2,13 @@ import 'package:artevo_package/models/painting_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
-
-import '../../../common/config/color_schemes.dart';
 import '../../../common/constants/dimens.dart';
 import '../../../common/constants/text_styles.dart';
 import '../../../common/widgets/image_viewer.dart';
-import '../../../localization/app_localizations_context.dart';
-import '../../../services/cache/lazy_user_data_manager.dart';
+import '../../../core/localization/app_localizations_context.dart';
 import '../../painting/repository/painting_repository.dart';
-import '../models/playlist.dart';
+import '../models/playlist_info.dart';
+import '../repository/playlist_repository.dart';
 
 class CreatePlaylistDialog extends StatefulWidget {
   const CreatePlaylistDialog({super.key});
@@ -50,7 +48,7 @@ class _CreatePlaylistDialogState extends State<CreatePlaylistDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       scrollable: true,
-      title: Text(context.loc.createPlaylist),
+      title: Text(context.loc.createPlaylist, style: TextStyles.h1),
       content: SizedBox(
         width: dialogWidth,
         child: Column(
@@ -78,7 +76,7 @@ class _CreatePlaylistDialogState extends State<CreatePlaylistDialog> {
                           Wrap(
                             alignment: WrapAlignment.spaceBetween,
                             children: [
-                              Text(context.loc.cover, style: TextStyles.title),
+                              Text(context.loc.cover, style: TextStyles.h2),
                               const SizedBox(width: largePadding),
                               SizedBox(
                                 height: largeIconSize,
@@ -111,10 +109,9 @@ class _CreatePlaylistDialogState extends State<CreatePlaylistDialog> {
                 isDense: true,
                 filled: true,
                 hintText: context.loc.playlistName,
-                fillColor: lightColorScheme.tertiary.withOpacity(.15),
+                fillColor: Theme.of(context).colorScheme.tertiary,
                 suffixIcon: const Icon(Iconsax.music_playlist),
                 border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(mediumPadding),
                 ),
               ),
@@ -141,8 +138,7 @@ class _CreatePlaylistDialogState extends State<CreatePlaylistDialog> {
                   coverTitle: paintingContent.value!.title,
                 );
 
-                await LazyUserDataManager.instance
-                    .addOrUpdatePlaylistInfo(playlistInfo);
+                PlaylistRepository.instance.createPlaylist(playlistInfo);
 
                 Navigator.pop(context, true);
               }

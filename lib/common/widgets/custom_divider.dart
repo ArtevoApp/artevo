@@ -12,7 +12,7 @@ class CustomDivider extends StatelessWidget {
       child: Image.asset(
         dividerPath,
         color: Theme.of(context).colorScheme.onSecondaryContainer,
-        width: xLargeImageSize,
+        width: xxLargeImageSize,
       ),
     );
   }

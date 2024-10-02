@@ -1,45 +1,38 @@
-import 'package:flutter/cupertino.dart';
+import 'package:artevo_package/models/painting_content.dart';
 import 'package:flutter/material.dart';
+import '../../core/config/color_schemes.dart';
+import '../constants/dimens.dart';
+import 'bookmarking_button.dart';
+import 'image_viewer.dart';
 
 class FullScreenImageViewer extends StatefulWidget {
-  final Widget image;
-  final double minScale;
-  final double maxScale;
-  final Object heroAnimationTag;
-  final double? fullScreenDoubleTapZoomScale;
   const FullScreenImageViewer({
-    Key? key,
-    required this.image,
+    super.key,
+    required this.painting,
     this.minScale = 1.0,
     this.maxScale = 4.0,
-    required this.heroAnimationTag,
     this.fullScreenDoubleTapZoomScale = 2.0,
-  }) : super(key: key);
+  });
+  final PaintingContent painting;
+  final double minScale;
+  final double maxScale;
+  final double? fullScreenDoubleTapZoomScale;
 
   static void open({
     required BuildContext context,
-    required Widget image,
-    required String heroAnimationTag,
+    required PaintingContent painting,
     double minScale = 1.0,
     double maxScale = 4.0,
     double fullScreenDoubleTapZoomScale = 2.0,
   }) async {
-    await Navigator.push(
-      context,
-      PageRouteBuilder(
-        opaque: false,
-        pageBuilder: (context, animation1, animation2) => FadeTransition(
-          opacity: animation1,
-          child: FullScreenImageViewer(
-            image: image,
-            heroAnimationTag: heroAnimationTag,
-            minScale: minScale,
-            maxScale: maxScale,
-            fullScreenDoubleTapZoomScale: fullScreenDoubleTapZoomScale,
-          ),
-        ),
-        transitionDuration: const Duration(milliseconds: 300),
-        reverseTransitionDuration: const Duration(milliseconds: 300),
+    showDialog(
+      context: context,
+      useSafeArea: false,
+      builder: (context) => FullScreenImageViewer(
+        painting: painting,
+        minScale: minScale,
+        maxScale: maxScale,
+        fullScreenDoubleTapZoomScale: fullScreenDoubleTapZoomScale,
       ),
     );
   }
@@ -113,14 +106,18 @@ class _ImageZoomFullscreenState extends State<FullScreenImageViewer>
                 onDoubleTapDown: (details) => _doubleTapDownDetails = details,
                 onDoubleTap: _zoomInOut,
                 child: Hero(
-                  tag: widget.heroAnimationTag,
-                  child: widget.image,
+                  tag: widget.painting.id ?? widget.painting.title,
+                  child: ImageViewer(
+                    url: widget.painting.imageUrl,
+                    boxFit: BoxFit.contain,
+                  ),
                 ),
               ),
             ),
           ),
         ),
-        SafeArea(
+        Padding(
+          padding: EdgeInsets.only(top: MediaQuery.paddingOf(context).top),
           child: Align(
             alignment: Alignment.topRight,
             child: GestureDetector(
@@ -129,15 +126,21 @@ class _ImageZoomFullscreenState extends State<FullScreenImageViewer>
               child: AnimatedOpacity(
                 duration: _opacityDuration,
                 opacity: _opacity,
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 10,
                     vertical: 5,
                   ),
-                  child: Icon(
-                    CupertinoIcons.xmark,
-                    color: Colors.white,
-                    size: 30,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      CircleAvatar(
+                          radius: smallIconSize,
+                          child: CloseButton(color: lightColorScheme.surface),
+                          backgroundColor: darkColorScheme.surface),
+                      const SizedBox(height: defaultPadding),
+                      BookmarkingButton.withBackground(widget.painting),
+                    ],
                   ),
                 ),
               ),
@@ -202,7 +205,6 @@ class _ImageZoomFullscreenState extends State<FullScreenImageViewer>
   }
 
   void _onInteractionUpdate(ScaleUpdateDetails details) async {
-    // chose 1.05 because maybe the image was not fully zoomed back but it almost looks like that
     if (details.pointerCount == 1 && _currentScale <= 1.05) {
       setState(() {
         _imagePosition += details.focalPointDelta.dy;

@@ -1,4 +1,4 @@
-import 'package:artevo_package/services/music_service.dart';
+import 'package:artevo_package/services/music_service/music_service.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:audio_session/audio_session.dart';
 import 'package:just_audio/just_audio.dart';

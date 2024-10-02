@@ -2,7 +2,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
 import '../layout/main_layout_controller.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import '../../../localization/app_localizations_context.dart';
+import '../../../core/localization/app_localizations_context.dart';
 
 class IBottomNavBar extends StatelessWidget {
   const IBottomNavBar({super.key});

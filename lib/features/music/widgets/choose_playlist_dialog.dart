@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../common/constants/dimens.dart';
+import '../../../common/constants/text_styles.dart';
 import '../../../common/widgets/image_viewer.dart';
-import '../../../localization/app_localizations_context.dart';
+import '../../../core/localization/app_localizations_context.dart';
 import '../../../services/cache/lazy_user_data_manager.dart';
-import '../models/playlist.dart';
+import '../models/playlist_info.dart';
 
 class ChoosePlaylistDialog extends StatelessWidget {
   const ChoosePlaylistDialog({super.key});
@@ -19,21 +20,23 @@ class ChoosePlaylistDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(context.loc.playlists),
+      title: Text(context.loc.playlists, style: TextStyles.h1),
       content: ConstrainedBox(
         constraints: const BoxConstraints(
           maxWidth: dialogWidth,
           minWidth: dialogWidth,
-          maxHeight: dialogWidth,
+          maxHeight: dialogWidth * 2,
           minHeight: dialogWidth / 2,
         ),
         child: FutureBuilder(
           future: LazyUserDataManager.instance.getAllPlaylistInfos(),
           builder: (context, snapshot) {
             if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-              return ListView.builder(
+              return ListView.separated(
                 shrinkWrap: true,
                 itemCount: snapshot.data!.length,
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: defaultPadding),
                 itemBuilder: (context, index) => ListTile(
                   onTap: () => Navigator.of(context).pop(snapshot.data![index]),
                   title: Text(snapshot.data![index].name),
@@ -47,7 +50,6 @@ class ChoosePlaylistDialog extends StatelessWidget {
                 ),
               );
             }
-
             return Text(context.loc.dataIsNotFound);
           },
         ),

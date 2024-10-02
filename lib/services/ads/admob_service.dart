@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../common/enums/app_mode.dart';
-import '../../common/global_variables/global_app_mode.dart';
+import '../../common/global_variables/app_mode.dart';
 
 class AdmobService {
   static Future<void> initialize() async {

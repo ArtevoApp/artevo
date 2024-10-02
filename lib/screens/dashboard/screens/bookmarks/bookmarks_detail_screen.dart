@@ -12,7 +12,7 @@ import '../../../../features/bookmark/bookmark_repository.dart';
 import '../../../../features/music/widgets/music_card.dart';
 import '../../../../features/painting/widgets/painting_zoom_dialog.dart';
 import '../../../../features/poetry/poetry_card.dart';
-import '../../../../localization/app_localizations_context.dart';
+import '../../../../core/localization/app_localizations_context.dart';
 
 class BookmarksDetailScreen extends StatelessWidget {
   const BookmarksDetailScreen({super.key, required this.type});

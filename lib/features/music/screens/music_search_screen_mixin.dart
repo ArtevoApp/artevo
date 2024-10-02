@@ -1,10 +1,9 @@
 part of 'music_search_screen.dart';
 
 mixin MusicSearchScreenMixin on State<MusicSearchScreen> {
+  final focusNode = FocusNode();
   final searchTextController = TextEditingController();
-
   final searchedMusicList = ValueNotifier<List<MusicContent>>([]);
-
   final lastSearchedMusicList = ValueNotifier<List<String>>([]);
 
   @override

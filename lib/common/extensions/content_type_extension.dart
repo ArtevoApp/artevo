@@ -1,7 +1,7 @@
 import 'package:artevo_package/enums/content_type.dart';
 import 'package:flutter/material.dart';
 
-import '../../localization/app_localizations_context.dart';
+import '../../core/localization/app_localizations_context.dart';
 
 extension ContentTypeExtension on ContentType {
   bool get isMusicContent => this == ContentType.musicContent;

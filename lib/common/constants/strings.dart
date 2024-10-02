@@ -1,5 +1,5 @@
 const String appName = "Artevo";
-const String appVersion = "2.0";
+const String appVersion = "3.0";
 const String appLegalese = "English | Türkçe";
 const String appContactMail = "artevoapp@gmail.com";
 const String appCopyright = "Copyright © 2024 Artevo";

@@ -1,6 +1,6 @@
 import 'dart:io';
 import '../constants/dimens.dart';
-import '../../localization/app_localizations_context.dart';
+import '../../core/localization/app_localizations_context.dart';
 import '../../services/cache/persistent_image_cache_manager.dart';
 import '../../services/cache/temp_image_cache_manager.dart';
 import 'package:flutter/material.dart';

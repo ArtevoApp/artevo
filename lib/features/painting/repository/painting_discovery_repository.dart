@@ -18,7 +18,6 @@ class PaintingDiscoveryRepository extends ChangeNotifier {
       final newPaintings = await PaintingRepository.instance
           .getPaintingsRandomly(limit: limit ?? 24);
       await Future.delayed(500.milliseconds);
-
       if (clearList!) {
         _paintings = newPaintings;
       } else {

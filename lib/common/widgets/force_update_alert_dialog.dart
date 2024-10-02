@@ -1,7 +1,7 @@
 import 'dart:io';
 import '../constants/strings.dart';
 import '../constants/dimens.dart';
-import '../../localization/app_localizations_context.dart';
+import '../../core/localization/app_localizations_context.dart';
 import '../../services/database/firebase/realtime_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

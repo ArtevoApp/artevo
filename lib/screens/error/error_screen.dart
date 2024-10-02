@@ -2,7 +2,7 @@ import '../../common/constants/dimens.dart';
 import '../../common/constants/strings.dart';
 import '../../common/enums/errors.dart';
 import '../../common/extensions/error_extension.dart';
-import '../../localization/app_localizations_context.dart';
+import '../../core/localization/app_localizations_context.dart';
 import 'package:flutter/material.dart';
 
 class ErrorScreen extends StatelessWidget {
@@ -11,8 +11,8 @@ class ErrorScreen extends StatelessWidget {
   final String? msg;
 
   /// [contentNotFound] show when content is not found.
-  static Widget contentNotFound(BuildContext _) =>
-      ErrorScreen(msg: _.loc.contentIsNotFound);
+  static Widget contentNotFound(BuildContext context) =>
+      ErrorScreen(msg: context.loc.contentIsNotFound);
 
   @override
   Widget build(BuildContext context) {

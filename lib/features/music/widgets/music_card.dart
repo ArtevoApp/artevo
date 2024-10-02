@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
-
 import 'package:artevo_package/models/music_content.dart';
-
 import '../../../common/constants/dimens.dart';
 import '../../../common/extensions/music_content_extension.dart';
-import '../../../common/global_variables/global_audio_handler.dart';
+import '../../../common/global_variables/audio_handler.dart';
 import '../../../common/helpers/functions.dart';
 import '../../../common/widgets/bookmarking_button.dart';
 import '../../../common/widgets/image_viewer.dart';
-import '../../../localization/app_localizations_context.dart';
+import '../../../core/localization/app_localizations_context.dart';
 import '../../../services/cache/lazy_user_data_manager.dart';
-import '../repository/music_repository.dart';
+import '../repository/listening_history_reposiory.dart';
 import '../service/audio_player_helper.dart';
 import 'choose_playlist_dialog.dart';
 
-class MusicCard extends ConsumerWidget {
+class MusicCard extends StatelessWidget {
   const MusicCard({
     super.key,
     required this.music,
     this.isDense = true,
     this.padding,
     this.onTap,
+    this.isSelected = false,
     this.onTapIsEnabled = true,
     this.enabled = true,
   });
@@ -40,20 +38,25 @@ class MusicCard extends ConsumerWidget {
   /// Custom function for different actions.
   final Future<void> Function()? onTap;
 
+  final bool isSelected;
+
   final bool onTapIsEnabled;
 
   final bool enabled;
 
   @override
-  Widget build(BuildContext context, ref) {
-    final isCurrentSong = audioHandler.mediaItem.value?.id == music.songID;
-
+  Widget build(BuildContext context) {
     return ListTile(
       dense: isDense,
       enabled: enabled,
-      selected: isCurrentSong,
+      selected: isSelected,
       horizontalTitleGap: mediumPadding,
       contentPadding: EdgeInsets.only(left: padding ?? defaultPadding),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.elliptical(mediumPadding, defaultPadding),
+        ),
+      ),
       leading: ImageViewer(url: music.thumbnailUrl),
       title: Text(Functions.stringShorter(music.title)),
       subtitle: Text(Functions.stringShorter(music.creator)),
@@ -61,22 +64,24 @@ class MusicCard extends ConsumerWidget {
           ? Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                Text(Functions.secondToMinute(music.duration.seconds),
-                    style: const TextStyle(color: Colors.grey)),
+                Text(
+                  Functions.secondToMinute(music.duration.seconds),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
                 MusicCardPopupMenu(music: music),
               ],
             )
           : null,
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-              Radius.elliptical(mediumPadding, defaultPadding))),
       onTap: onTapIsEnabled
           ? () async {
-              onTap != null
-                  ? await onTap!.call()
-                  : await AudioPlayerHelper.addQueueAndPlay(music);
-
-              MusicRepository.instance.addToListenedMusicList(music);
+              await Future.wait(
+                [
+                  onTap?.call() ?? AudioPlayerHelper.addQueueAndPlay(music),
+                  ListeningHistoryReposiory.instance.addToHistory(music),
+                ],
+              );
             }
           : null,
     );
@@ -95,39 +100,36 @@ class MusicCardPopupMenu extends StatelessWidget {
       height: hugeIconSize,
       child: PopupMenuButton<int>(
         icon: const Icon(Icons.more_vert),
-        iconColor: Colors.grey,
+        iconColor: Theme.of(context).colorScheme.onSurface,
+        color: Theme.of(context).colorScheme.tertiary,
         itemBuilder: (_) => [
           PopupMenuItem(
             value: 0,
             child: BookmarkingButton(content: music, onlyIcon: false),
           ),
           PopupMenuItem(
-            value: 1,
+            onTap: () => audioHandler.addQueueItem(music.toMediaItem()),
             child: ListTile(
               contentPadding: EdgeInsets.zero,
-              title: Text(_.loc.addQueue),
+              title: Text(context.loc.addQueue),
               leading: const Icon(Iconsax.play_add),
             ),
           ),
           PopupMenuItem(
-            value: 2,
+            onTap: () async {
+              final playlistInfo = await ChoosePlaylistDialog.show(context);
+              if (playlistInfo != null) {
+                LazyUserDataManager.instance
+                    .addMusicToPlaylist(playlistInfo.id, music);
+              }
+            },
             child: ListTile(
               contentPadding: EdgeInsets.zero,
-              title: Text(_.loc.addToPlaylist),
+              title: Text(context.loc.addToPlaylist),
               leading: const Icon(Iconsax.music_playlist),
             ),
           ),
         ],
-        onSelected: (int value) async {
-          if (value == 1) audioHandler.addQueueItem(music.toMediaItem());
-          if (value == 2) {
-            final playlistInfo = await ChoosePlaylistDialog.show(context);
-            if (playlistInfo != null) {
-              LazyUserDataManager.instance
-                  .addMusicToPlaylist(playlistInfo.id, music);
-            }
-          }
-        },
       ),
     );
   }

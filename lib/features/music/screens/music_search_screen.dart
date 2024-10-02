@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../common/constants/dimens.dart';
-import '../../../localization/app_localizations_context.dart';
+import '../../../core/localization/app_localizations_context.dart';
 import '../repository/music_repository.dart';
 import '../widgets/music_card.dart';
 
@@ -35,7 +35,7 @@ class _MusicSearchScreenState extends State<MusicSearchScreen>
             if (value.isNotEmpty) {
               return searchedMusicListWidget(value);
             } else {
-              return lastListenedMusicListWidget();
+              return lastSearchedMusicsList();
             }
           }),
     );
@@ -43,13 +43,19 @@ class _MusicSearchScreenState extends State<MusicSearchScreen>
 
   TextField searchBarWidget(BuildContext context) {
     return TextField(
+      focusNode: focusNode,
       autofocus: true,
       controller: searchTextController,
       inputFormatters: [LengthLimitingTextInputFormatter(40)],
       decoration: InputDecoration(
         border: InputBorder.none,
         hintText: context.loc.search,
-        suffixIcon: CloseButton(onPressed: searchTextController.clear),
+        suffixIcon: CloseButton(
+          onPressed: () {
+            searchTextController.clear();
+            searchedMusicList.value = [];
+          },
+        ),
       ),
       onSubmitted: (v) => searchMusic(),
     );
@@ -65,7 +71,7 @@ class _MusicSearchScreenState extends State<MusicSearchScreen>
     );
   }
 
-  Widget lastListenedMusicListWidget() {
+  Widget lastSearchedMusicsList() {
     return ValueListenableBuilder(
         valueListenable: lastSearchedMusicList,
         builder: (context, value, child) {
@@ -93,9 +99,15 @@ class _MusicSearchScreenState extends State<MusicSearchScreen>
                   return ListTile(
                     dense: true,
                     title: Text(value[index - 1]),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.elliptical(mediumPadding, defaultPadding),
+                      ),
+                    ),
                     trailing:
                         const Icon(Iconsax.arrow_right_3, size: xsmallIconSize),
                     onTap: () {
+                      focusNode.unfocus();
                       searchTextController.text = value[index - 1];
                       searchMusic();
                     },

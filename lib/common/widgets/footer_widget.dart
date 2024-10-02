@@ -1,6 +1,6 @@
 import '../constants/strings.dart';
 import '../helpers/functions.dart';
-import '../../localization/app_localizations_context.dart';
+import '../../core/localization/app_localizations_context.dart';
 import 'package:flutter/cupertino.dart';
 
 class FooterWidget extends StatelessWidget {

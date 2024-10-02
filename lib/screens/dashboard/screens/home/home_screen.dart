@@ -6,17 +6,17 @@ import 'package:artevo_package/models/daily_content.dart';
 import 'package:artevo_package/models/music_content.dart';
 import 'package:artevo_package/models/painting_content.dart';
 import 'package:artevo_package/models/poetry_content.dart';
-import '../../../../common/config/routes.dart';
+import '../../../../core/config/routes.dart';
 import '../../../../common/constants/dimens.dart';
 import '../../../../common/constants/text_styles.dart';
 import '../../../../common/enums/errors.dart';
-import '../../../../common/extensions/app_localizations_extension.dart';
+import '../../../../common/extensions/localizations_extension.dart';
 import '../../../../common/extensions/error_extension.dart';
 import '../../../../common/widgets/bookmarking_button.dart';
 import '../../../../common/widgets/image_viewer.dart';
 import '../../../../common/widgets/loader.dart';
 import '../../../../features/music/service/audio_player_helper.dart';
-import '../../../../localization/app_localizations_context.dart';
+import '../../../../core/localization/app_localizations_context.dart';
 import '../../../../services/data_manager.dart';
 import '../../../error/error_screen.dart';
 import '../../layout/main_layout_controller.dart';
@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             padding: const EdgeInsets.symmetric(
               vertical: xsmallPadding,
-              horizontal: mediumPadding,
+              horizontal: largePadding,
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(defaultPadding),

@@ -1,8 +1,9 @@
-import '../constants/dimens.dart';
-import 'error_dialog.dart';
-import '../../localization/app_localizations_context.dart';
+import '../../common/constants/dimens.dart';
+import '../../common/widgets/app_switch_button.dart';
+import '../../common/widgets/error_dialog.dart';
+import '../../core/localization/app_localizations_context.dart';
 import '../../services/notification/notification_service.dart';
-import '../constants/text_styles.dart';
+import '../../common/constants/text_styles.dart';
 import '../../services/cache/user_data_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -114,8 +115,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
           ),
         ],
       ),
-      trailing: Switch.adaptive(
-        value: notificationStatus,
+      trailing: AppSwitch(
+        initialValue: notificationStatus,
         onChanged: notificationStatusSwitchFunction,
       ),
     );

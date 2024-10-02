@@ -10,6 +10,7 @@ const lightColorScheme = ColorScheme(
   onSecondary: Color(0xff1e1e1f),
   error: Color(0xff690005),
   onError: Color(0xffffffff),
+  tertiary: Color.fromARGB(255, 245, 240, 227),
 );
 
 const darkColorScheme = ColorScheme(
@@ -22,4 +23,5 @@ const darkColorScheme = ColorScheme(
   onSecondary: Color(0xffF9F2E0),
   error: Color(0xff690005),
   onError: Color(0xffffffff),
+  tertiary: Color.fromARGB(255, 40, 40, 40),
 );

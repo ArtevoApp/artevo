@@ -1,12 +1,12 @@
-import '../../common/config/color_schemes.dart';
-import '../../common/config/routes.dart';
+import '../../core/config/color_schemes.dart';
+import '../../core/config/routes.dart';
 import '../../common/constants/dimens.dart';
 import '../../common/constants/paths.dart';
 import '../../common/constants/strings.dart';
 import '../../common/constants/text_styles.dart';
 import '../../common/widgets/language_selection_widgets.dart';
 import '../../common/widgets/footer_widget.dart';
-import '../../localization/app_localizations_context.dart';
+import '../../core/localization/app_localizations_context.dart';
 import '../../services/cache/user_data_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: darkColorScheme.surface,
-      body: body2(context),
+      body: body1(context),
     );
   }
 

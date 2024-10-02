@@ -31,6 +31,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get artevoReminder => 'Artevo Hatırlatıcı';
 
   @override
+  String get artevoPlaylists => 'Artevo Çalma Listeleri';
+
+  @override
   String get back => 'Geri';
 
   @override
@@ -38,6 +41,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get cancel => 'İptal';
+
+  @override
+  String get clearAll => 'Tümünü Temizle';
 
   @override
   String get close => 'Kapat';
@@ -117,7 +123,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get goetheQuote => 'İnsan her gün bir parça müzik dinlemeli, İyi bir şiir okumalı, güzel bir tablo görmeli ve mümkünse birkaç mantıklı cümle söylemeli.';
 
   @override
-  String get home => 'Ana Sayfa';
+  String get home => 'Anasayfa';
+
+  @override
+  String get history => 'Geçmiş';
 
   @override
   String get imageNotFound => 'Görsel Bulunamadı!';
@@ -136,6 +145,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get listenAgain => 'Tekrar Dinle';
+
+  @override
+  String get listeningHistory => 'Dinleme Geçmişi';
 
   @override
   String get more => 'daha fazla...';
@@ -263,6 +275,9 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get visualArtworks => 'Görsel Sanat Eserleri';
+
+  @override
+  String get yourLibrary => 'Kitaplığın';
 
   @override
   String get welcome => 'Hoşgeldiniz';
