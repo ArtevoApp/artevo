@@ -1,7 +1,7 @@
 name: artevo
 description: Günlük Estetik Seçkiler
 publish_to: 'none'
-version: 2.1.0+0
+version: 3.0.0+0
 
 environment:
   sdk: '>=3.2.3 <4.0.0'
@@ -13,7 +13,6 @@ dependencies:
   #-- core
   artevo_package:
     path: ../artevo_package
-  flutter_riverpod: ^2.3.6
 
   #-- loacalization
   intl: ^0.19.0
@@ -22,15 +21,16 @@ dependencies:
 
   #-
   timezone: ^0.9.3
-  flutter_timezone: ^1.0.8
+  flutter_timezone: ^3.0.1
 
   #-- network
   http: ^1.2.1
 
   #-- firebase
-  firebase_core: ^2.31.0
-  cloud_firestore: ^4.17.3
-  firebase_database: ^10.5.5
+  firebase_core: ^3.6.0
+  cloud_firestore: ^5.4.3
+  firebase_database: ^11.1.4
+  firebase_app_check: ^0.3.1+3
 
   #-- admob
   google_mobile_ads: ^5.1.0
@@ -44,41 +44,41 @@ dependencies:
   #-- notifications
   flutter_local_notifications: ^17.1.2
 
-  #----> UI
-  iconsax: ^0.0.8
-  ionicons: ^0.2.2
-  widget_zoom: ^0.0.4
-  text_scroll: ^0.2.0
-  cupertino_icons: ^1.0.8
-  flutter_animate: ^4.2.0+1
-  salomon_bottom_bar: ^3.3.2
-  flutter_staggered_grid_view: ^0.7.0
-
   #-- audio player 
   just_audio: ^0.9.37
   audio_session: ^0.1.19
   audio_service: ^0.18.13
   audio_video_progress_bar: ^2.0.2
 
-  #-- OTHERS
+  #-- UI
+  iconsax: ^0.0.8
+  ionicons: ^0.2.2
+  text_scroll: ^0.2.0
+  cupertino_icons: ^1.0.8
+  flutter_animate: ^4.2.0+1
+  salomon_bottom_bar: ^3.3.2
+  flutter_staggered_grid_view: ^0.7.0
+
+  #-- utils
   path: ^1.9.0
   uuid: ^4.3.3
-  rxdart: ^0.27.7
+  rxdart: ^0.28.0
   collection: ^1.18.0
+  
+  #-- OTHERS
   url_launcher: ^6.1.11
   in_app_review: ^2.0.8
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
-  flutter_launcher_icons: "^0.13.1"
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.1
 
 flutter_launcher_icons:
   ios: false
   android: true # or "launcher_icon" spesific name
   min_sdk_android: 21 # android min sdk min:16, default 21
-
   image_path_android: "assets/app/logo.png"
   image_path_ios: "assets/app/logo.png"
   adaptive_icon_background: "assets/app/background.png" # only available for Android 8.0 devices and above
@@ -91,16 +91,66 @@ flutter:
     - assets/
     - assets/app/
     - assets/fonts/
-    - assets/license/
     - assets/ornaments/
 
   fonts:
-    - family: Domine
-      fonts:
-        - asset: assets/fonts/domine/Domine-Bold.ttf
-        - asset: assets/fonts/domine/Domine-Medium.ttf
-        - asset: assets/fonts/domine/Domine-Regular.ttf
-        - asset: assets/fonts/domine/Domine-SemiBold.ttf
     - family: Chomsky
       fonts:
         - asset: assets/fonts/chomsky/Chomsky.otf
+    - family: Domine
+      fonts:
+        - asset: assets/fonts/domine/Domine-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/domine/Domine-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/domine/Domine-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/domine/Domine-Regular.ttf
+          weight: 400
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat/Montserrat-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Montserrat/Montserrat-ThinItalic.ttf
+          style: italic
+          weight: 100
+        - asset: assets/fonts/Montserrat/Montserrat-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Montserrat/Montserrat-ExtraLightItalic.ttf
+          style: italic
+          weight: 200
+        - asset: assets/fonts/Montserrat/Montserrat-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Montserrat/Montserrat-LightItalic.ttf
+          style: italic
+          weight: 300
+        - asset: assets/fonts/Montserrat/Montserrat-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Montserrat/Montserrat-Italic.ttf
+          style: italic
+          weight: 400
+        - asset: assets/fonts/Montserrat/Montserrat-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Montserrat/Montserrat-MediumItalic.ttf
+          style: italic
+          weight: 500
+        - asset: assets/fonts/Montserrat/Montserrat-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Montserrat/Montserrat-SemiBoldItalic.ttf
+          style: italic
+          weight: 600
+        - asset: assets/fonts/Montserrat/Montserrat-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Montserrat/Montserrat-BoldItalic.ttf
+          style: italic
+          weight: 700
+        - asset: assets/fonts/Montserrat/Montserrat-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Montserrat/Montserrat-ExtraBoldItalic.ttf
+          style: italic
+          weight: 800
+        - asset: assets/fonts/Montserrat/Montserrat-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Montserrat/Montserrat-BlackItalic.ttf
+          style: italic
+          weight: 900
